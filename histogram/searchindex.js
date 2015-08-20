@@ -1,0 +1,1 @@
+Search.setIndex({objnames:{},objects:{},envversion:43,filenames:["index"],titles:["Welcome to histogram&#8217;s documentation!"],objtypes:{},titleterms:{welcom:0,histogram:0,document:0,indic:0,tabl:0},terms:{content:0,modul:0,index:0,search:0,page:0}})
