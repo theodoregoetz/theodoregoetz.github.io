@@ -1,0 +1,916 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Histogram &mdash; histogram 2.0.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="_static/issuetracker.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="histogram 2.0.0 documentation" href="index.html"/>
+        <link rel="next" title="HistogramAxis" href="histogram_axis.html"/>
+        <link rel="prev" title="histogram documentation" href="index.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+
+        
+          <a href="index.html" class="icon icon-home"> histogram
+        
+
+        
+        </a>
+
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+        
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="">Histogram</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#axes-and-shape">Axes and Shape</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#modifying-methods">Modifying Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#data-and-statistics">Data and Statistics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#transformations">Transformations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#iterating">Iterating</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fitting">Fitting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#arithmetic">Arithmetic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#misc">Misc</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="histogram_axis.html">HistogramAxis</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="histogram_axis.html#edges-and-bins">Edges and Bins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="histogram_axis.html#tranformations">Tranformations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="histogram_axis.html#misc">Misc</a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">histogram</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Histogram</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/histogram.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <span class="target" id="module-histogram"></span><div class="section" id="histogram">
+<h1>Histogram<a class="headerlink" href="#histogram" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="histogram.Histogram">
+<em class="property">class </em><tt class="descclassname">histogram.</tt><tt class="descname">Histogram</tt><big>(</big><em>*axes</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#histogram.Histogram" title="Permalink to this definition">¶</a></dt>
+<dd><p>An N-dimensional histogram over a continuous range.</p>
+<p>This is an ND histogram where each axis is
+a continuous (non-discrete) range with a set
+number of bins.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>axes</strong> (<a class="reference external" href="http://docs.python.org/library/functions.html#list" title="(in Python v2.7)"><em>list</em></a>) &#8211; List of <a class="reference internal" href="histogram_axis.html#histogram.HistogramAxis" title="histogram.HistogramAxis"><tt class="xref py py-class docutils literal"><span class="pre">HistogramAxis</span></tt></a> or constructor parameters thereof. These are the axis definitions.</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Keyword Arguments:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first last simple">
+<li><strong>label</strong> (<em>str</em>) &#8211; Label for the filled data.</li>
+<li><strong>title</strong> (<em>str</em>) &#8211; Title of this histogram.</li>
+<li><strong>data</strong> (<em>scalar array</em>) &#8211; N-dimensional array for the filled data.</li>
+<li><strong>uncert</strong> (<em>scalar array</em>) &#8211; N-dimensional array for the uncertainty.</li>
+<li><strong>dtype</strong> (<em>scalar type</em>) &#8211; Type of the data array (superseded by dtype of data).</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Example</p>
+<p>Typical usage would be to fill the histogram from a
+sample of data. In this example, we create a 1D
+histogram with 100 bins from 0 to 10, and fill it
+with 10k samples distributed normally around 5 with
+a width (sigma) of 1:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span>
+<span class="kn">from</span> <span class="nn">histogram</span> <span class="kn">import</span> <span class="n">Histogram</span>
+
+<span class="n">h</span> <span class="o">=</span> <span class="n">Histogram</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">])</span>
+<span class="n">h</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">10000</span><span class="p">))</span>
+<span class="n">fig</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">pyplot</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">pt</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">plothist</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>
+<span class="n">pyplot</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>Attributes</strong></p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#histogram.Histogram.binvolumes" title="histogram.Histogram.binvolumes"><tt class="xref py py-obj docutils literal"><span class="pre">binvolumes</span></tt></a></td>
+<td>array of the volume of each bin. Volume is defined as the</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#histogram.Histogram.binwidths" title="histogram.Histogram.binwidths"><tt class="xref py py-obj docutils literal"><span class="pre">binwidths</span></tt></a></td>
+<td>tuple (or single array for 1D histogram) of the binwidths</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#histogram.Histogram.dim" title="histogram.Histogram.dim"><tt class="xref py py-obj docutils literal"><span class="pre">dim</span></tt></a></td>
+<td>the dimension of this histogram (number of axes)</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#histogram.Histogram.dtype" title="histogram.Histogram.dtype"><tt class="xref py py-obj docutils literal"><span class="pre">dtype</span></tt></a>(that[,&nbsp;div])</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#histogram.Histogram.edge_grid" title="histogram.Histogram.edge_grid"><tt class="xref py py-obj docutils literal"><span class="pre">edge_grid</span></tt></a></td>
+<td>Return the meshgrid built from the axes&#8217; edges.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#histogram.Histogram.edges" title="histogram.Histogram.edges"><tt class="xref py py-obj docutils literal"><span class="pre">edges</span></tt></a></td>
+<td><em>the edges of each axis a tuple</em> &#8211; ( [x0,x1..], [y0,y1...] ... )</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#histogram.Histogram.grid" title="histogram.Histogram.grid"><tt class="xref py py-obj docutils literal"><span class="pre">grid</span></tt></a></td>
+<td>a tuple of the &#8220;meshgrid&#8221; of the bincenters of each axis.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#histogram.Histogram.max" title="histogram.Histogram.max"><tt class="xref py py-obj docutils literal"><span class="pre">max</span></tt></a>([uncert])</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#histogram.Histogram.min" title="histogram.Histogram.min"><tt class="xref py py-obj docutils literal"><span class="pre">min</span></tt></a>([uncert])</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#histogram.Histogram.overflow" title="histogram.Histogram.overflow"><tt class="xref py py-obj docutils literal"><span class="pre">overflow</span></tt></a></td>
+<td>a value that is guaranteed to be an overflow</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#histogram.Histogram.shape" title="histogram.Histogram.shape"><tt class="xref py py-obj docutils literal"><span class="pre">shape</span></tt></a></td>
+<td>the shape of this histogram. This is a tuple</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#histogram.Histogram.size" title="histogram.Histogram.size"><tt class="xref py py-obj docutils literal"><span class="pre">size</span></tt></a></td>
+<td>the total number of bins. This is the product</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Methods</strong></p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#histogram.Histogram.__add__" title="histogram.Histogram.__add__"><tt class="xref py py-obj docutils literal"><span class="pre">__add__</span></tt></a>(that)</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#histogram.Histogram.__call__" title="histogram.Histogram.__call__"><tt class="xref py py-obj docutils literal"><span class="pre">__call__</span></tt></a>(*xx,&nbsp;**kwargs)</td>
+<td>the value of the histogram at a specific</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#histogram.Histogram.__truediv__" title="histogram.Histogram.__truediv__"><tt class="xref py py-obj docutils literal"><span class="pre">__truediv__</span></tt></a>(that)</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#histogram.Histogram.__iadd__" title="histogram.Histogram.__iadd__"><tt class="xref py py-obj docutils literal"><span class="pre">__iadd__</span></tt></a>(that)</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#histogram.Histogram.__itruediv__" title="histogram.Histogram.__itruediv__"><tt class="xref py py-obj docutils literal"><span class="pre">__itruediv__</span></tt></a>(that)</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#histogram.Histogram.__imul__" title="histogram.Histogram.__imul__"><tt class="xref py py-obj docutils literal"><span class="pre">__imul__</span></tt></a>(that)</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#histogram.Histogram.__isub__" title="histogram.Histogram.__isub__"><tt class="xref py py-obj docutils literal"><span class="pre">__isub__</span></tt></a>(that)</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#histogram.Histogram.__mul__" title="histogram.Histogram.__mul__"><tt class="xref py py-obj docutils literal"><span class="pre">__mul__</span></tt></a>(that)</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#histogram.Histogram.__radd__" title="histogram.Histogram.__radd__"><tt class="xref py py-obj docutils literal"><span class="pre">__radd__</span></tt></a>(that)</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#histogram.Histogram.__rtruediv__" title="histogram.Histogram.__rtruediv__"><tt class="xref py py-obj docutils literal"><span class="pre">__rtruediv__</span></tt></a>(that)</td>
+<td>that = 1.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#histogram.Histogram.__rmul__" title="histogram.Histogram.__rmul__"><tt class="xref py py-obj docutils literal"><span class="pre">__rmul__</span></tt></a>(that)</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#histogram.Histogram.__rsub__" title="histogram.Histogram.__rsub__"><tt class="xref py py-obj docutils literal"><span class="pre">__rsub__</span></tt></a>(that)</td>
+<td>that = 1.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#histogram.Histogram.__str__" title="histogram.Histogram.__str__"><tt class="xref py py-obj docutils literal"><span class="pre">__str__</span></tt></a>()</td>
+<td>the str() representation of the numpy array containing</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#histogram.Histogram.__sub__" title="histogram.Histogram.__sub__"><tt class="xref py py-obj docutils literal"><span class="pre">__sub__</span></tt></a>(that)</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#histogram.Histogram.added_uncert" title="histogram.Histogram.added_uncert"><tt class="xref py py-obj docutils literal"><span class="pre">added_uncert</span></tt></a>(that)</td>
+<td>add the uncertainties directly in quadrature</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#histogram.Histogram.added_uncert_ratio" title="histogram.Histogram.added_uncert_ratio"><tt class="xref py py-obj docutils literal"><span class="pre">added_uncert_ratio</span></tt></a>(that[,&nbsp;nans])</td>
+<td>add the uncertainties by ratio to the data in quadrature</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#histogram.Histogram.aspolygon" title="histogram.Histogram.aspolygon"><tt class="xref py py-obj docutils literal"><span class="pre">aspolygon</span></tt></a>([xlow,&nbsp;xhigh,&nbsp;ymin])</td>
+<td>Return a polygon of the histogram</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#histogram.Histogram.binwidth" title="histogram.Histogram.binwidth"><tt class="xref py py-obj docutils literal"><span class="pre">binwidth</span></tt></a>([b,&nbsp;axis])</td>
+<td>the bin-width for a specific bin b on the axis</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#histogram.Histogram.clear_nans" title="histogram.Histogram.clear_nans"><tt class="xref py py-obj docutils literal"><span class="pre">clear_nans</span></tt></a>([val])</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#histogram.Histogram.clone" title="histogram.Histogram.clone"><tt class="xref py py-obj docutils literal"><span class="pre">clone</span></tt></a>([dtype])</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#histogram.Histogram.cut" title="histogram.Histogram.cut"><tt class="xref py py-obj docutils literal"><span class="pre">cut</span></tt></a>(*args,&nbsp;**kwargs)</td>
+<td>Truncate a histogram along one or more axes.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#histogram.Histogram.cut_data" title="histogram.Histogram.cut_data"><tt class="xref py py-obj docutils literal"><span class="pre">cut_data</span></tt></a>(*rng,&nbsp;**kwargs)</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#histogram.Histogram.errorbars" title="histogram.Histogram.errorbars"><tt class="xref py py-obj docutils literal"><span class="pre">errorbars</span></tt></a>([maxdim,&nbsp;asratio])</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#histogram.Histogram.extent" title="histogram.Histogram.extent"><tt class="xref py py-obj docutils literal"><span class="pre">extent</span></tt></a>([maxdim,&nbsp;uncert,&nbsp;pad])</td>
+<td>extent of axes (up to maxdim) returned as</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#histogram.Histogram.fill" title="histogram.Histogram.fill"><tt class="xref py py-obj docutils literal"><span class="pre">fill</span></tt></a>(*args)</td>
+<td>convert *args to sample, weights</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#histogram.Histogram.fill_from_sample" title="histogram.Histogram.fill_from_sample"><tt class="xref py py-obj docutils literal"><span class="pre">fill_from_sample</span></tt></a>(sample[,&nbsp;weights])</td>
+<td>fills the histogram from sample</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#histogram.Histogram.fill_one" title="histogram.Histogram.fill_one"><tt class="xref py py-obj docutils literal"><span class="pre">fill_one</span></tt></a>(pt[,&nbsp;wt])</td>
+<td>increment a single bin by weight wt.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#histogram.Histogram.fit" title="histogram.Histogram.fit"><tt class="xref py py-obj docutils literal"><span class="pre">fit</span></tt></a>(fcn,&nbsp;p0,&nbsp;**kwargs)</td>
+<td>Fits the function fcn to the histogram, returning estimated parameters, their covariance matrix and a tuple containing the specified test result (chi-square test is default).</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#histogram.Histogram.integral" title="histogram.Histogram.integral"><tt class="xref py py-obj docutils literal"><span class="pre">integral</span></tt></a>([uncert])</td>
+<td>total integral of the histogram. This is the sum</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#histogram.Histogram.interpolate_nans" title="histogram.Histogram.interpolate_nans"><tt class="xref py py-obj docutils literal"><span class="pre">interpolate_nans</span></tt></a>(**kwargs)</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#histogram.Histogram.isuniform" title="histogram.Histogram.isuniform"><tt class="xref py py-obj docutils literal"><span class="pre">isuniform</span></tt></a>(*args,&nbsp;**kwargs)</td>
+<td>true or false depending on if all</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#histogram.Histogram.mean" title="histogram.Histogram.mean"><tt class="xref py py-obj docutils literal"><span class="pre">mean</span></tt></a>([axis])</td>
+<td>mean of the all values in this histogram</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#histogram.Histogram.occupancy" title="histogram.Histogram.occupancy"><tt class="xref py py-obj docutils literal"><span class="pre">occupancy</span></tt></a>([bins,&nbsp;rng])</td>
+<td>returns a new histogram showing the occupancy of the</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#histogram.Histogram.projection" title="histogram.Histogram.projection"><tt class="xref py py-obj docutils literal"><span class="pre">projection</span></tt></a>([axis])</td>
+<td>projection onto a single axis</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#histogram.Histogram.rebin" title="histogram.Histogram.rebin"><tt class="xref py py-obj docutils literal"><span class="pre">rebin</span></tt></a>([nbins,&nbsp;axis,&nbsp;snap,&nbsp;clip])</td>
+<td>nbins describes the number of bins to merge</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#histogram.Histogram.reset" title="histogram.Histogram.reset"><tt class="xref py py-obj docutils literal"><span class="pre">reset</span></tt></a>()</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#histogram.Histogram.set" title="histogram.Histogram.set"><tt class="xref py py-obj docutils literal"><span class="pre">set</span></tt></a>(val[,&nbsp;uncert])</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#histogram.Histogram.slices" title="histogram.Histogram.slices"><tt class="xref py py-obj docutils literal"><span class="pre">slices</span></tt></a>([axis])</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#histogram.Histogram.slices_data" title="histogram.Histogram.slices_data"><tt class="xref py py-obj docutils literal"><span class="pre">slices_data</span></tt></a>([axis])</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#histogram.Histogram.slices_uncert" title="histogram.Histogram.slices_uncert"><tt class="xref py py-obj docutils literal"><span class="pre">slices_uncert</span></tt></a>([axis])</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#histogram.Histogram.smooth" title="histogram.Histogram.smooth"><tt class="xref py py-obj docutils literal"><span class="pre">smooth</span></tt></a>([weight])</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#histogram.Histogram.std" title="histogram.Histogram.std"><tt class="xref py py-obj docutils literal"><span class="pre">std</span></tt></a>()</td>
+<td>standard deviation of all values in this histogram</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#histogram.Histogram.sum" title="histogram.Histogram.sum"><tt class="xref py py-obj docutils literal"><span class="pre">sum</span></tt></a>(*axes,&nbsp;**kwargs)</td>
+<td>summation over all values or specific axes, reducing</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#histogram.Histogram.sum_over_axes" title="histogram.Histogram.sum_over_axes"><tt class="xref py py-obj docutils literal"><span class="pre">sum_over_axes</span></tt></a>(*axes)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<div class="section" id="axes-and-shape">
+<h2>Axes and Shape<a class="headerlink" href="#axes-and-shape" title="Permalink to this headline">¶</a></h2>
+<p>Methods specific to the axis or axes of this histogram including size and shape of the data.</p>
+<dl class="attribute">
+<dt id="histogram.Histogram.binvolumes">
+<tt class="descclassname">Histogram.</tt><tt class="descname">binvolumes</tt><a class="headerlink" href="#histogram.Histogram.binvolumes" title="Permalink to this definition">¶</a></dt>
+<dd><p>array of the volume of each bin. Volume is defined as the
+product of the bin-widths along each axis for the given
+bin.</p>
+<p>For 1D histogram, this is the same as h.binwidths</p>
+<p>for 2D histograms, this returns a 2D array like the
+following where dxi is the width of the ith bin along
+the x-axis (first, index = 0)</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>[ [ dx0*dy0, dx0*dy1 ... ],</dt>
+<dd>[ dx1*dy0, dx1*dy1 ... ],
+... ]</dd>
+</dl>
+<p>h.binvolumes[i,j] = dxi * dyj</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="histogram.Histogram.binwidth">
+<tt class="descclassname">Histogram.</tt><tt class="descname">binwidth</tt><big>(</big><em>b=1</em>, <em>axis=0</em><big>)</big><a class="headerlink" href="#histogram.Histogram.binwidth" title="Permalink to this definition">¶</a></dt>
+<dd><p>the bin-width for a specific bin b on the axis
+specified. default is the first (0) x-axis</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="histogram.Histogram.binwidths">
+<tt class="descclassname">Histogram.</tt><tt class="descname">binwidths</tt><a class="headerlink" href="#histogram.Histogram.binwidths" title="Permalink to this definition">¶</a></dt>
+<dd><p>tuple (or single array for 1D histogram) of the binwidths
+of each axis</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="histogram.Histogram.dim">
+<tt class="descclassname">Histogram.</tt><tt class="descname">dim</tt><a class="headerlink" href="#histogram.Histogram.dim" title="Permalink to this definition">¶</a></dt>
+<dd><p>the dimension of this histogram (number of axes)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="histogram.Histogram.edge_grid">
+<tt class="descclassname">Histogram.</tt><tt class="descname">edge_grid</tt><a class="headerlink" href="#histogram.Histogram.edge_grid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the meshgrid built from the axes&#8217; edges.</p>
+<p>This is just a single array for 1D histograms - i.e. the
+edges of the x-axis. For 2D histograms, this is a
+tuple of two 2D arrays:</p>
+<blockquote>
+<div>XX,YY = h2.grid()</div></blockquote>
+<p>Here, XX and YY are arrays of shape (xedges,yedges...)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="histogram.Histogram.edges">
+<tt class="descclassname">Histogram.</tt><tt class="descname">edges</tt><a class="headerlink" href="#histogram.Histogram.edges" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>the edges of each axis a tuple</em> &#8211; ( [x0,x1..], [y0,y1...] ... )</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="histogram.Histogram.grid">
+<tt class="descclassname">Histogram.</tt><tt class="descname">grid</tt><a class="headerlink" href="#histogram.Histogram.grid" title="Permalink to this definition">¶</a></dt>
+<dd><p>a tuple of the &#8220;meshgrid&#8221; of the bincenters of each axis.
+This is just a single array for 1D histograms - i.e. the
+bin-centers of the x-axis. For 2D histograms, this is a
+tuple of two 2D arrays:</p>
+<blockquote>
+<div>XX,YY = h2.grid()</div></blockquote>
+<p>Here, XX and YY are arrays of shape (xbins,ybins...)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="histogram.Histogram.isuniform">
+<tt class="descclassname">Histogram.</tt><tt class="descname">isuniform</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#histogram.Histogram.isuniform" title="Permalink to this definition">¶</a></dt>
+<dd><p>true or false depending on if all
+axes are uniform (to within a certain tolerace)
+see HistogramAxis.isuniform() for more details</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="histogram.Histogram.overflow">
+<tt class="descclassname">Histogram.</tt><tt class="descname">overflow</tt><a class="headerlink" href="#histogram.Histogram.overflow" title="Permalink to this definition">¶</a></dt>
+<dd><p>a value that is guaranteed to be an overflow
+when filling this histogram.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="histogram.Histogram.shape">
+<tt class="descclassname">Histogram.</tt><tt class="descname">shape</tt><a class="headerlink" href="#histogram.Histogram.shape" title="Permalink to this definition">¶</a></dt>
+<dd><p>the shape of this histogram. This is a tuple
+of the number of bins in each axis (x,y...)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="histogram.Histogram.size">
+<tt class="descclassname">Histogram.</tt><tt class="descname">size</tt><a class="headerlink" href="#histogram.Histogram.size" title="Permalink to this definition">¶</a></dt>
+<dd><p>the total number of bins. This is the product
+of the number of bins in each axis</p>
+</dd></dl>
+
+</div>
+<div class="section" id="modifying-methods">
+<h2>Modifying Methods<a class="headerlink" href="#modifying-methods" title="Permalink to this headline">¶</a></h2>
+<p>Methods which directly modify the data within this histogram.</p>
+<dl class="method">
+<dt id="histogram.Histogram.clear_nans">
+<tt class="descclassname">Histogram.</tt><tt class="descname">clear_nans</tt><big>(</big><em>val=0</em><big>)</big><a class="headerlink" href="#histogram.Histogram.clear_nans" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="histogram.Histogram.fill">
+<tt class="descclassname">Histogram.</tt><tt class="descname">fill</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#histogram.Histogram.fill" title="Permalink to this definition">¶</a></dt>
+<dd><p>convert *args to sample, weights
+where sample is of shape (D,N)
+where D is the dimension of the
+histogram and N is the number of
+points to fill. Note that this
+will be transposed just before
+sending to np.histogramdd</p>
+<p>weights may be a single number or
+an array of length N. The default
+(None) is equivalent to weights=1</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="histogram.Histogram.fill_from_sample">
+<tt class="descclassname">Histogram.</tt><tt class="descname">fill_from_sample</tt><big>(</big><em>sample</em>, <em>weights=None</em><big>)</big><a class="headerlink" href="#histogram.Histogram.fill_from_sample" title="Permalink to this definition">¶</a></dt>
+<dd><p>fills the histogram from sample
+which must be (D,N) array where
+D is the dimension of the histogram
+and N is the number of points
+to fill.</p>
+<p>weights may be a single number or
+an array of length N. The default
+(None) is equivalent to weights=1</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="histogram.Histogram.fill_one">
+<tt class="descclassname">Histogram.</tt><tt class="descname">fill_one</tt><big>(</big><em>pt</em>, <em>wt=1</em><big>)</big><a class="headerlink" href="#histogram.Histogram.fill_one" title="Permalink to this definition">¶</a></dt>
+<dd><p>increment a single bin by weight wt.
+This should be used as a last resort
+because it is roughly 10 times
+slower than fill_from_sample() when
+filling many entries.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="histogram.Histogram.set">
+<tt class="descclassname">Histogram.</tt><tt class="descname">set</tt><big>(</big><em>val</em>, <em>uncert=None</em><big>)</big><a class="headerlink" href="#histogram.Histogram.set" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="histogram.Histogram.reset">
+<tt class="descclassname">Histogram.</tt><tt class="descname">reset</tt><big>(</big><big>)</big><a class="headerlink" href="#histogram.Histogram.reset" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="data-and-statistics">
+<h2>Data and Statistics<a class="headerlink" href="#data-and-statistics" title="Permalink to this headline">¶</a></h2>
+<p>Non-modifying methods which give some information about the data or uncertainty contained in this histogram instance.</p>
+<dl class="method">
+<dt id="histogram.Histogram.dtype">
+<tt class="descclassname">Histogram.</tt><tt class="descname">dtype</tt><big>(</big><em>that</em>, <em>div=False</em><big>)</big><a class="headerlink" href="#histogram.Histogram.dtype" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="histogram.Histogram.errorbars">
+<tt class="descclassname">Histogram.</tt><tt class="descname">errorbars</tt><big>(</big><em>maxdim=2</em>, <em>asratio=False</em><big>)</big><a class="headerlink" href="#histogram.Histogram.errorbars" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="histogram.Histogram.extent">
+<tt class="descclassname">Histogram.</tt><tt class="descname">extent</tt><big>(</big><em>maxdim=2</em>, <em>uncert=True</em>, <em>pad=None</em><big>)</big><a class="headerlink" href="#histogram.Histogram.extent" title="Permalink to this definition">¶</a></dt>
+<dd><p>extent of axes (up to maxdim) returned as
+a single tuple. By default, this includes
+the uncertainty (if the last dimension is
+the histogram&#8217;s data and not an axis):</p>
+<blockquote>
+<div>[xmin, xmax, ymin, ymax, ..., zmin-dz, zmax+dz]</div></blockquote>
+<p>padding is given as a percent of the actual
+extent of the axes or data (plus uncertainty)
+and can be either a single floating point
+number or a list of length (2 * maxdim)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="histogram.Histogram.integral">
+<tt class="descclassname">Histogram.</tt><tt class="descname">integral</tt><big>(</big><em>uncert=False</em><big>)</big><a class="headerlink" href="#histogram.Histogram.integral" title="Permalink to this definition">¶</a></dt>
+<dd><p>total integral of the histogram. This is the sum
+multiplied by the bin volumes</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="histogram.Histogram.max">
+<tt class="descclassname">Histogram.</tt><tt class="descname">max</tt><big>(</big><em>uncert=False</em><big>)</big><a class="headerlink" href="#histogram.Histogram.max" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="histogram.Histogram.mean">
+<tt class="descclassname">Histogram.</tt><tt class="descname">mean</tt><big>(</big><em>axis=None</em><big>)</big><a class="headerlink" href="#histogram.Histogram.mean" title="Permalink to this definition">¶</a></dt>
+<dd><p>mean of the all values in this histogram</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="histogram.Histogram.min">
+<tt class="descclassname">Histogram.</tt><tt class="descname">min</tt><big>(</big><em>uncert=False</em><big>)</big><a class="headerlink" href="#histogram.Histogram.min" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="histogram.Histogram.std">
+<tt class="descclassname">Histogram.</tt><tt class="descname">std</tt><big>(</big><big>)</big><a class="headerlink" href="#histogram.Histogram.std" title="Permalink to this definition">¶</a></dt>
+<dd><p>standard deviation of all values in this histogram</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="histogram.Histogram.sum">
+<tt class="descclassname">Histogram.</tt><tt class="descname">sum</tt><big>(</big><em>*axes</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#histogram.Histogram.sum" title="Permalink to this definition">¶</a></dt>
+<dd><p>summation over all values or specific axes, reducing
+the dimensionality of the histogram</p>
+</dd></dl>
+
+</div>
+<div class="section" id="transformations">
+<h2>Transformations<a class="headerlink" href="#transformations" title="Permalink to this headline">¶</a></h2>
+<p>Methods which generally return a new histogram representing the same data in some transformed view.</p>
+<dl class="method">
+<dt id="histogram.Histogram.cut">
+<tt class="descclassname">Histogram.</tt><tt class="descname">cut</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#histogram.Histogram.cut" title="Permalink to this definition">¶</a></dt>
+<dd><p>Truncate a histogram along one or more axes.</p>
+<p>To cut (truncate) a one dimensional histogram from 0 to 5,
+each of the following are valid. This will also cut an
+ND histogram along the first (x) axis:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">hcut</span> <span class="o">=</span> <span class="n">h</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">hcut</span> <span class="o">=</span> <span class="n">h</span><span class="o">.</span><span class="n">cut</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">hcut</span> <span class="o">=</span> <span class="n">h</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">hcut</span> <span class="o">=</span> <span class="n">h</span><span class="o">.</span><span class="n">cut</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>To cut along the second (y) axis, you can do the following:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">hcut</span> <span class="o">=</span> <span class="n">h</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">hcut</span> <span class="o">=</span> <span class="n">h</span><span class="o">.</span><span class="n">cut</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">hcut</span> <span class="o">=</span> <span class="n">h</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">hcut</span> <span class="o">=</span> <span class="n">h</span><span class="o">.</span><span class="n">cut</span><span class="p">((</span><span class="bp">None</span><span class="p">,</span><span class="bp">None</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>To cut only on one side, <cite>None</cite> may be used to indicate
++/- infinity. This makes a lower-bound type cut at 0:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">hcut</span> <span class="o">=</span> <span class="n">h</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="bp">None</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Finally, to cut on multiple dimensions at once, the cut
+ranges can be strung together. These examples cut
+along the first axis (x) from 0 to 5 and along the second
+axis (y) from 1 to 6:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">hcut</span> <span class="o">=</span> <span class="n">h</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
+<span class="n">hcut</span> <span class="o">=</span> <span class="n">h</span><span class="o">.</span><span class="n">cut</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">),(</span><span class="mi">1</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>The first example above is useful for cutting 2D histogram
+using extent lists as used in other libraries like
+matplotlib:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">hcut</span> <span class="o">=</span> <span class="n">h</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="o">*</span><span class="n">ax</span><span class="o">.</span><span class="n">extent</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>where, for example, <cite>ax.extent()</cite> returns the extent in
+the form:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">[</span><span class="n">xmin</span><span class="p">,</span><span class="n">xmax</span><span class="p">,</span><span class="n">ymin</span><span class="p">,</span><span class="n">ymax</span><span class="p">]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="histogram.Histogram.cut_data">
+<tt class="descclassname">Histogram.</tt><tt class="descname">cut_data</tt><big>(</big><em>*rng</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#histogram.Histogram.cut_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="histogram.Histogram.interpolate_nans">
+<tt class="descclassname">Histogram.</tt><tt class="descname">interpolate_nans</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#histogram.Histogram.interpolate_nans" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="histogram.Histogram.occupancy">
+<tt class="descclassname">Histogram.</tt><tt class="descname">occupancy</tt><big>(</big><em>bins=100</em>, <em>rng=None</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#histogram.Histogram.occupancy" title="Permalink to this definition">¶</a></dt>
+<dd><p>returns a new histogram showing the occupancy of the
+data. This is effectively histograming the data points.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="histogram.Histogram.projection">
+<tt class="descclassname">Histogram.</tt><tt class="descname">projection</tt><big>(</big><em>axis=0</em><big>)</big><a class="headerlink" href="#histogram.Histogram.projection" title="Permalink to this definition">¶</a></dt>
+<dd><p>projection onto a single axis</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="histogram.Histogram.rebin">
+<tt class="descclassname">Histogram.</tt><tt class="descname">rebin</tt><big>(</big><em>nbins=2</em>, <em>axis=0</em>, <em>snap='low'</em>, <em>clip=True</em><big>)</big><a class="headerlink" href="#histogram.Histogram.rebin" title="Permalink to this definition">¶</a></dt>
+<dd><p>nbins describes the number of bins to merge
+along each axis, or along one axis specified by
+the argument &#8220;axis&#8221;.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="histogram.Histogram.smooth">
+<tt class="descclassname">Histogram.</tt><tt class="descname">smooth</tt><big>(</big><em>weight=0.5</em><big>)</big><a class="headerlink" href="#histogram.Histogram.smooth" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="histogram.Histogram.sum_over_axes">
+<tt class="descclassname">Histogram.</tt><tt class="descname">sum_over_axes</tt><big>(</big><em>*axes</em><big>)</big><a class="headerlink" href="#histogram.Histogram.sum_over_axes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="iterating">
+<h2>Iterating<a class="headerlink" href="#iterating" title="Permalink to this headline">¶</a></h2>
+<dl class="method">
+<dt id="histogram.Histogram.slices">
+<tt class="descclassname">Histogram.</tt><tt class="descname">slices</tt><big>(</big><em>axis=0</em><big>)</big><a class="headerlink" href="#histogram.Histogram.slices" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="histogram.Histogram.slices_data">
+<tt class="descclassname">Histogram.</tt><tt class="descname">slices_data</tt><big>(</big><em>axis=0</em><big>)</big><a class="headerlink" href="#histogram.Histogram.slices_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="histogram.Histogram.slices_uncert">
+<tt class="descclassname">Histogram.</tt><tt class="descname">slices_uncert</tt><big>(</big><em>axis=0</em><big>)</big><a class="headerlink" href="#histogram.Histogram.slices_uncert" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="fitting">
+<h2>Fitting<a class="headerlink" href="#fitting" title="Permalink to this headline">¶</a></h2>
+<dl class="method">
+<dt id="histogram.Histogram.fit">
+<tt class="descclassname">Histogram.</tt><tt class="descname">fit</tt><big>(</big><em>fcn</em>, <em>p0</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#histogram.Histogram.fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fits the function fcn to the histogram, returning
+estimated parameters, their covariance matrix and
+a tuple containing the specified test result
+(chi-square test is default).</p>
+</dd></dl>
+
+</div>
+<div class="section" id="arithmetic">
+<h2>Arithmetic<a class="headerlink" href="#arithmetic" title="Permalink to this headline">¶</a></h2>
+<dl class="method">
+<dt id="histogram.Histogram.__iadd__">
+<tt class="descclassname">Histogram.</tt><tt class="descname">__iadd__</tt><big>(</big><em>that</em><big>)</big><a class="headerlink" href="#histogram.Histogram.__iadd__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="histogram.Histogram.__radd__">
+<tt class="descclassname">Histogram.</tt><tt class="descname">__radd__</tt><big>(</big><em>that</em><big>)</big><a class="headerlink" href="#histogram.Histogram.__radd__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="histogram.Histogram.__add__">
+<tt class="descclassname">Histogram.</tt><tt class="descname">__add__</tt><big>(</big><em>that</em><big>)</big><a class="headerlink" href="#histogram.Histogram.__add__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="histogram.Histogram.__isub__">
+<tt class="descclassname">Histogram.</tt><tt class="descname">__isub__</tt><big>(</big><em>that</em><big>)</big><a class="headerlink" href="#histogram.Histogram.__isub__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="histogram.Histogram.__rsub__">
+<tt class="descclassname">Histogram.</tt><tt class="descname">__rsub__</tt><big>(</big><em>that</em><big>)</big><a class="headerlink" href="#histogram.Histogram.__rsub__" title="Permalink to this definition">¶</a></dt>
+<dd><p>that = 1.
+hret = that - hself</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="histogram.Histogram.__sub__">
+<tt class="descclassname">Histogram.</tt><tt class="descname">__sub__</tt><big>(</big><em>that</em><big>)</big><a class="headerlink" href="#histogram.Histogram.__sub__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="histogram.Histogram.__imul__">
+<tt class="descclassname">Histogram.</tt><tt class="descname">__imul__</tt><big>(</big><em>that</em><big>)</big><a class="headerlink" href="#histogram.Histogram.__imul__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="histogram.Histogram.__rmul__">
+<tt class="descclassname">Histogram.</tt><tt class="descname">__rmul__</tt><big>(</big><em>that</em><big>)</big><a class="headerlink" href="#histogram.Histogram.__rmul__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="histogram.Histogram.__mul__">
+<tt class="descclassname">Histogram.</tt><tt class="descname">__mul__</tt><big>(</big><em>that</em><big>)</big><a class="headerlink" href="#histogram.Histogram.__mul__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="histogram.Histogram.__itruediv__">
+<tt class="descclassname">Histogram.</tt><tt class="descname">__itruediv__</tt><big>(</big><em>that</em><big>)</big><a class="headerlink" href="#histogram.Histogram.__itruediv__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="histogram.Histogram.__rtruediv__">
+<tt class="descclassname">Histogram.</tt><tt class="descname">__rtruediv__</tt><big>(</big><em>that</em><big>)</big><a class="headerlink" href="#histogram.Histogram.__rtruediv__" title="Permalink to this definition">¶</a></dt>
+<dd><p>that = 1.
+hret = that / hself</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="histogram.Histogram.__truediv__">
+<tt class="descclassname">Histogram.</tt><tt class="descname">__truediv__</tt><big>(</big><em>that</em><big>)</big><a class="headerlink" href="#histogram.Histogram.__truediv__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="misc">
+<h2>Misc<a class="headerlink" href="#misc" title="Permalink to this headline">¶</a></h2>
+<dl class="method">
+<dt id="histogram.Histogram.added_uncert">
+<tt class="descclassname">Histogram.</tt><tt class="descname">added_uncert</tt><big>(</big><em>that</em><big>)</big><a class="headerlink" href="#histogram.Histogram.added_uncert" title="Permalink to this definition">¶</a></dt>
+<dd><p>add the uncertainties directly in quadrature
+assume uncert = sqrt(data) if uncert is None</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="histogram.Histogram.added_uncert_ratio">
+<tt class="descclassname">Histogram.</tt><tt class="descname">added_uncert_ratio</tt><big>(</big><em>that</em>, <em>nans=0</em><big>)</big><a class="headerlink" href="#histogram.Histogram.added_uncert_ratio" title="Permalink to this definition">¶</a></dt>
+<dd><p>add the uncertainties by ratio to the data in quadrature
+assume uncert = sqrt(data) if uncert is None</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="histogram.Histogram.aspolygon">
+<tt class="descclassname">Histogram.</tt><tt class="descname">aspolygon</tt><big>(</big><em>xlow=None</em>, <em>xhigh=None</em>, <em>ymin=0</em><big>)</big><a class="headerlink" href="#histogram.Histogram.aspolygon" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a polygon of the histogram</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>ymin</strong> (<em>scalar, optional</em>) &#8211; Base-line for the polygon. Usually set to zero for histograms of integer fill-type.</li>
+<li><strong>xlim</strong> (<em>scalar 2-tuple, optional</em>) &#8211; Range in <cite>x</cite> to be used.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><p><strong>tuple</strong>: (<tt class="docutils literal"><span class="pre">points</span></tt>, <tt class="docutils literal"><span class="pre">extent</span></tt>).</p>
+<dl class="docutils">
+<dt>points</dt>
+<dd><p class="first last"><cite>(scalar array)</cite> Points defining the polygon beginning and ending with the point <tt class="docutils literal"><span class="pre">(xmin,ymin)</span></tt>.</p>
+</dd>
+<dt>extent</dt>
+<dd><p class="first last"><cite>(scalar tuple)</cite> Extent of the resulting polygon in the form: <tt class="docutils literal"><span class="pre">[xmin,</span> <span class="pre">xmax,</span> <span class="pre">ymin,</span> <span class="pre">ymax]</span></tt>.</p>
+</dd>
+</dl>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="histogram.Histogram.clone">
+<tt class="descclassname">Histogram.</tt><tt class="descname">clone</tt><big>(</big><em>dtype=None</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#histogram.Histogram.clone" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="histogram.Histogram.__str__">
+<tt class="descclassname">Histogram.</tt><tt class="descname">__str__</tt><big>(</big><big>)</big><a class="headerlink" href="#histogram.Histogram.__str__" title="Permalink to this definition">¶</a></dt>
+<dd><p>the str() representation of the numpy array containing
+the data only (axes, uncertainty and labels are ignored).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="histogram.Histogram.__call__">
+<tt class="descclassname">Histogram.</tt><tt class="descname">__call__</tt><big>(</big><em>*xx</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#histogram.Histogram.__call__" title="Permalink to this definition">¶</a></dt>
+<dd><p>the value of the histogram at a specific
+point (x,y..) or array of points (xx,yy...)</p>
+<dl class="docutils">
+<dt>optional arguements:</dt>
+<dd>overflow - return value when the point lies outside this histogram. (default: 0)</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="histogram_axis.html" class="btn btn-neutral float-right" title="HistogramAxis" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="histogram documentation" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Johann T. Goetz.
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'2.0.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
