@@ -132,7 +132,7 @@
 <h1>Histogram<a class="headerlink" href="#histogram" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="histogram.Histogram">
-<em class="property">class </em><tt class="descclassname">histogram.</tt><tt class="descname">Histogram</tt><big>(</big><em>*axes</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#histogram.Histogram" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">histogram.</tt><tt class="descname">Histogram</tt><big>(</big><em>*axes</em>, <em>**kwargs</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/a16e8e53bfcb9da11df54f26af2034905ea0b323/histogram/histogram.py#L14-L1315"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.Histogram" title="Permalink to this definition">¶</a></dt>
 <dd><p>An N-dimensional histogram over a continuous range.</p>
 <p>This is an ND histogram where each axis is
 a continuous (non-discrete) range with a set
@@ -424,7 +424,7 @@ a width (sigma) of 1:</p>
 
 <dl class="attribute">
 <dt id="histogram.Histogram.binvolumes">
-<tt class="descclassname">Histogram.</tt><tt class="descname">binvolumes</tt><a class="headerlink" href="#histogram.Histogram.binvolumes" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">Histogram.</tt><tt class="descname">binvolumes</tt><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/a16e8e53bfcb9da11df54f26af2034905ea0b323/histogram/histogram.py#L377-L400"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.Histogram.binvolumes" title="Permalink to this definition">¶</a></dt>
 <dd><p>array of the volume of each bin. Volume is defined as the
 product of the bin-widths along each axis for the given
 bin.</p>
@@ -444,32 +444,32 @@ the x-axis (first, index = 0)</p>
 
 <dl class="method">
 <dt id="histogram.Histogram.binwidth">
-<tt class="descclassname">Histogram.</tt><tt class="descname">binwidth</tt><big>(</big><em>b=1</em>, <em>axis=0</em><big>)</big><a class="headerlink" href="#histogram.Histogram.binwidth" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">Histogram.</tt><tt class="descname">binwidth</tt><big>(</big><em>b=1</em>, <em>axis=0</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/a16e8e53bfcb9da11df54f26af2034905ea0b323/histogram/histogram.py#L370-L375"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.Histogram.binwidth" title="Permalink to this definition">¶</a></dt>
 <dd><p>the bin-width for a specific bin b on the axis
 specified. default is the first (0) x-axis</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="histogram.Histogram.binwidths">
-<tt class="descclassname">Histogram.</tt><tt class="descname">binwidths</tt><a class="headerlink" href="#histogram.Histogram.binwidths" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">Histogram.</tt><tt class="descname">binwidths</tt><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/a16e8e53bfcb9da11df54f26af2034905ea0b323/histogram/histogram.py#L359-L368"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.Histogram.binwidths" title="Permalink to this definition">¶</a></dt>
 <dd><p>tuple (or single array for 1D histogram) of the binwidths
 of each axis</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="histogram.Histogram.dim">
-<tt class="descclassname">Histogram.</tt><tt class="descname">dim</tt><a class="headerlink" href="#histogram.Histogram.dim" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">Histogram.</tt><tt class="descname">dim</tt><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/a16e8e53bfcb9da11df54f26af2034905ea0b323/histogram/histogram.py#L279-L284"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.Histogram.dim" title="Permalink to this definition">¶</a></dt>
 <dd><p>the dimension of this histogram (number of axes)</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="histogram.Histogram.extent">
-<tt class="descclassname">Histogram.</tt><tt class="descname">extent</tt><em class="property"> = &lt;function Histogram.extent at 0x7f18f571b378&gt;</em><a class="headerlink" href="#histogram.Histogram.extent" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">Histogram.</tt><tt class="descname">extent</tt><em class="property"> = &lt;function Histogram.extent at 0x7f24ffa68510&gt;</em><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/a16e8e53bfcb9da11df54f26af2034905ea0b323/histogram/histogram.py#L472-L499"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.Histogram.extent" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="histogram.Histogram.edge_grid">
-<tt class="descclassname">Histogram.</tt><tt class="descname">edge_grid</tt><a class="headerlink" href="#histogram.Histogram.edge_grid" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">Histogram.</tt><tt class="descname">edge_grid</tt><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/a16e8e53bfcb9da11df54f26af2034905ea0b323/histogram/histogram.py#L339-L357"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.Histogram.edge_grid" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the meshgrid built from the axes&#8217; edges.</p>
 <p>This is just a single array for 1D histograms - i.e. the
 edges of the x-axis. For 2D histograms, this is a
@@ -481,13 +481,13 @@ tuple of two 2D arrays:</p>
 
 <dl class="attribute">
 <dt id="histogram.Histogram.edges">
-<tt class="descclassname">Histogram.</tt><tt class="descname">edges</tt><a class="headerlink" href="#histogram.Histogram.edges" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">Histogram.</tt><tt class="descname">edges</tt><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/a16e8e53bfcb9da11df54f26af2034905ea0b323/histogram/histogram.py#L311-L317"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.Histogram.edges" title="Permalink to this definition">¶</a></dt>
 <dd><p><em>the edges of each axis a tuple</em> &#8211; ( [x0,x1..], [y0,y1...] ... )</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="histogram.Histogram.grid">
-<tt class="descclassname">Histogram.</tt><tt class="descname">grid</tt><a class="headerlink" href="#histogram.Histogram.grid" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">Histogram.</tt><tt class="descname">grid</tt><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/a16e8e53bfcb9da11df54f26af2034905ea0b323/histogram/histogram.py#L319-L337"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.Histogram.grid" title="Permalink to this definition">¶</a></dt>
 <dd><p>a tuple of the &#8220;meshgrid&#8221; of the bincenters of each axis.
 This is just a single array for 1D histograms - i.e. the
 bin-centers of the x-axis. For 2D histograms, this is a
@@ -499,7 +499,7 @@ tuple of two 2D arrays:</p>
 
 <dl class="method">
 <dt id="histogram.Histogram.isuniform">
-<tt class="descclassname">Histogram.</tt><tt class="descname">isuniform</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#histogram.Histogram.isuniform" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">Histogram.</tt><tt class="descname">isuniform</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/a16e8e53bfcb9da11df54f26af2034905ea0b323/histogram/histogram.py#L303-L309"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.Histogram.isuniform" title="Permalink to this definition">¶</a></dt>
 <dd><p>true or false depending on if all
 axes are uniform (to within a certain tolerace)
 see HistogramAxis.isuniform() for more details</p>
@@ -507,21 +507,21 @@ see HistogramAxis.isuniform() for more details</p>
 
 <dl class="attribute">
 <dt id="histogram.Histogram.overflow">
-<tt class="descclassname">Histogram.</tt><tt class="descname">overflow</tt><a class="headerlink" href="#histogram.Histogram.overflow" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">Histogram.</tt><tt class="descname">overflow</tt><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/a16e8e53bfcb9da11df54f26af2034905ea0b323/histogram/histogram.py#L402-L408"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.Histogram.overflow" title="Permalink to this definition">¶</a></dt>
 <dd><p>a value that is guaranteed to be an overflow
 when filling this histogram.</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="histogram.Histogram.shape">
-<tt class="descclassname">Histogram.</tt><tt class="descname">shape</tt><a class="headerlink" href="#histogram.Histogram.shape" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">Histogram.</tt><tt class="descname">shape</tt><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/a16e8e53bfcb9da11df54f26af2034905ea0b323/histogram/histogram.py#L286-L292"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.Histogram.shape" title="Permalink to this definition">¶</a></dt>
 <dd><p>the shape of this histogram. This is a tuple
 of the number of bins in each axis (x,y...)</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="histogram.Histogram.size">
-<tt class="descclassname">Histogram.</tt><tt class="descname">size</tt><a class="headerlink" href="#histogram.Histogram.size" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">Histogram.</tt><tt class="descname">size</tt><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/a16e8e53bfcb9da11df54f26af2034905ea0b323/histogram/histogram.py#L294-L300"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.Histogram.size" title="Permalink to this definition">¶</a></dt>
 <dd><p>the total number of bins. This is the product
 of the number of bins in each axis</p>
 </dd></dl>
@@ -532,7 +532,7 @@ of the number of bins in each axis</p>
 <p>Access to the filled data, associated uncertainty and various properties of the histogram.</p>
 <dl class="attribute">
 <dt id="histogram.Histogram.data">
-<tt class="descclassname">Histogram.</tt><tt class="descname">data</tt><a class="headerlink" href="#histogram.Histogram.data" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">Histogram.</tt><tt class="descname">data</tt><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/a16e8e53bfcb9da11df54f26af2034905ea0b323/histogram/histogram.py#L114-L140"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.Histogram.data" title="Permalink to this definition">¶</a></dt>
 <dd><p><a class="reference external" href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.9)"><tt class="xref py py-class docutils literal"><span class="pre">numpy.ndarray</span></tt></a> of the filled data for this <a class="reference internal" href="#histogram.Histogram" title="histogram.Histogram"><tt class="xref py py-class docutils literal"><span class="pre">Histogram</span></tt></a>.</p>
 <p>The indexes are in the same order as the <a class="reference internal" href="histogram_axis.html#histogram.HistogramAxis" title="histogram.HistogramAxis"><tt class="xref py py-class docutils literal"><span class="pre">HistogramAxis</span></tt></a> objects in the list stored in <a class="reference internal" href="#histogram.Histogram.axes" title="histogram.Histogram.axes"><tt class="xref py py-attr docutils literal"><span class="pre">Histogram.axes</span></tt></a>. One can set this directly - shape is checked and data is written &#8220;in-place&#8221; when possible.</p>
 <p class="rubric">Example</p>
@@ -557,51 +557,51 @@ of the number of bins in each axis</p>
 
 <dl class="attribute">
 <dt id="histogram.Histogram.uncert">
-<tt class="descclassname">Histogram.</tt><tt class="descname">uncert</tt><a class="headerlink" href="#histogram.Histogram.uncert" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">Histogram.</tt><tt class="descname">uncert</tt><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/a16e8e53bfcb9da11df54f26af2034905ea0b323/histogram/histogram.py#L151-L153"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.Histogram.uncert" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="histogram.Histogram.dtype">
-<tt class="descclassname">Histogram.</tt><tt class="descname">dtype</tt><big>(</big><em>that</em>, <em>div=False</em><big>)</big><a class="headerlink" href="#histogram.Histogram.dtype" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">Histogram.</tt><tt class="descname">dtype</tt><big>(</big><em>that</em>, <em>div=False</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/a16e8e53bfcb9da11df54f26af2034905ea0b323/histogram/histogram.py#L772-L789"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.Histogram.dtype" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="histogram.Histogram.errorbars">
-<tt class="descclassname">Histogram.</tt><tt class="descname">errorbars</tt><big>(</big><em>maxdim=2</em>, <em>asratio=False</em><big>)</big><a class="headerlink" href="#histogram.Histogram.errorbars" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">Histogram.</tt><tt class="descname">errorbars</tt><big>(</big><em>maxdim=2</em>, <em>asratio=False</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/a16e8e53bfcb9da11df54f26af2034905ea0b323/histogram/histogram.py#L501-L517"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.Histogram.errorbars" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="histogram.Histogram.integral">
-<tt class="descclassname">Histogram.</tt><tt class="descname">integral</tt><big>(</big><em>uncert=False</em><big>)</big><a class="headerlink" href="#histogram.Histogram.integral" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">Histogram.</tt><tt class="descname">integral</tt><big>(</big><em>uncert=False</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/a16e8e53bfcb9da11df54f26af2034905ea0b323/histogram/histogram.py#L429-L442"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.Histogram.integral" title="Permalink to this definition">¶</a></dt>
 <dd><p>total integral of the histogram. This is the sum
 multiplied by the bin volumes</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="histogram.Histogram.max">
-<tt class="descclassname">Histogram.</tt><tt class="descname">max</tt><big>(</big><em>uncert=False</em><big>)</big><a class="headerlink" href="#histogram.Histogram.max" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">Histogram.</tt><tt class="descname">max</tt><big>(</big><em>uncert=False</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/a16e8e53bfcb9da11df54f26af2034905ea0b323/histogram/histogram.py#L452-L458"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.Histogram.max" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="histogram.Histogram.mean">
-<tt class="descclassname">Histogram.</tt><tt class="descname">mean</tt><big>(</big><em>axis=None</em><big>)</big><a class="headerlink" href="#histogram.Histogram.mean" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">Histogram.</tt><tt class="descname">mean</tt><big>(</big><em>axis=None</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/a16e8e53bfcb9da11df54f26af2034905ea0b323/histogram/histogram.py#L460-L464"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.Histogram.mean" title="Permalink to this definition">¶</a></dt>
 <dd><p>mean of the all values in this histogram</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="histogram.Histogram.min">
-<tt class="descclassname">Histogram.</tt><tt class="descname">min</tt><big>(</big><em>uncert=False</em><big>)</big><a class="headerlink" href="#histogram.Histogram.min" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">Histogram.</tt><tt class="descname">min</tt><big>(</big><em>uncert=False</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/a16e8e53bfcb9da11df54f26af2034905ea0b323/histogram/histogram.py#L444-L450"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.Histogram.min" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="histogram.Histogram.std">
-<tt class="descclassname">Histogram.</tt><tt class="descname">std</tt><big>(</big><big>)</big><a class="headerlink" href="#histogram.Histogram.std" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">Histogram.</tt><tt class="descname">std</tt><big>(</big><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/a16e8e53bfcb9da11df54f26af2034905ea0b323/histogram/histogram.py#L466-L470"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.Histogram.std" title="Permalink to this definition">¶</a></dt>
 <dd><p>standard deviation of all values in this histogram</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="histogram.Histogram.sum">
-<tt class="descclassname">Histogram.</tt><tt class="descname">sum</tt><big>(</big><em>*axes</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#histogram.Histogram.sum" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">Histogram.</tt><tt class="descname">sum</tt><big>(</big><em>*axes</em>, <em>**kwargs</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/a16e8e53bfcb9da11df54f26af2034905ea0b323/histogram/histogram.py#L411-L427"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.Histogram.sum" title="Permalink to this definition">¶</a></dt>
 <dd><p>summation over all values or specific axes, reducing
 the dimensionality of the histogram</p>
 </dd></dl>
@@ -611,7 +611,7 @@ the dimensionality of the histogram</p>
 <h2>Filling Histogram with Data<a class="headerlink" href="#filling-histogram-with-data" title="Permalink to this headline">¶</a></h2>
 <dl class="method">
 <dt id="histogram.Histogram.fill">
-<tt class="descclassname">Histogram.</tt><tt class="descname">fill</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#histogram.Histogram.fill" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">Histogram.</tt><tt class="descname">fill</tt><big>(</big><em>*args</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/a16e8e53bfcb9da11df54f26af2034905ea0b323/histogram/histogram.py#L635-L656"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.Histogram.fill" title="Permalink to this definition">¶</a></dt>
 <dd><p>convert *args to sample, weights
 where sample is of shape (D,N)
 where D is the dimension of the
@@ -626,7 +626,7 @@ an array of length N. The default
 
 <dl class="method">
 <dt id="histogram.Histogram.fill_from_sample">
-<tt class="descclassname">Histogram.</tt><tt class="descname">fill_from_sample</tt><big>(</big><em>sample</em>, <em>weights=None</em><big>)</big><a class="headerlink" href="#histogram.Histogram.fill_from_sample" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">Histogram.</tt><tt class="descname">fill_from_sample</tt><big>(</big><em>sample</em>, <em>weights=None</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/a16e8e53bfcb9da11df54f26af2034905ea0b323/histogram/histogram.py#L678-L698"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.Histogram.fill_from_sample" title="Permalink to this definition">¶</a></dt>
 <dd><p>fills the histogram from sample
 which must be (D,N) array where
 D is the dimension of the histogram
@@ -639,7 +639,7 @@ an array of length N. The default
 
 <dl class="method">
 <dt id="histogram.Histogram.fill_one">
-<tt class="descclassname">Histogram.</tt><tt class="descname">fill_one</tt><big>(</big><em>pt</em>, <em>wt=1</em><big>)</big><a class="headerlink" href="#histogram.Histogram.fill_one" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">Histogram.</tt><tt class="descname">fill_one</tt><big>(</big><em>pt</em>, <em>wt=1</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/a16e8e53bfcb9da11df54f26af2034905ea0b323/histogram/histogram.py#L658-L676"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.Histogram.fill_one" title="Permalink to this definition">¶</a></dt>
 <dd><p>increment a single bin by weight wt.
 This should be used as a last resort
 because it is roughly 10 times
@@ -649,17 +649,17 @@ filling many entries.</p>
 
 <dl class="method">
 <dt id="histogram.Histogram.set">
-<tt class="descclassname">Histogram.</tt><tt class="descname">set</tt><big>(</big><em>val</em>, <em>uncert=None</em><big>)</big><a class="headerlink" href="#histogram.Histogram.set" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">Histogram.</tt><tt class="descname">set</tt><big>(</big><em>val</em>, <em>uncert=None</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/a16e8e53bfcb9da11df54f26af2034905ea0b323/histogram/histogram.py#L614-L630"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.Histogram.set" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="histogram.Histogram.reset">
-<tt class="descclassname">Histogram.</tt><tt class="descname">reset</tt><big>(</big><big>)</big><a class="headerlink" href="#histogram.Histogram.reset" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">Histogram.</tt><tt class="descname">reset</tt><big>(</big><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/a16e8e53bfcb9da11df54f26af2034905ea0b323/histogram/histogram.py#L632-L633"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.Histogram.reset" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="histogram.Histogram.clear_nans">
-<tt class="descclassname">Histogram.</tt><tt class="descname">clear_nans</tt><big>(</big><em>val=0</em><big>)</big><a class="headerlink" href="#histogram.Histogram.clear_nans" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">Histogram.</tt><tt class="descname">clear_nans</tt><big>(</big><em>val=0</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/a16e8e53bfcb9da11df54f26af2034905ea0b323/histogram/histogram.py#L765-L770"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.Histogram.clear_nans" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </div>
@@ -668,7 +668,7 @@ filling many entries.</p>
 <p>Methods which generally return a new histogram representing the same data in some transformed view, sometimes with a loss of information (eg. merged bins).</p>
 <dl class="method">
 <dt id="histogram.Histogram.cut">
-<tt class="descclassname">Histogram.</tt><tt class="descname">cut</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#histogram.Histogram.cut" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">Histogram.</tt><tt class="descname">cut</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/a16e8e53bfcb9da11df54f26af2034905ea0b323/histogram/histogram.py#L1031-L1126"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.Histogram.cut" title="Permalink to this definition">¶</a></dt>
 <dd><p>Truncate a histogram along one or more axes.</p>
 <p>To cut (truncate) a one dimensional histogram from 0 to 5,
 each of the following are valid. This will also cut an
@@ -714,30 +714,30 @@ the form:</p>
 
 <dl class="method">
 <dt id="histogram.Histogram.cut_data">
-<tt class="descclassname">Histogram.</tt><tt class="descname">cut_data</tt><big>(</big><em>*rng</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#histogram.Histogram.cut_data" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">Histogram.</tt><tt class="descname">cut_data</tt><big>(</big><em>*rng</em>, <em>**kwargs</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/a16e8e53bfcb9da11df54f26af2034905ea0b323/histogram/histogram.py#L1128-L1129"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.Histogram.cut_data" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="histogram.Histogram.interpolate_nans">
-<tt class="descclassname">Histogram.</tt><tt class="descname">interpolate_nans</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#histogram.Histogram.interpolate_nans" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">Histogram.</tt><tt class="descname">interpolate_nans</tt><big>(</big><em>**kwargs</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/a16e8e53bfcb9da11df54f26af2034905ea0b323/histogram/histogram.py#L905-L938"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.Histogram.interpolate_nans" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="histogram.Histogram.occupancy">
-<tt class="descclassname">Histogram.</tt><tt class="descname">occupancy</tt><big>(</big><em>bins=100</em>, <em>rng=None</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#histogram.Histogram.occupancy" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">Histogram.</tt><tt class="descname">occupancy</tt><big>(</big><em>bins=100</em>, <em>rng=None</em>, <em>**kwargs</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/a16e8e53bfcb9da11df54f26af2034905ea0b323/histogram/histogram.py#L1181-L1191"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.Histogram.occupancy" title="Permalink to this definition">¶</a></dt>
 <dd><p>returns a new histogram showing the occupancy of the
 data. This is effectively histograming the data points.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="histogram.Histogram.projection">
-<tt class="descclassname">Histogram.</tt><tt class="descname">projection</tt><big>(</big><em>axis=0</em><big>)</big><a class="headerlink" href="#histogram.Histogram.projection" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">Histogram.</tt><tt class="descname">projection</tt><big>(</big><em>axis=0</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/a16e8e53bfcb9da11df54f26af2034905ea0b323/histogram/histogram.py#L1131-L1152"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.Histogram.projection" title="Permalink to this definition">¶</a></dt>
 <dd><p>projection onto a single axis</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="histogram.Histogram.rebin">
-<tt class="descclassname">Histogram.</tt><tt class="descname">rebin</tt><big>(</big><em>nbins=2</em>, <em>axis=0</em>, <em>snap='low'</em>, <em>clip=True</em><big>)</big><a class="headerlink" href="#histogram.Histogram.rebin" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">Histogram.</tt><tt class="descname">rebin</tt><big>(</big><em>nbins=2</em>, <em>axis=0</em>, <em>snap='low'</em>, <em>clip=True</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/a16e8e53bfcb9da11df54f26af2034905ea0b323/histogram/histogram.py#L984-L1029"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.Histogram.rebin" title="Permalink to this definition">¶</a></dt>
 <dd><p>nbins describes the number of bins to merge
 along each axis, or along one axis specified by
 the argument &#8220;axis&#8221;.</p>
@@ -745,12 +745,12 @@ the argument &#8220;axis&#8221;.</p>
 
 <dl class="method">
 <dt id="histogram.Histogram.smooth">
-<tt class="descclassname">Histogram.</tt><tt class="descname">smooth</tt><big>(</big><em>weight=0.5</em><big>)</big><a class="headerlink" href="#histogram.Histogram.smooth" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">Histogram.</tt><tt class="descname">smooth</tt><big>(</big><em>weight=0.5</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/a16e8e53bfcb9da11df54f26af2034905ea0b323/histogram/histogram.py#L940-L950"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.Histogram.smooth" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="histogram.Histogram.sum_over_axes">
-<tt class="descclassname">Histogram.</tt><tt class="descname">sum_over_axes</tt><big>(</big><em>*axes</em><big>)</big><a class="headerlink" href="#histogram.Histogram.sum_over_axes" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">Histogram.</tt><tt class="descname">sum_over_axes</tt><big>(</big><em>*axes</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/a16e8e53bfcb9da11df54f26af2034905ea0b323/histogram/histogram.py#L1154-L1179"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.Histogram.sum_over_axes" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </div>
@@ -758,17 +758,17 @@ the argument &#8220;axis&#8221;.</p>
 <h2>Iterating<a class="headerlink" href="#iterating" title="Permalink to this headline">¶</a></h2>
 <dl class="method">
 <dt id="histogram.Histogram.slices">
-<tt class="descclassname">Histogram.</tt><tt class="descname">slices</tt><big>(</big><em>axis=0</em><big>)</big><a class="headerlink" href="#histogram.Histogram.slices" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">Histogram.</tt><tt class="descname">slices</tt><big>(</big><em>axis=0</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/a16e8e53bfcb9da11df54f26af2034905ea0b323/histogram/histogram.py#L953-L968"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.Histogram.slices" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="histogram.Histogram.slices_data">
-<tt class="descclassname">Histogram.</tt><tt class="descname">slices_data</tt><big>(</big><em>axis=0</em><big>)</big><a class="headerlink" href="#histogram.Histogram.slices_data" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">Histogram.</tt><tt class="descname">slices_data</tt><big>(</big><em>axis=0</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/a16e8e53bfcb9da11df54f26af2034905ea0b323/histogram/histogram.py#L970-L974"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.Histogram.slices_data" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="histogram.Histogram.slices_uncert">
-<tt class="descclassname">Histogram.</tt><tt class="descname">slices_uncert</tt><big>(</big><em>axis=0</em><big>)</big><a class="headerlink" href="#histogram.Histogram.slices_uncert" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">Histogram.</tt><tt class="descname">slices_uncert</tt><big>(</big><em>axis=0</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/a16e8e53bfcb9da11df54f26af2034905ea0b323/histogram/histogram.py#L976-L982"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.Histogram.slices_uncert" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </div>
@@ -776,7 +776,7 @@ the argument &#8220;axis&#8221;.</p>
 <h2>Fitting<a class="headerlink" href="#fitting" title="Permalink to this headline">¶</a></h2>
 <dl class="method">
 <dt id="histogram.Histogram.fit">
-<tt class="descclassname">Histogram.</tt><tt class="descname">fit</tt><big>(</big><em>fcn</em>, <em>p0</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#histogram.Histogram.fit" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">Histogram.</tt><tt class="descname">fit</tt><big>(</big><em>fcn</em>, <em>p0</em>, <em>**kwargs</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/a16e8e53bfcb9da11df54f26af2034905ea0b323/histogram/histogram.py#L1194-L1315"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.Histogram.fit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fits the function fcn to the histogram, returning
 estimated parameters, their covariance matrix and
 a tuple containing the specified test result
@@ -788,66 +788,66 @@ a tuple containing the specified test result
 <h2>Arithmetic<a class="headerlink" href="#arithmetic" title="Permalink to this headline">¶</a></h2>
 <dl class="method">
 <dt id="histogram.Histogram.__iadd__">
-<tt class="descclassname">Histogram.</tt><tt class="descname">__iadd__</tt><big>(</big><em>that</em><big>)</big><a class="headerlink" href="#histogram.Histogram.__iadd__" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">Histogram.</tt><tt class="descname">__iadd__</tt><big>(</big><em>that</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/a16e8e53bfcb9da11df54f26af2034905ea0b323/histogram/histogram.py#L791-L799"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.Histogram.__iadd__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="histogram.Histogram.__radd__">
-<tt class="descclassname">Histogram.</tt><tt class="descname">__radd__</tt><big>(</big><em>that</em><big>)</big><a class="headerlink" href="#histogram.Histogram.__radd__" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">Histogram.</tt><tt class="descname">__radd__</tt><big>(</big><em>that</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/a16e8e53bfcb9da11df54f26af2034905ea0b323/histogram/histogram.py#L801-L802"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.Histogram.__radd__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="histogram.Histogram.__add__">
-<tt class="descclassname">Histogram.</tt><tt class="descname">__add__</tt><big>(</big><em>that</em><big>)</big><a class="headerlink" href="#histogram.Histogram.__add__" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">Histogram.</tt><tt class="descname">__add__</tt><big>(</big><em>that</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/a16e8e53bfcb9da11df54f26af2034905ea0b323/histogram/histogram.py#L804-L807"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.Histogram.__add__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="histogram.Histogram.__isub__">
-<tt class="descclassname">Histogram.</tt><tt class="descname">__isub__</tt><big>(</big><em>that</em><big>)</big><a class="headerlink" href="#histogram.Histogram.__isub__" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">Histogram.</tt><tt class="descname">__isub__</tt><big>(</big><em>that</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/a16e8e53bfcb9da11df54f26af2034905ea0b323/histogram/histogram.py#L809-L821"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.Histogram.__isub__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="histogram.Histogram.__rsub__">
-<tt class="descclassname">Histogram.</tt><tt class="descname">__rsub__</tt><big>(</big><em>that</em><big>)</big><a class="headerlink" href="#histogram.Histogram.__rsub__" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">Histogram.</tt><tt class="descname">__rsub__</tt><big>(</big><em>that</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/a16e8e53bfcb9da11df54f26af2034905ea0b323/histogram/histogram.py#L823-L830"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.Histogram.__rsub__" title="Permalink to this definition">¶</a></dt>
 <dd><p>that = 1.
 hret = that - hself</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="histogram.Histogram.__sub__">
-<tt class="descclassname">Histogram.</tt><tt class="descname">__sub__</tt><big>(</big><em>that</em><big>)</big><a class="headerlink" href="#histogram.Histogram.__sub__" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">Histogram.</tt><tt class="descname">__sub__</tt><big>(</big><em>that</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/a16e8e53bfcb9da11df54f26af2034905ea0b323/histogram/histogram.py#L832-L835"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.Histogram.__sub__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="histogram.Histogram.__imul__">
-<tt class="descclassname">Histogram.</tt><tt class="descname">__imul__</tt><big>(</big><em>that</em><big>)</big><a class="headerlink" href="#histogram.Histogram.__imul__" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">Histogram.</tt><tt class="descname">__imul__</tt><big>(</big><em>that</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/a16e8e53bfcb9da11df54f26af2034905ea0b323/histogram/histogram.py#L837-L856"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.Histogram.__imul__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="histogram.Histogram.__rmul__">
-<tt class="descclassname">Histogram.</tt><tt class="descname">__rmul__</tt><big>(</big><em>that</em><big>)</big><a class="headerlink" href="#histogram.Histogram.__rmul__" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">Histogram.</tt><tt class="descname">__rmul__</tt><big>(</big><em>that</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/a16e8e53bfcb9da11df54f26af2034905ea0b323/histogram/histogram.py#L858-L859"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.Histogram.__rmul__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="histogram.Histogram.__mul__">
-<tt class="descclassname">Histogram.</tt><tt class="descname">__mul__</tt><big>(</big><em>that</em><big>)</big><a class="headerlink" href="#histogram.Histogram.__mul__" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">Histogram.</tt><tt class="descname">__mul__</tt><big>(</big><em>that</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/a16e8e53bfcb9da11df54f26af2034905ea0b323/histogram/histogram.py#L861-L864"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.Histogram.__mul__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="histogram.Histogram.__itruediv__">
-<tt class="descclassname">Histogram.</tt><tt class="descname">__itruediv__</tt><big>(</big><em>that</em><big>)</big><a class="headerlink" href="#histogram.Histogram.__itruediv__" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">Histogram.</tt><tt class="descname">__itruediv__</tt><big>(</big><em>that</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/a16e8e53bfcb9da11df54f26af2034905ea0b323/histogram/histogram.py#L866-L885"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.Histogram.__itruediv__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="histogram.Histogram.__rtruediv__">
-<tt class="descclassname">Histogram.</tt><tt class="descname">__rtruediv__</tt><big>(</big><em>that</em><big>)</big><a class="headerlink" href="#histogram.Histogram.__rtruediv__" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">Histogram.</tt><tt class="descname">__rtruediv__</tt><big>(</big><em>that</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/a16e8e53bfcb9da11df54f26af2034905ea0b323/histogram/histogram.py#L887-L897"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.Histogram.__rtruediv__" title="Permalink to this definition">¶</a></dt>
 <dd><p>that = 1.
 hret = that / hself</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="histogram.Histogram.__truediv__">
-<tt class="descclassname">Histogram.</tt><tt class="descname">__truediv__</tt><big>(</big><em>that</em><big>)</big><a class="headerlink" href="#histogram.Histogram.__truediv__" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">Histogram.</tt><tt class="descname">__truediv__</tt><big>(</big><em>that</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/a16e8e53bfcb9da11df54f26af2034905ea0b323/histogram/histogram.py#L899-L902"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.Histogram.__truediv__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </div>
@@ -855,21 +855,21 @@ hret = that / hself</p>
 <h2>Misc<a class="headerlink" href="#misc" title="Permalink to this headline">¶</a></h2>
 <dl class="method">
 <dt id="histogram.Histogram.added_uncert">
-<tt class="descclassname">Histogram.</tt><tt class="descname">added_uncert</tt><big>(</big><em>that</em><big>)</big><a class="headerlink" href="#histogram.Histogram.added_uncert" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">Histogram.</tt><tt class="descname">added_uncert</tt><big>(</big><em>that</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/a16e8e53bfcb9da11df54f26af2034905ea0b323/histogram/histogram.py#L719-L739"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.Histogram.added_uncert" title="Permalink to this definition">¶</a></dt>
 <dd><p>add the uncertainties directly in quadrature
 assume uncert = sqrt(data) if uncert is None</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="histogram.Histogram.added_uncert_ratio">
-<tt class="descclassname">Histogram.</tt><tt class="descname">added_uncert_ratio</tt><big>(</big><em>that</em>, <em>nans=0</em><big>)</big><a class="headerlink" href="#histogram.Histogram.added_uncert_ratio" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">Histogram.</tt><tt class="descname">added_uncert_ratio</tt><big>(</big><em>that</em>, <em>nans=0</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/a16e8e53bfcb9da11df54f26af2034905ea0b323/histogram/histogram.py#L741-L763"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.Histogram.added_uncert_ratio" title="Permalink to this definition">¶</a></dt>
 <dd><p>add the uncertainties by ratio to the data in quadrature
 assume uncert = sqrt(data) if uncert is None</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="histogram.Histogram.aspolygon">
-<tt class="descclassname">Histogram.</tt><tt class="descname">aspolygon</tt><big>(</big><em>xlow=None</em>, <em>xhigh=None</em>, <em>ymin=0</em><big>)</big><a class="headerlink" href="#histogram.Histogram.aspolygon" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">Histogram.</tt><tt class="descname">aspolygon</tt><big>(</big><em>xlow=None</em>, <em>xhigh=None</em>, <em>ymin=0</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/a16e8e53bfcb9da11df54f26af2034905ea0b323/histogram/histogram.py#L573-L605"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.Histogram.aspolygon" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return a polygon of the histogram</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -899,19 +899,19 @@ assume uncert = sqrt(data) if uncert is None</p>
 
 <dl class="method">
 <dt id="histogram.Histogram.clone">
-<tt class="descclassname">Histogram.</tt><tt class="descname">clone</tt><big>(</big><em>dtype=None</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#histogram.Histogram.clone" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">Histogram.</tt><tt class="descname">clone</tt><big>(</big><em>dtype=None</em>, <em>**kwargs</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/a16e8e53bfcb9da11df54f26af2034905ea0b323/histogram/histogram.py#L701-L717"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.Histogram.clone" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="histogram.Histogram.__str__">
-<tt class="descclassname">Histogram.</tt><tt class="descname">__str__</tt><big>(</big><big>)</big><a class="headerlink" href="#histogram.Histogram.__str__" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">Histogram.</tt><tt class="descname">__str__</tt><big>(</big><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/a16e8e53bfcb9da11df54f26af2034905ea0b323/histogram/histogram.py#L198-L203"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.Histogram.__str__" title="Permalink to this definition">¶</a></dt>
 <dd><p>the str() representation of the numpy array containing
 the data only (axes, uncertainty and labels are ignored).</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="histogram.Histogram.__call__">
-<tt class="descclassname">Histogram.</tt><tt class="descname">__call__</tt><big>(</big><em>*xx</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#histogram.Histogram.__call__" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">Histogram.</tt><tt class="descname">__call__</tt><big>(</big><em>*xx</em>, <em>**kwargs</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/a16e8e53bfcb9da11df54f26af2034905ea0b323/histogram/histogram.py#L205-L222"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.Histogram.__call__" title="Permalink to this definition">¶</a></dt>
 <dd><p>the value of the histogram at a specific
 point (x,y..) or array of points (xx,yy...)</p>
 <dl class="docutils">
