@@ -245,6 +245,9 @@ a width (sigma) of 1:</p>
 <tr class="row-even"><td><a class="reference internal" href="#histogram.Histogram.size" title="histogram.Histogram.size"><tt class="xref py py-obj docutils literal"><span class="pre">size</span></tt></a></td>
 <td>Total number of bins (size of data)</td>
 </tr>
+<tr class="row-odd"><td><a class="reference internal" href="#histogram.Histogram.uncert_ratio" title="histogram.Histogram.uncert_ratio"><tt class="xref py py-obj docutils literal"><span class="pre">uncert_ratio</span></tt></a></td>
+<td>The untertainty as ratios of the data</td>
+</tr>
 </tbody>
 </table>
 <p><strong>Methods</strong></p>
@@ -254,48 +257,6 @@ a width (sigma) of 1:</p>
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="#histogram.Histogram.__add__" title="histogram.Histogram.__add__"><tt class="xref py py-obj docutils literal"><span class="pre">__add__</span></tt></a>(that)</td>
-<td>Addition</td>
-</tr>
-<tr class="row-even"><td><a class="reference internal" href="#histogram.Histogram.__call__" title="histogram.Histogram.__call__"><tt class="xref py py-obj docutils literal"><span class="pre">__call__</span></tt></a>(*xx,&nbsp;**kwargs)</td>
-<td>Value of histogram at a point</td>
-</tr>
-<tr class="row-odd"><td><a class="reference internal" href="#histogram.Histogram.__truediv__" title="histogram.Histogram.__truediv__"><tt class="xref py py-obj docutils literal"><span class="pre">__truediv__</span></tt></a>(that)</td>
-<td>Division</td>
-</tr>
-<tr class="row-even"><td><a class="reference internal" href="#histogram.Histogram.__iadd__" title="histogram.Histogram.__iadd__"><tt class="xref py py-obj docutils literal"><span class="pre">__iadd__</span></tt></a>(that)</td>
-<td>In-place addition</td>
-</tr>
-<tr class="row-odd"><td><a class="reference internal" href="#histogram.Histogram.__itruediv__" title="histogram.Histogram.__itruediv__"><tt class="xref py py-obj docutils literal"><span class="pre">__itruediv__</span></tt></a>(that)</td>
-<td>In-place (true) division</td>
-</tr>
-<tr class="row-even"><td><a class="reference internal" href="#histogram.Histogram.__imul__" title="histogram.Histogram.__imul__"><tt class="xref py py-obj docutils literal"><span class="pre">__imul__</span></tt></a>(that)</td>
-<td>In-place multiplication</td>
-</tr>
-<tr class="row-odd"><td><a class="reference internal" href="#histogram.Histogram.__isub__" title="histogram.Histogram.__isub__"><tt class="xref py py-obj docutils literal"><span class="pre">__isub__</span></tt></a>(that)</td>
-<td>In-place subtraction</td>
-</tr>
-<tr class="row-even"><td><a class="reference internal" href="#histogram.Histogram.__mul__" title="histogram.Histogram.__mul__"><tt class="xref py py-obj docutils literal"><span class="pre">__mul__</span></tt></a>(that)</td>
-<td>Multiplication</td>
-</tr>
-<tr class="row-odd"><td><a class="reference internal" href="#histogram.Histogram.__radd__" title="histogram.Histogram.__radd__"><tt class="xref py py-obj docutils literal"><span class="pre">__radd__</span></tt></a>(that)</td>
-<td>Commuting addition</td>
-</tr>
-<tr class="row-even"><td><a class="reference internal" href="#histogram.Histogram.__rtruediv__" title="histogram.Histogram.__rtruediv__"><tt class="xref py py-obj docutils literal"><span class="pre">__rtruediv__</span></tt></a>(that)</td>
-<td>Commuting (true) division</td>
-</tr>
-<tr class="row-odd"><td><a class="reference internal" href="#histogram.Histogram.__rmul__" title="histogram.Histogram.__rmul__"><tt class="xref py py-obj docutils literal"><span class="pre">__rmul__</span></tt></a>(that)</td>
-<td>Commuting mulitplication</td>
-</tr>
-<tr class="row-even"><td><a class="reference internal" href="#histogram.Histogram.__rsub__" title="histogram.Histogram.__rsub__"><tt class="xref py py-obj docutils literal"><span class="pre">__rsub__</span></tt></a>(that)</td>
-<td>Commuting subtraction</td>
-</tr>
-<tr class="row-odd"><td><a class="reference internal" href="#histogram.Histogram.__str__" title="histogram.Histogram.__str__"><tt class="xref py py-obj docutils literal"><span class="pre">__str__</span></tt></a>()</td>
-<td>Breif string representation of the data</td>
-</tr>
-<tr class="row-even"><td><a class="reference internal" href="#histogram.Histogram.__sub__" title="histogram.Histogram.__sub__"><tt class="xref py py-obj docutils literal"><span class="pre">__sub__</span></tt></a>(that)</td>
-<td>Subtraction</td>
-</tr>
 <tr class="row-odd"><td><a class="reference internal" href="#histogram.Histogram.added_uncert" title="histogram.Histogram.added_uncert"><tt class="xref py py-obj docutils literal"><span class="pre">added_uncert</span></tt></a>(that)</td>
 <td>Added uncertainty by absolute values</td>
 </tr>
@@ -388,6 +349,57 @@ a width (sigma) of 1:</p>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="#histogram.Histogram.sum" title="histogram.Histogram.sum"><tt class="xref py py-obj docutils literal"><span class="pre">sum</span></tt></a>(*axes)</td>
 <td>Sum of bin values or sum along one or more axes</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Operators and Special Methods</strong></p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#histogram.Histogram.__add__" title="histogram.Histogram.__add__"><tt class="xref py py-obj docutils literal"><span class="pre">__add__</span></tt></a>(that)</td>
+<td>Addition</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#histogram.Histogram.__call__" title="histogram.Histogram.__call__"><tt class="xref py py-obj docutils literal"><span class="pre">__call__</span></tt></a>(*xx,&nbsp;**kwargs)</td>
+<td>Value of histogram at a point</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#histogram.Histogram.__truediv__" title="histogram.Histogram.__truediv__"><tt class="xref py py-obj docutils literal"><span class="pre">__truediv__</span></tt></a>(that)</td>
+<td>Division</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#histogram.Histogram.__iadd__" title="histogram.Histogram.__iadd__"><tt class="xref py py-obj docutils literal"><span class="pre">__iadd__</span></tt></a>(that)</td>
+<td>In-place addition</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#histogram.Histogram.__itruediv__" title="histogram.Histogram.__itruediv__"><tt class="xref py py-obj docutils literal"><span class="pre">__itruediv__</span></tt></a>(that)</td>
+<td>In-place (true) division</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#histogram.Histogram.__imul__" title="histogram.Histogram.__imul__"><tt class="xref py py-obj docutils literal"><span class="pre">__imul__</span></tt></a>(that)</td>
+<td>In-place multiplication</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#histogram.Histogram.__isub__" title="histogram.Histogram.__isub__"><tt class="xref py py-obj docutils literal"><span class="pre">__isub__</span></tt></a>(that)</td>
+<td>In-place subtraction</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#histogram.Histogram.__mul__" title="histogram.Histogram.__mul__"><tt class="xref py py-obj docutils literal"><span class="pre">__mul__</span></tt></a>(that)</td>
+<td>Multiplication</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#histogram.Histogram.__radd__" title="histogram.Histogram.__radd__"><tt class="xref py py-obj docutils literal"><span class="pre">__radd__</span></tt></a>(that)</td>
+<td>Commuting addition</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#histogram.Histogram.__rtruediv__" title="histogram.Histogram.__rtruediv__"><tt class="xref py py-obj docutils literal"><span class="pre">__rtruediv__</span></tt></a>(that)</td>
+<td>Commuting (true) division</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#histogram.Histogram.__rmul__" title="histogram.Histogram.__rmul__"><tt class="xref py py-obj docutils literal"><span class="pre">__rmul__</span></tt></a>(that)</td>
+<td>Commuting mulitplication</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#histogram.Histogram.__rsub__" title="histogram.Histogram.__rsub__"><tt class="xref py py-obj docutils literal"><span class="pre">__rsub__</span></tt></a>(that)</td>
+<td>Commuting subtraction</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#histogram.Histogram.__str__" title="histogram.Histogram.__str__"><tt class="xref py py-obj docutils literal"><span class="pre">__str__</span></tt></a>()</td>
+<td>Breif string representation of the data</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#histogram.Histogram.__sub__" title="histogram.Histogram.__sub__"><tt class="xref py py-obj docutils literal"><span class="pre">__sub__</span></tt></a>(that)</td>
+<td>Subtraction</td>
 </tr>
 </tbody>
 </table>
@@ -484,7 +496,7 @@ h.binvolumes[i,j] = dxi * dyj
 
 <dl class="attribute">
 <dt id="histogram.Histogram.extent">
-<tt class="descclassname">Histogram.</tt><tt class="descname">extent</tt><em class="property"> = &lt;function Histogram.extent at 0x7f09fe2bbe18&gt;</em><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/7b3ea2be4a65a20b5d0d87068622d9ee8598e140/histogram/histogram.py#L707-L733"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.Histogram.extent" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">Histogram.</tt><tt class="descname">extent</tt><em class="property"> = &lt;function Histogram.extent at 0x7fc966020e18&gt;</em><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/7b3ea2be4a65a20b5d0d87068622d9ee8598e140/histogram/histogram.py#L707-L733"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.Histogram.extent" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -622,71 +634,23 @@ h.binvolumes[i,j] = dxi * dyj
 <img alt="_images/histogram_uncert_1dnorm.png" src="_images/histogram_uncert_1dnorm.png" />
 </dd></dl>
 
-<dl class="method">
-<dt id="histogram.Histogram.dtype">
-<tt class="descclassname">Histogram.</tt><tt class="descname">dtype</tt><big>(</big><em>that</em>, <em>div=False</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/7b3ea2be4a65a20b5d0d87068622d9ee8598e140/histogram/histogram.py#L1097-L1117"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.Histogram.dtype" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return dtype that should result from a binary operation</p>
-<p>Default is the result for addition, subtraction or multiplication. With <tt class="docutils literal"><span class="pre">div</span> <span class="pre">=</span> <span class="pre">True</span></tt>, this will always return <tt class="docutils literal"><span class="pre">float64</span></tt>.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="histogram.Histogram.errorbars">
-<tt class="descclassname">Histogram.</tt><tt class="descname">errorbars</tt><big>(</big><em>maxdim=2</em>, <em>asratio=False</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/7b3ea2be4a65a20b5d0d87068622d9ee8598e140/histogram/histogram.py#L735-L785"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.Histogram.errorbars" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bin half-widths and data uncertainties</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name" colspan="2">Keyword Arguments:</th></tr>
-<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
-<li><strong>maxdim</strong> (<em>int</em>) &#8211; Number of dimensions to return (default: 2).</li>
-<li><strong>asratio</strong> (<em>bool</em>) &#8211; Return ratios instead of absolute values (default: False).</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Errors to be used for plotting this histogram.</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">list of arrays</p>
-</td>
-</tr>
-</tbody>
-</table>
-<p>Example:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">random</span> <span class="k">as</span> <span class="n">rand</span>
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span>
-<span class="kn">from</span> <span class="nn">histogram</span> <span class="kn">import</span> <span class="n">Histogram</span>
-
-<span class="n">rand</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-
-<span class="n">h</span> <span class="o">=</span> <span class="n">Histogram</span><span class="p">(</span><span class="mi">10</span><span class="p">,[</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">])</span>
-<span class="n">h</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">rand</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">500</span><span class="p">))</span>
-
-<span class="n">x</span><span class="p">,</span> <span class="o">=</span> <span class="n">h</span><span class="o">.</span><span class="n">grid</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">h</span><span class="o">.</span><span class="n">data</span>
-<span class="n">xerr</span><span class="p">,</span><span class="n">yerr</span> <span class="o">=</span> <span class="n">h</span><span class="o">.</span><span class="n">errorbars</span><span class="p">()</span>
-
-<span class="n">fig</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">pyplot</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mf">2.5</span><span class="p">))</span>
-<span class="n">pt</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">xerr</span><span class="o">=</span><span class="n">xerr</span><span class="p">,</span><span class="n">yerr</span><span class="o">=</span><span class="n">yerr</span><span class="p">,</span><span class="n">ls</span><span class="o">=</span><span class="s">&#39;none&#39;</span><span class="p">)</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-
-<span class="n">pyplot</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-<img alt="_images/histogram_errorbars.png" src="_images/histogram_errorbars.png" />
-</dd></dl>
-
-<dl class="method">
-<dt id="histogram.Histogram.integral">
-<tt class="descclassname">Histogram.</tt><tt class="descname">integral</tt><big>(</big><em>uncert=False</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/7b3ea2be4a65a20b5d0d87068622d9ee8598e140/histogram/histogram.py#L617-L630"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.Histogram.integral" title="Permalink to this definition">¶</a></dt>
-<dd><p>Total integral of the histogram</p>
-<p>This is the sum of each bin multiplied by the volume of the bins. If <tt class="docutils literal"><span class="pre">uncert=True</span></tt> is given, then the output is the 2-tuple: <tt class="docutils literal"><span class="pre">(integral,</span> <span class="pre">uncertainty)</span></tt>.</p>
+<dl class="attribute">
+<dt id="histogram.Histogram.uncert_ratio">
+<tt class="descclassname">Histogram.</tt><tt class="descname">uncert_ratio</tt><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/7b3ea2be4a65a20b5d0d87068622d9ee8598e140/histogram/histogram.py#L204-L209"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.Histogram.uncert_ratio" title="Permalink to this definition">¶</a></dt>
+<dd><p>The untertainty as ratios of the data</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="histogram.Histogram.max">
 <tt class="descclassname">Histogram.</tt><tt class="descname">max</tt><big>(</big><em>uncert=False</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/7b3ea2be4a65a20b5d0d87068622d9ee8598e140/histogram/histogram.py#L644-L654"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.Histogram.max" title="Permalink to this definition">¶</a></dt>
 <dd><p>Maximum value of the filled data</p>
+<p>This will include the uncertainty if <tt class="docutils literal"><span class="pre">uncert=True</span></tt>. Uncertainty is calculated as the square-root of the data if not already set.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="histogram.Histogram.min">
+<tt class="descclassname">Histogram.</tt><tt class="descname">min</tt><big>(</big><em>uncert=False</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/7b3ea2be4a65a20b5d0d87068622d9ee8598e140/histogram/histogram.py#L632-L642"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.Histogram.min" title="Permalink to this definition">¶</a></dt>
+<dd><p>Minimum value of the filled data</p>
 <p>This will include the uncertainty if <tt class="docutils literal"><span class="pre">uncert=True</span></tt>. Uncertainty is calculated as the square-root of the data if not already set.</p>
 </dd></dl>
 
@@ -708,13 +672,6 @@ h.binvolumes[i,j] = dxi * dyj
 </dd></dl>
 
 <dl class="method">
-<dt id="histogram.Histogram.min">
-<tt class="descclassname">Histogram.</tt><tt class="descname">min</tt><big>(</big><em>uncert=False</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/7b3ea2be4a65a20b5d0d87068622d9ee8598e140/histogram/histogram.py#L632-L642"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.Histogram.min" title="Permalink to this definition">¶</a></dt>
-<dd><p>Minimum value of the filled data</p>
-<p>This will include the uncertainty if <tt class="docutils literal"><span class="pre">uncert=True</span></tt>. Uncertainty is calculated as the square-root of the data if not already set.</p>
-</dd></dl>
-
-<dl class="method">
 <dt id="histogram.Histogram.std">
 <tt class="descclassname">Histogram.</tt><tt class="descname">std</tt><big>(</big><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/7b3ea2be4a65a20b5d0d87068622d9ee8598e140/histogram/histogram.py#L696-L705"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.Histogram.std" title="Permalink to this definition">¶</a></dt>
 <dd><p>Standard deviation of the data along the axes</p>
@@ -729,6 +686,56 @@ h.binvolumes[i,j] = dxi * dyj
 </tbody>
 </table>
 <p>This is the square-root of the variance and will ignore all <tt class="docutils literal"><span class="pre">nan</span></tt> and <tt class="docutils literal"><span class="pre">inf</span></tt> values in the histogram. Bin-centers are used as the position and non-equal widths are incorporated into the weighting of the results.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="histogram.Histogram.sum">
+<tt class="descclassname">Histogram.</tt><tt class="descname">sum</tt><big>(</big><em>*axes</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/7b3ea2be4a65a20b5d0d87068622d9ee8598e140/histogram/histogram.py#L564-L615"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.Histogram.sum" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sum of bin values or sum along one or more axes</p>
+<p>Optional Args:</p>
+<blockquote>
+<div>axes (tuple of integers): Axes to sum over.</div></blockquote>
+<p>Returns the sum over all values or sums only over specific axes and returns a new <a class="reference internal" href="#histogram.Histogram" title="histogram.Histogram"><tt class="xref py py-class docutils literal"><span class="pre">Histogram</span></tt></a> with reduced dimension.</p>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">histogram</span> <span class="kn">import</span> <span class="n">Histogram</span>
+
+<span class="n">h</span> <span class="o">=</span> <span class="n">Histogram</span><span class="p">(</span><span class="mi">10</span><span class="p">,[</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">])</span>
+<span class="n">h</span><span class="o">.</span><span class="n">fill</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">&#39;sum of h:&#39;</span><span class="p">,</span><span class="n">h</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+
+<span class="n">h2</span> <span class="o">=</span> <span class="n">Histogram</span><span class="p">(</span><span class="mi">10</span><span class="p">,[</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">],</span><span class="mi">10</span><span class="p">,[</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">])</span>
+<span class="n">h2</span><span class="o">.</span><span class="n">fill</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">&#39;h2 sum along axis 0:&#39;</span><span class="p">,</span><span class="n">h2</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-python"><div class="highlight"><pre>sum of h: 10
+h2 sum along axis 0: [0 6 4 0 0 0 0 0 0 0]
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="histogram.Histogram.integral">
+<tt class="descclassname">Histogram.</tt><tt class="descname">integral</tt><big>(</big><em>uncert=False</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/7b3ea2be4a65a20b5d0d87068622d9ee8598e140/histogram/histogram.py#L617-L630"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.Histogram.integral" title="Permalink to this definition">¶</a></dt>
+<dd><p>Total integral of the histogram</p>
+<p>This is the sum of each bin multiplied by the volume of the bins. If <tt class="docutils literal"><span class="pre">uncert=True</span></tt> is given, then the output is the 2-tuple: <tt class="docutils literal"><span class="pre">(integral,</span> <span class="pre">uncertainty)</span></tt>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="histogram.Histogram.projection">
+<tt class="descclassname">Histogram.</tt><tt class="descname">projection</tt><big>(</big><em>axis=0</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/7b3ea2be4a65a20b5d0d87068622d9ee8598e140/histogram/histogram.py#L1489-L1508"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.Histogram.projection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Projection onto a single axis</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="histogram.Histogram.occupancy">
+<tt class="descclassname">Histogram.</tt><tt class="descname">occupancy</tt><big>(</big><em>bins=100</em>, <em>limits=None</em>, <em>**kwargs</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/7b3ea2be4a65a20b5d0d87068622d9ee8598e140/histogram/histogram.py#L1510-L1520"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.Histogram.occupancy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Histogram the filled data of this histogram</p>
+<p>Returns a new histogram showing the occupancy of the data. This is effectively histograming the data points, ignoring the axes and uncertanties.</p>
 </dd></dl>
 
 </div>
@@ -875,39 +882,6 @@ the form:</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="histogram.Histogram.interpolate_nans">
-<tt class="descclassname">Histogram.</tt><tt class="descname">interpolate_nans</tt><big>(</big><em>method='cubic'</em>, <em>**kwargs</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/7b3ea2be4a65a20b5d0d87068622d9ee8598e140/histogram/histogram.py#L1248-L1282"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.Histogram.interpolate_nans" title="Permalink to this definition">¶</a></dt>
-<dd><p>Replace non-finite bins with interpolated values</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name" colspan="2">Keyword Arguments:</th></tr>
-<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first last simple">
-<li><strong>method</strong> (<em>str</em>) &#8211; passed directly to <a class="reference external" href="http://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.griddata.html#scipy.interpolate.griddata" title="(in SciPy v0.16.0)"><tt class="xref py py-func docutils literal"><span class="pre">scipy.interpolate.griddata()</span></tt></a> and controls the method of interpolation used.</li>
-<li><strong>**kwargs</strong> &#8211; Passed directly to <a class="reference external" href="http://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.griddata.html#scipy.interpolate.griddata" title="(in SciPy v0.16.0)"><tt class="xref py py-func docutils literal"><span class="pre">scipy.interpolate.griddata()</span></tt></a>.</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-<p>This modifies the histogram, changing the data in-place. Bins are considered non-finite if the filled value or the uncertainty is <tt class="docutils literal"><span class="pre">nan</span></tt> or <tt class="docutils literal"><span class="pre">inf</span></tt>.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="histogram.Histogram.occupancy">
-<tt class="descclassname">Histogram.</tt><tt class="descname">occupancy</tt><big>(</big><em>bins=100</em>, <em>limits=None</em>, <em>**kwargs</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/7b3ea2be4a65a20b5d0d87068622d9ee8598e140/histogram/histogram.py#L1510-L1520"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.Histogram.occupancy" title="Permalink to this definition">¶</a></dt>
-<dd><p>Histogram the filled data of this histogram</p>
-<p>Returns a new histogram showing the occupancy of the data. This is effectively histograming the data points, ignoring the axes and uncertanties.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="histogram.Histogram.projection">
-<tt class="descclassname">Histogram.</tt><tt class="descname">projection</tt><big>(</big><em>axis=0</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/7b3ea2be4a65a20b5d0d87068622d9ee8598e140/histogram/histogram.py#L1489-L1508"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.Histogram.projection" title="Permalink to this definition">¶</a></dt>
-<dd><p>Projection onto a single axis</p>
-</dd></dl>
-
-<dl class="method">
 <dt id="histogram.Histogram.rebin">
 <tt class="descclassname">Histogram.</tt><tt class="descname">rebin</tt><big>(</big><em>nbins=2</em>, <em>axis=0</em>, <em>snap='low'</em>, <em>clip=True</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/7b3ea2be4a65a20b5d0d87068622d9ee8598e140/histogram/histogram.py#L1342-L1390"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.Histogram.rebin" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create new histogram with merged bins</p>
@@ -929,6 +903,26 @@ the form:</p>
 </dd></dl>
 
 <dl class="method">
+<dt id="histogram.Histogram.interpolate_nans">
+<tt class="descclassname">Histogram.</tt><tt class="descname">interpolate_nans</tt><big>(</big><em>method='cubic'</em>, <em>**kwargs</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/7b3ea2be4a65a20b5d0d87068622d9ee8598e140/histogram/histogram.py#L1248-L1282"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.Histogram.interpolate_nans" title="Permalink to this definition">¶</a></dt>
+<dd><p>Replace non-finite bins with interpolated values</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Keyword Arguments:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first last simple">
+<li><strong>method</strong> (<em>str</em>) &#8211; passed directly to <a class="reference external" href="http://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.griddata.html#scipy.interpolate.griddata" title="(in SciPy v0.16.0)"><tt class="xref py py-func docutils literal"><span class="pre">scipy.interpolate.griddata()</span></tt></a> and controls the method of interpolation used.</li>
+<li><strong>**kwargs</strong> &#8211; Passed directly to <a class="reference external" href="http://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.griddata.html#scipy.interpolate.griddata" title="(in SciPy v0.16.0)"><tt class="xref py py-func docutils literal"><span class="pre">scipy.interpolate.griddata()</span></tt></a>.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>This modifies the histogram, changing the data in-place. Bins are considered non-finite if the filled value or the uncertainty is <tt class="docutils literal"><span class="pre">nan</span></tt> or <tt class="docutils literal"><span class="pre">inf</span></tt>.</p>
+</dd></dl>
+
+<dl class="method">
 <dt id="histogram.Histogram.smooth">
 <tt class="descclassname">Histogram.</tt><tt class="descname">smooth</tt><big>(</big><em>weight=0.5</em>, <em>mode='nearest'</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/7b3ea2be4a65a20b5d0d87068622d9ee8598e140/histogram/histogram.py#L1284-L1303"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.Histogram.smooth" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a new smoothed histogram using a Gaussian filter</p>
@@ -946,36 +940,6 @@ the form:</p>
 </tbody>
 </table>
 <p>All non-finite bins are filled using <a class="reference internal" href="#histogram.Histogram.interpolate_nans" title="histogram.Histogram.interpolate_nans"><tt class="xref py py-meth docutils literal"><span class="pre">Histogram.interpolate_nans()</span></tt></a> before the Gaussian filter is applied.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="histogram.Histogram.sum">
-<tt class="descclassname">Histogram.</tt><tt class="descname">sum</tt><big>(</big><em>*axes</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/7b3ea2be4a65a20b5d0d87068622d9ee8598e140/histogram/histogram.py#L564-L615"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.Histogram.sum" title="Permalink to this definition">¶</a></dt>
-<dd><p>Sum of bin values or sum along one or more axes</p>
-<p>Optional Args:</p>
-<blockquote>
-<div>axes (tuple of integers): Axes to sum over.</div></blockquote>
-<p>Returns the sum over all values or sums only over specific axes and returns a new <a class="reference internal" href="#histogram.Histogram" title="histogram.Histogram"><tt class="xref py py-class docutils literal"><span class="pre">Histogram</span></tt></a> with reduced dimension.</p>
-<p>Example:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">histogram</span> <span class="kn">import</span> <span class="n">Histogram</span>
-
-<span class="n">h</span> <span class="o">=</span> <span class="n">Histogram</span><span class="p">(</span><span class="mi">10</span><span class="p">,[</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">])</span>
-<span class="n">h</span><span class="o">.</span><span class="n">fill</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span>
-
-<span class="k">print</span><span class="p">(</span><span class="s">&#39;sum of h:&#39;</span><span class="p">,</span><span class="n">h</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
-
-<span class="n">h2</span> <span class="o">=</span> <span class="n">Histogram</span><span class="p">(</span><span class="mi">10</span><span class="p">,[</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">],</span><span class="mi">10</span><span class="p">,[</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">])</span>
-<span class="n">h2</span><span class="o">.</span><span class="n">fill</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">],</span>
-        <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
-
-<span class="k">print</span><span class="p">(</span><span class="s">&#39;h2 sum along axis 0:&#39;</span><span class="p">,</span><span class="n">h2</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
-</pre></div>
-</div>
-<p>Output:</p>
-<div class="highlight-python"><div class="highlight"><pre>sum of h: 10
-h2 sum along axis 0: [0 6 4 0 0 0 0 0 0 0]
-</pre></div>
-</div>
 </dd></dl>
 
 </div>
@@ -1129,20 +1093,6 @@ hret = that / hself</div></blockquote>
 </dd></dl>
 
 <dl class="method">
-<dt id="histogram.Histogram.added_uncert">
-<tt class="descclassname">Histogram.</tt><tt class="descname">added_uncert</tt><big>(</big><em>that</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/7b3ea2be4a65a20b5d0d87068622d9ee8598e140/histogram/histogram.py#L1041-L1061"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.Histogram.added_uncert" title="Permalink to this definition">¶</a></dt>
-<dd><p>Added uncertainty by absolute values</p>
-<p>Returns the uncertainty added directly in quadrature with another histogram. This assumes Poisson statistics (<tt class="docutils literal"><span class="pre">uncert</span> <span class="pre">=</span> <span class="pre">sqrt(data)</span></tt>) if <tt class="docutils literal"><span class="pre">uncert</span> <span class="pre">is</span> <span class="pre">None</span></tt>.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="histogram.Histogram.added_uncert_ratio">
-<tt class="descclassname">Histogram.</tt><tt class="descname">added_uncert_ratio</tt><big>(</big><em>that</em>, <em>nans=0</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/7b3ea2be4a65a20b5d0d87068622d9ee8598e140/histogram/histogram.py#L1063-L1087"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.Histogram.added_uncert_ratio" title="Permalink to this definition">¶</a></dt>
-<dd><p>Added uncertainty by ratios of the data</p>
-<p>Returns the uncertainty added by ratio and in quadrature with another histogram. This assumes Poisson statistics (<tt class="docutils literal"><span class="pre">uncert</span> <span class="pre">=</span> <span class="pre">sqrt(data)</span></tt>) if <tt class="docutils literal"><span class="pre">uncert</span> <span class="pre">is</span> <span class="pre">None</span></tt>.</p>
-</dd></dl>
-
-<dl class="method">
 <dt id="histogram.Histogram.asline">
 <tt class="descclassname">Histogram.</tt><tt class="descname">asline</tt><big>(</big><em>xlow=None</em>, <em>xhigh=None</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/7b3ea2be4a65a20b5d0d87068622d9ee8598e140/histogram/histogram.py#L787-L856"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.Histogram.asline" title="Permalink to this definition">¶</a></dt>
 <dd><p>Points describing this histogram as a line</p>
@@ -1216,6 +1166,53 @@ hret = that / hself</div></blockquote>
 </dd></dl>
 
 <dl class="method">
+<dt id="histogram.Histogram.errorbars">
+<tt class="descclassname">Histogram.</tt><tt class="descname">errorbars</tt><big>(</big><em>maxdim=2</em>, <em>asratio=False</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/7b3ea2be4a65a20b5d0d87068622d9ee8598e140/histogram/histogram.py#L735-L785"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.Histogram.errorbars" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bin half-widths and data uncertainties</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Keyword Arguments:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><strong>maxdim</strong> (<em>int</em>) &#8211; Number of dimensions to return (default: 2).</li>
+<li><strong>asratio</strong> (<em>bool</em>) &#8211; Return ratios instead of absolute values (default: False).</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Errors to be used for plotting this histogram.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">list of arrays</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">random</span> <span class="k">as</span> <span class="n">rand</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span>
+<span class="kn">from</span> <span class="nn">histogram</span> <span class="kn">import</span> <span class="n">Histogram</span>
+
+<span class="n">rand</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">h</span> <span class="o">=</span> <span class="n">Histogram</span><span class="p">(</span><span class="mi">10</span><span class="p">,[</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">])</span>
+<span class="n">h</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">rand</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">500</span><span class="p">))</span>
+
+<span class="n">x</span><span class="p">,</span> <span class="o">=</span> <span class="n">h</span><span class="o">.</span><span class="n">grid</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">h</span><span class="o">.</span><span class="n">data</span>
+<span class="n">xerr</span><span class="p">,</span><span class="n">yerr</span> <span class="o">=</span> <span class="n">h</span><span class="o">.</span><span class="n">errorbars</span><span class="p">()</span>
+
+<span class="n">fig</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">pyplot</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mf">2.5</span><span class="p">))</span>
+<span class="n">pt</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">xerr</span><span class="o">=</span><span class="n">xerr</span><span class="p">,</span><span class="n">yerr</span><span class="o">=</span><span class="n">yerr</span><span class="p">,</span><span class="n">ls</span><span class="o">=</span><span class="s">&#39;none&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+<span class="n">pyplot</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="_images/histogram_errorbars.png" src="_images/histogram_errorbars.png" />
+</dd></dl>
+
+<dl class="method">
 <dt id="histogram.Histogram.clone">
 <tt class="descclassname">Histogram.</tt><tt class="descname">clone</tt><big>(</big><em>dtype=None</em>, <em>**kwargs</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/7b3ea2be4a65a20b5d0d87068622d9ee8598e140/histogram/histogram.py#L1022-L1039"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.Histogram.clone" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a complete copy of this histogram</p>
@@ -1277,6 +1274,27 @@ hret = that / hself</div></blockquote>
 <span class="mi">909</span>
 </pre></div>
 </div>
+</dd></dl>
+
+<dl class="method">
+<dt id="histogram.Histogram.added_uncert">
+<tt class="descclassname">Histogram.</tt><tt class="descname">added_uncert</tt><big>(</big><em>that</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/7b3ea2be4a65a20b5d0d87068622d9ee8598e140/histogram/histogram.py#L1041-L1061"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.Histogram.added_uncert" title="Permalink to this definition">¶</a></dt>
+<dd><p>Added uncertainty by absolute values</p>
+<p>Returns the uncertainty added directly in quadrature with another histogram. This assumes Poisson statistics (<tt class="docutils literal"><span class="pre">uncert</span> <span class="pre">=</span> <span class="pre">sqrt(data)</span></tt>) if <tt class="docutils literal"><span class="pre">uncert</span> <span class="pre">is</span> <span class="pre">None</span></tt>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="histogram.Histogram.added_uncert_ratio">
+<tt class="descclassname">Histogram.</tt><tt class="descname">added_uncert_ratio</tt><big>(</big><em>that</em>, <em>nans=0</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/7b3ea2be4a65a20b5d0d87068622d9ee8598e140/histogram/histogram.py#L1063-L1087"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.Histogram.added_uncert_ratio" title="Permalink to this definition">¶</a></dt>
+<dd><p>Added uncertainty by ratios of the data</p>
+<p>Returns the uncertainty added by ratio and in quadrature with another histogram. This assumes Poisson statistics (<tt class="docutils literal"><span class="pre">uncert</span> <span class="pre">=</span> <span class="pre">sqrt(data)</span></tt>) if <tt class="docutils literal"><span class="pre">uncert</span> <span class="pre">is</span> <span class="pre">None</span></tt>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="histogram.Histogram.dtype">
+<tt class="descclassname">Histogram.</tt><tt class="descname">dtype</tt><big>(</big><em>that</em>, <em>div=False</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/7b3ea2be4a65a20b5d0d87068622d9ee8598e140/histogram/histogram.py#L1097-L1117"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.Histogram.dtype" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return dtype that should result from a binary operation</p>
+<p>Default is the result for addition, subtraction or multiplication. With <tt class="docutils literal"><span class="pre">div</span> <span class="pre">=</span> <span class="pre">True</span></tt>, this will always return <tt class="docutils literal"><span class="pre">float64</span></tt>.</p>
 </dd></dl>
 
 </div>
