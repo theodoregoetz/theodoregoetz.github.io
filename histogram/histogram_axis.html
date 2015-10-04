@@ -131,7 +131,7 @@
 <h1>HistogramAxis<a class="headerlink" href="#histogramaxis" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="histogram.HistogramAxis">
-<em class="property">class </em><tt class="descclassname">histogram.</tt><tt class="descname">HistogramAxis</tt><big>(</big><em>bins</em>, <em>limits=None</em>, <em>label=None</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/a16e8e53bfcb9da11df54f26af2034905ea0b323/histogram/histogram_axis.py#L4-L344"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.HistogramAxis" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">histogram.</tt><tt class="descname">HistogramAxis</tt><big>(</big><em>bins</em>, <em>limits=None</em>, <em>label=None</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/7b3ea2be4a65a20b5d0d87068622d9ee8598e140/histogram/histogram_axis.py#L6-L361"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.HistogramAxis" title="Permalink to this definition">¶</a></dt>
 <dd><p>A single axis used internally by <a class="reference internal" href="histogram.html#histogram.Histogram" title="histogram.Histogram"><tt class="xref py py-class docutils literal"><span class="pre">Histogram</span></tt></a> to store
 the bin edges in an open-grid format.</p>
 <p>An axis consists of a continuous range on the real-line, divided
@@ -254,37 +254,37 @@ from 0 to 10. In this case, there are 101 edges to this axis:</p>
 <h2>Edges and Bins<a class="headerlink" href="#edges-and-bins" title="Permalink to this headline">¶</a></h2>
 <dl class="attribute">
 <dt id="histogram.HistogramAxis.edges">
-<tt class="descclassname">HistogramAxis.</tt><tt class="descname">edges</tt><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/a16e8e53bfcb9da11df54f26af2034905ea0b323/histogram/histogram_axis.py#L79-L82"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.HistogramAxis.edges" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">HistogramAxis.</tt><tt class="descname">edges</tt><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/7b3ea2be4a65a20b5d0d87068622d9ee8598e140/histogram/histogram_axis.py#L89-L92"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.HistogramAxis.edges" title="Permalink to this definition">¶</a></dt>
 <dd><p>The list of bin edges from low to high.</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="histogram.HistogramAxis.min">
-<tt class="descclassname">HistogramAxis.</tt><tt class="descname">min</tt><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/a16e8e53bfcb9da11df54f26af2034905ea0b323/histogram/histogram_axis.py#L112-L115"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.HistogramAxis.min" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">HistogramAxis.</tt><tt class="descname">min</tt><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/7b3ea2be4a65a20b5d0d87068622d9ee8598e140/histogram/histogram_axis.py#L124-L127"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.HistogramAxis.min" title="Permalink to this definition">¶</a></dt>
 <dd><p>Value of the lowest edge.</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="histogram.HistogramAxis.max">
-<tt class="descclassname">HistogramAxis.</tt><tt class="descname">max</tt><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/a16e8e53bfcb9da11df54f26af2034905ea0b323/histogram/histogram_axis.py#L117-L120"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.HistogramAxis.max" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">HistogramAxis.</tt><tt class="descname">max</tt><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/7b3ea2be4a65a20b5d0d87068622d9ee8598e140/histogram/histogram_axis.py#L129-L132"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.HistogramAxis.max" title="Permalink to this definition">¶</a></dt>
 <dd><p>Value of the highest edge.</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="histogram.HistogramAxis.limits">
-<tt class="descclassname">HistogramAxis.</tt><tt class="descname">limits</tt><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/a16e8e53bfcb9da11df54f26af2034905ea0b323/histogram/histogram_axis.py#L122-L125"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.HistogramAxis.limits" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">HistogramAxis.</tt><tt class="descname">limits</tt><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/7b3ea2be4a65a20b5d0d87068622d9ee8598e140/histogram/histogram_axis.py#L139-L142"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.HistogramAxis.limits" title="Permalink to this definition">¶</a></dt>
 <dd><p>2-tuple of the lowest and highest edges.</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="histogram.HistogramAxis.overflow">
-<tt class="descclassname">HistogramAxis.</tt><tt class="descname">overflow</tt><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/a16e8e53bfcb9da11df54f26af2034905ea0b323/histogram/histogram_axis.py#L137-L140"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.HistogramAxis.overflow" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">HistogramAxis.</tt><tt class="descname">overflow</tt><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/7b3ea2be4a65a20b5d0d87068622d9ee8598e140/histogram/histogram_axis.py#L154-L157"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.HistogramAxis.overflow" title="Permalink to this definition">¶</a></dt>
 <dd><p>Value guaranteed to be outside the range of this axis.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="histogram.HistogramAxis.edge_index">
-<tt class="descclassname">HistogramAxis.</tt><tt class="descname">edge_index</tt><big>(</big><em>x</em>, <em>snap='nearest'</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/a16e8e53bfcb9da11df54f26af2034905ea0b323/histogram/histogram_axis.py#L174-L212"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.HistogramAxis.edge_index" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">HistogramAxis.</tt><tt class="descname">edge_index</tt><big>(</big><em>x</em>, <em>snap='nearest'</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/7b3ea2be4a65a20b5d0d87068622d9ee8598e140/histogram/histogram_axis.py#L191-L229"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.HistogramAxis.edge_index" title="Permalink to this definition">¶</a></dt>
 <dd><p>Index of the edge based on the given snap.</p>
 <p>Will always return a valid index from 0 to <tt class="docutils literal"><span class="pre">len(self.edges)-1</span></tt>.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -309,7 +309,7 @@ where the output will be a tuple: <cite>(low,high)</cite>.</p>
 
 <dl class="method">
 <dt id="histogram.HistogramAxis.inaxis">
-<tt class="descclassname">HistogramAxis.</tt><tt class="descname">inaxis</tt><big>(</big><em>x</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/a16e8e53bfcb9da11df54f26af2034905ea0b323/histogram/histogram_axis.py#L146-L158"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.HistogramAxis.inaxis" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">HistogramAxis.</tt><tt class="descname">inaxis</tt><big>(</big><em>x</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/7b3ea2be4a65a20b5d0d87068622d9ee8598e140/histogram/histogram_axis.py#L163-L175"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.HistogramAxis.inaxis" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check if <cite>x</cite> is within this axis.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -329,7 +329,7 @@ where the output will be a tuple: <cite>(low,high)</cite>.</p>
 
 <dl class="method">
 <dt id="histogram.HistogramAxis.bin">
-<tt class="descclassname">HistogramAxis.</tt><tt class="descname">bin</tt><big>(</big><em>x</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/a16e8e53bfcb9da11df54f26af2034905ea0b323/histogram/histogram_axis.py#L160-L172"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.HistogramAxis.bin" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">HistogramAxis.</tt><tt class="descname">bin</tt><big>(</big><em>x</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/7b3ea2be4a65a20b5d0d87068622d9ee8598e140/histogram/histogram_axis.py#L177-L189"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.HistogramAxis.bin" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bin index for the value <cite>x</cite>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -349,13 +349,13 @@ where the output will be a tuple: <cite>(low,high)</cite>.</p>
 
 <dl class="attribute">
 <dt id="histogram.HistogramAxis.nbins">
-<tt class="descclassname">HistogramAxis.</tt><tt class="descname">nbins</tt><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/a16e8e53bfcb9da11df54f26af2034905ea0b323/histogram/histogram_axis.py#L107-L110"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.HistogramAxis.nbins" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">HistogramAxis.</tt><tt class="descname">nbins</tt><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/7b3ea2be4a65a20b5d0d87068622d9ee8598e140/histogram/histogram_axis.py#L119-L122"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.HistogramAxis.nbins" title="Permalink to this definition">¶</a></dt>
 <dd><p>Number of bins in this axis.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="histogram.HistogramAxis.binwidth">
-<tt class="descclassname">HistogramAxis.</tt><tt class="descname">binwidth</tt><big>(</big><em>b=1</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/a16e8e53bfcb9da11df54f26af2034905ea0b323/histogram/histogram_axis.py#L214-L226"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.HistogramAxis.binwidth" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">HistogramAxis.</tt><tt class="descname">binwidth</tt><big>(</big><em>b=1</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/7b3ea2be4a65a20b5d0d87068622d9ee8598e140/histogram/histogram_axis.py#L231-L243"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.HistogramAxis.binwidth" title="Permalink to this definition">¶</a></dt>
 <dd><p>Width of a specific bin.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -375,13 +375,13 @@ second bin (index: 1) is returned.</p>
 
 <dl class="attribute">
 <dt id="histogram.HistogramAxis.binwidths">
-<tt class="descclassname">HistogramAxis.</tt><tt class="descname">binwidths</tt><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/a16e8e53bfcb9da11df54f26af2034905ea0b323/histogram/histogram_axis.py#L127-L130"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.HistogramAxis.binwidths" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">HistogramAxis.</tt><tt class="descname">binwidths</tt><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/7b3ea2be4a65a20b5d0d87068622d9ee8598e140/histogram/histogram_axis.py#L144-L147"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.HistogramAxis.binwidths" title="Permalink to this definition">¶</a></dt>
 <dd><p>All bin widths as an array.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="histogram.HistogramAxis.isuniform">
-<tt class="descclassname">HistogramAxis.</tt><tt class="descname">isuniform</tt><big>(</big><em>rtol=1e-05</em>, <em>atol=1e-08</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/a16e8e53bfcb9da11df54f26af2034905ea0b323/histogram/histogram_axis.py#L228-L246"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.HistogramAxis.isuniform" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">HistogramAxis.</tt><tt class="descname">isuniform</tt><big>(</big><em>rtol=1e-05</em>, <em>atol=1e-08</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/7b3ea2be4a65a20b5d0d87068622d9ee8598e140/histogram/histogram_axis.py#L245-L263"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.HistogramAxis.isuniform" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check if all bins are of equal width.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -416,7 +416,7 @@ second bin (index: 1) is returned.</p>
 
 <dl class="attribute">
 <dt id="histogram.HistogramAxis.bincenters">
-<tt class="descclassname">HistogramAxis.</tt><tt class="descname">bincenters</tt><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/a16e8e53bfcb9da11df54f26af2034905ea0b323/histogram/histogram_axis.py#L132-L135"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.HistogramAxis.bincenters" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">HistogramAxis.</tt><tt class="descname">bincenters</tt><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/7b3ea2be4a65a20b5d0d87068622d9ee8598e140/histogram/histogram_axis.py#L149-L152"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.HistogramAxis.bincenters" title="Permalink to this definition">¶</a></dt>
 <dd><p>Centers of all bins as an array.</p>
 </dd></dl>
 
@@ -425,7 +425,7 @@ second bin (index: 1) is returned.</p>
 <h2>Tranformations<a class="headerlink" href="#tranformations" title="Permalink to this headline">¶</a></h2>
 <dl class="method">
 <dt id="histogram.HistogramAxis.cut">
-<tt class="descclassname">HistogramAxis.</tt><tt class="descname">cut</tt><big>(</big><em>low</em>, <em>high=None</em>, <em>snap='nearest'</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/a16e8e53bfcb9da11df54f26af2034905ea0b323/histogram/histogram_axis.py#L248-L307"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.HistogramAxis.cut" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">HistogramAxis.</tt><tt class="descname">cut</tt><big>(</big><em>low</em>, <em>high=None</em>, <em>snap='nearest'</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/7b3ea2be4a65a20b5d0d87068622d9ee8598e140/histogram/histogram_axis.py#L265-L324"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.HistogramAxis.cut" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return a truncated <a class="reference internal" href="#histogram.HistogramAxis" title="histogram.HistogramAxis"><tt class="xref py py-class docutils literal"><span class="pre">HistogramAxis</span></tt></a></p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -463,7 +463,7 @@ longer uniform.</p>
 
 <dl class="method">
 <dt id="histogram.HistogramAxis.mergebins">
-<tt class="descclassname">HistogramAxis.</tt><tt class="descname">mergebins</tt><big>(</big><em>nbins=2</em>, <em>snap='low'</em>, <em>clip=True</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/a16e8e53bfcb9da11df54f26af2034905ea0b323/histogram/histogram_axis.py#L309-L344"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.HistogramAxis.mergebins" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">HistogramAxis.</tt><tt class="descname">mergebins</tt><big>(</big><em>nbins=2</em>, <em>snap='low'</em>, <em>clip=True</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/7b3ea2be4a65a20b5d0d87068622d9ee8598e140/histogram/histogram_axis.py#L326-L361"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.HistogramAxis.mergebins" title="Permalink to this definition">¶</a></dt>
 <dd><p>Merge neighboring bins.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -496,20 +496,20 @@ in an axis that maintains uniform bin widths.</li>
 <h2>Misc<a class="headerlink" href="#misc" title="Permalink to this headline">¶</a></h2>
 <dl class="attribute">
 <dt id="histogram.HistogramAxis.label">
-<tt class="descclassname">HistogramAxis.</tt><tt class="descname">label</tt><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/a16e8e53bfcb9da11df54f26af2034905ea0b323/histogram/histogram_axis.py#L93-L97"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.HistogramAxis.label" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">HistogramAxis.</tt><tt class="descname">label</tt><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/7b3ea2be4a65a20b5d0d87068622d9ee8598e140/histogram/histogram_axis.py#L103-L107"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.HistogramAxis.label" title="Permalink to this definition">¶</a></dt>
 <dd><p>The label of this axis including units if applicable.
 Example: &#8220;distance (meters)&#8221;.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="histogram.HistogramAxis.clone">
-<tt class="descclassname">HistogramAxis.</tt><tt class="descname">clone</tt><big>(</big><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/a16e8e53bfcb9da11df54f26af2034905ea0b323/histogram/histogram_axis.py#L142-L144"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.HistogramAxis.clone" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">HistogramAxis.</tt><tt class="descname">clone</tt><big>(</big><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/7b3ea2be4a65a20b5d0d87068622d9ee8598e140/histogram/histogram_axis.py#L159-L161"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.HistogramAxis.clone" title="Permalink to this definition">¶</a></dt>
 <dd><p>Deep copy of this instance.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="histogram.HistogramAxis.__eq__">
-<tt class="descclassname">HistogramAxis.</tt><tt class="descname">__eq__</tt><big>(</big><em>that</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/a16e8e53bfcb9da11df54f26af2034905ea0b323/histogram/histogram_axis.py#L71-L77"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.HistogramAxis.__eq__" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">HistogramAxis.</tt><tt class="descname">__eq__</tt><big>(</big><em>that</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/7b3ea2be4a65a20b5d0d87068622d9ee8598e140/histogram/histogram_axis.py#L73-L79"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.HistogramAxis.__eq__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compare edges to within numpy&#8217;s default tolerance.
 Labels are ignored.</p>
 <p>Each point in the edge arrays must satisfy</p>
@@ -525,7 +525,7 @@ Labels are ignored.</p>
 
 <dl class="method">
 <dt id="histogram.HistogramAxis.__str__">
-<tt class="descclassname">HistogramAxis.</tt><tt class="descname">__str__</tt><big>(</big><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/a16e8e53bfcb9da11df54f26af2034905ea0b323/histogram/histogram_axis.py#L63-L69"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.HistogramAxis.__str__" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">HistogramAxis.</tt><tt class="descname">__str__</tt><big>(</big><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/7b3ea2be4a65a20b5d0d87068622d9ee8598e140/histogram/histogram_axis.py#L65-L71"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.HistogramAxis.__str__" title="Permalink to this definition">¶</a></dt>
 <dd><p>String representation the edges array.</p>
 <p>The attribute <a class="reference internal" href="#histogram.HistogramAxis.label" title="histogram.HistogramAxis.label"><tt class="xref py py-attr docutils literal"><span class="pre">HistogramAxis.label</span></tt></a> is not included in
 the output.</p>
