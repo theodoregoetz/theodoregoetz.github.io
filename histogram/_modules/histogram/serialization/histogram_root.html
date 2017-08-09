@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>histogram.serialization.histogram_root &mdash; histogram 2.1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/pydoctheme.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '2.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../../_static/sidebar.js"></script>
+    <link rel="top" title="histogram 2.1.0 documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <link rel="shortcut icon" type="image/png" href="../../../_static/favicon.png" />
+    <meta name="viewport" content="width=device-width,initial-scale=0.8">
+    
+    
+
+  </head>
+  <body role="document">
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="responsive-menu"><a href="#sidebar-anchor" title="Navigation">&#9776;</a></li>
+        <li><a href="../../../index.html">histogram 2.1.0 documentation</a> &raquo;</li>
+          <li><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for histogram.serialization.histogram_root</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">warnings</span> <span class="k">import</span> <span class="n">warn</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">import</span> <span class="nn">ROOT</span>
+
+<span class="kn">from</span> <span class="nn">..</span> <span class="k">import</span> <span class="n">Histogram</span><span class="p">,</span> <span class="n">HistogramAxis</span>
+
+<span class="k">def</span> <span class="nf">asroot</span><span class="p">(</span><span class="n">hist</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Convert this histogram to a CERN/ROOT object (TH1F, TH2F, etc)&#39;&#39;&#39;</span>
+    <span class="k">if</span> <span class="n">hist</span><span class="o">.</span><span class="n">dim</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Can not convert histogram with dimensions &gt; 3 to ROOT&#39;</span><span class="p">)</span>
+
+    <span class="n">title</span> <span class="o">=</span> <span class="p">(</span><span class="n">hist</span><span class="o">.</span><span class="n">title</span> <span class="ow">or</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;unicode-escape&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;latin-1&#39;</span><span class="p">)</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="n">hist</span><span class="o">.</span><span class="n">axes</span><span class="p">:</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">nbins</span><span class="p">)</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">edges</span><span class="p">)</span>
+
+    <span class="n">hnew_dispatch</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="mi">1</span><span class="p">:</span> <span class="n">ROOT</span><span class="o">.</span><span class="n">TH1D</span><span class="p">,</span>
+        <span class="mi">2</span><span class="p">:</span> <span class="n">ROOT</span><span class="o">.</span><span class="n">TH2D</span><span class="p">,</span>
+        <span class="mi">3</span><span class="p">:</span> <span class="n">ROOT</span><span class="o">.</span><span class="n">TH3D</span> <span class="p">}</span>
+
+    <span class="n">hnew</span> <span class="o">=</span> <span class="n">hnew_dispatch</span><span class="p">[</span><span class="n">hist</span><span class="o">.</span><span class="n">dim</span><span class="p">](</span><span class="n">name</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">)</span>
+
+    <span class="n">hnew</span><span class="o">.</span><span class="n">SetContent</span><span class="p">(</span><span class="n">hist</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span><span class="o">.</span><span class="n">ravel</span><span class="p">())</span>
+    <span class="k">if</span> <span class="n">hist</span><span class="o">.</span><span class="n">has_uncert</span><span class="p">:</span>
+        <span class="n">hnew</span><span class="o">.</span><span class="n">SetError</span><span class="p">(</span><span class="n">hist</span><span class="o">.</span><span class="n">uncert</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span><span class="o">.</span><span class="n">ravel</span><span class="p">())</span>
+
+    <span class="n">axlabel_dispatch</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="mi">0</span><span class="p">:</span> <span class="n">hnew</span><span class="o">.</span><span class="n">GetXaxis</span><span class="p">()</span><span class="o">.</span><span class="n">SetTitle</span><span class="p">,</span>
+        <span class="mi">1</span><span class="p">:</span> <span class="n">hnew</span><span class="o">.</span><span class="n">GetYaxis</span><span class="p">()</span><span class="o">.</span><span class="n">SetTitle</span><span class="p">,</span>
+        <span class="mi">2</span><span class="p">:</span> <span class="n">hnew</span><span class="o">.</span><span class="n">GetZaxis</span><span class="p">()</span><span class="o">.</span><span class="n">SetTitle</span> <span class="p">}</span>
+
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">ax</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">hist</span><span class="o">.</span><span class="n">axes</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">ax</span><span class="o">.</span><span class="n">label</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">axlabel_dispatch</span><span class="p">[</span><span class="n">i</span><span class="p">](</span><span class="n">ax</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;unicode-escape&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;latin-1&#39;</span><span class="p">))</span>
+
+    <span class="k">if</span> <span class="n">hist</span><span class="o">.</span><span class="n">label</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">hist</span><span class="o">.</span><span class="n">dim</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="n">axlabel_dispatch</span><span class="p">[</span><span class="n">hist</span><span class="o">.</span><span class="n">dim</span><span class="p">](</span><span class="n">hist</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;unicode-escape&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;latin-1&#39;</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">warn</span><span class="p">(</span><span class="s1">&#39;CERN/ROOT 3D Histograms do not store a content label.&#39;</span>
+                 <span class="s1">&#39; hist.label has been lost: &quot;</span><span class="si">{}</span><span class="s1">&quot;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">hist</span><span class="o">.</span><span class="n">label</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">hnew</span>
+
+<span class="n">Histogram</span><span class="o">.</span><span class="n">asroot</span> <span class="o">=</span> <span class="n">asroot</span>
+
+<span class="nd">@staticmethod</span>
+<span class="k">def</span> <span class="nf">fromroot</span><span class="p">(</span><span class="n">hist</span><span class="p">):</span>
+    <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">hist</span><span class="p">,</span> <span class="n">ROOT</span><span class="o">.</span><span class="n">TH1</span><span class="p">),</span> <span class="s1">&#39;Object must inheret from TH1&#39;</span>
+
+    <span class="n">getax_dispatch</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="mi">0</span><span class="p">:</span> <span class="n">hist</span><span class="o">.</span><span class="n">GetXaxis</span><span class="p">,</span>
+        <span class="mi">1</span><span class="p">:</span> <span class="n">hist</span><span class="o">.</span><span class="n">GetYaxis</span><span class="p">,</span>
+        <span class="mi">2</span><span class="p">:</span> <span class="n">hist</span><span class="o">.</span><span class="n">GetZaxis</span> <span class="p">}</span>
+
+    <span class="n">axes</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">shape</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">dim</span> <span class="o">=</span> <span class="n">hist</span><span class="o">.</span><span class="n">GetDimension</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">dim</span><span class="p">):</span>
+        <span class="n">ax</span> <span class="o">=</span> <span class="n">getax_dispatch</span><span class="p">[</span><span class="n">i</span><span class="p">]()</span>
+        <span class="n">nbins</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">GetNbins</span><span class="p">()</span>
+        <span class="n">shape</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">nbins</span><span class="p">)</span>
+        <span class="n">edges</span> <span class="o">=</span> <span class="p">[</span><span class="n">ax</span><span class="o">.</span><span class="n">GetBinLowEdge</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">nbins</span><span class="o">+</span><span class="mi">2</span><span class="p">)]</span>
+        <span class="n">label</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">GetTitle</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;latin-1&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;unicode-escape&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="kc">None</span>
+
+        <span class="n">axes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">HistogramAxis</span><span class="p">(</span><span class="n">edges</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">))</span>
+
+    <span class="n">nbins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="n">shape</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">nbins</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nbins</span><span class="p">):</span>
+        <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">hist</span><span class="o">.</span><span class="n">At</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">shape</span> <span class="o">=</span> <span class="n">shape</span>
+
+    <span class="n">uncert</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">nbins</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nbins</span><span class="p">):</span>
+        <span class="n">uncert</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">hist</span><span class="o">.</span><span class="n">GetBinError</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">uncert</span><span class="o">.</span><span class="n">shape</span> <span class="o">=</span> <span class="n">shape</span>
+
+    <span class="n">title</span> <span class="o">=</span> <span class="n">hist</span><span class="o">.</span><span class="n">GetTitle</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;latin-1&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;unicode-escape&#39;</span><span class="p">)</span>
+    <span class="n">label</span> <span class="o">=</span> <span class="n">getax_dispatch</span><span class="p">[</span><span class="n">dim</span><span class="p">]()</span><span class="o">.</span><span class="n">GetTitle</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;latin-1&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;unicode-escape&#39;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">Histogram</span><span class="p">(</span>
+        <span class="o">*</span><span class="n">axes</span><span class="p">,</span>
+        <span class="n">label</span><span class="o">=</span><span class="n">label</span> <span class="ow">or</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">title</span><span class="o">=</span><span class="n">title</span> <span class="ow">or</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
+        <span class="n">uncert</span><span class="o">=</span><span class="n">uncert</span> <span class="p">)</span>
+
+<span class="n">Histogram</span><span class="o">.</span><span class="n">fromroot</span> <span class="o">=</span> <span class="n">fromroot</span>
+
+
+<span class="k">def</span> <span class="nf">save_histogram_root</span><span class="p">(</span><span class="n">hist</span><span class="p">,</span> <span class="n">filepath</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;RECREATE&#39;</span><span class="p">):</span>
+    <span class="n">fout</span> <span class="o">=</span> <span class="n">ROOT</span><span class="o">.</span><span class="n">TFile</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="n">mode</span><span class="p">)</span>
+    <span class="n">h</span> <span class="o">=</span> <span class="n">hist</span><span class="o">.</span><span class="n">asroot</span><span class="p">(</span><span class="s1">&#39;h&#39;</span><span class="p">)</span>
+    <span class="n">fout</span><span class="o">.</span><span class="n">Write</span><span class="p">(</span><span class="s1">&#39;h&#39;</span><span class="p">)</span>
+    <span class="n">fout</span><span class="o">.</span><span class="n">Close</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">load_histogram_root</span><span class="p">(</span><span class="n">filepath</span><span class="p">):</span>
+    <span class="n">fin</span> <span class="o">=</span> <span class="n">ROOT</span><span class="o">.</span><span class="n">TFile</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span>
+    <span class="n">h</span> <span class="o">=</span> <span class="n">fin</span><span class="o">.</span><span class="n">Get</span><span class="p">(</span><span class="s1">&#39;h&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">Histogram</span><span class="o">.</span><span class="n">fromroot</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+    <a id="sidebar-anchor"></a>
+    
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+      </ul>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2017, John T. Goetz.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.5.
+    </div>
+  </body>
+</html>

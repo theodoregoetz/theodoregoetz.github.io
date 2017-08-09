@@ -1,494 +1,309 @@
-
-
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
-<head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <title>HistogramAxis &mdash; histogram 2.0.0 documentation</title>
-  
 
-  
-  
 
-  
-
-  
-  
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>HistogramAxis &mdash; histogram 2.1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/pydoctheme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/sidebar.js"></script>
+    <link rel="top" title="histogram 2.1.0 documentation" href="index.html" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <link rel="shortcut icon" type="image/png" href="_static/favicon.png" />
+    <meta name="viewport" content="width=device-width,initial-scale=0.8">
+    
     
 
-  
-
-  
-  
-    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  
-
-  
-    <link rel="stylesheet" href="_static/issuetracker.css" type="text/css" />
-  
-
-  
-    <link rel="top" title="histogram 2.0.0 documentation" href="index.html"/>
-        <link rel="prev" title="Histogram" href="histogram.html"/> 
-
-  
-  <script src="_static/js/modernizr.min.js"></script>
-
-</head>
-
-<body class="wy-body-for-nav" role="document">
-
-  <div class="wy-grid-for-nav">
-
+  </head>
+  <body role="document">
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="responsive-menu"><a href="#sidebar-anchor" title="Navigation">&#9776;</a></li>
+        <li><a href="index.html">histogram 2.1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
     
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-nav-search">
-        
+  
 
-        
-          <a href="index.html" class="icon icon-home"> histogram
-        
-
-        
-        </a>
-
-        
-<div role="search">
-  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
-    <input type="hidden" name="check_keywords" value="yes" />
-    <input type="hidden" name="area" value="default" />
-  </form>
-</div>
-
-        
-      </div>
-
-      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-        
-          
-          
-              <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="histogram.html">Histogram</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="histogram.html#axes-shape-and-labels">Axes, Shape and Labels</a></li>
-<li class="toctree-l2"><a class="reference internal" href="histogram.html#data-uncertainty-and-statistics">Data, Uncertainty and Statistics</a></li>
-<li class="toctree-l2"><a class="reference internal" href="histogram.html#filling-histogram-with-data">Filling Histogram with Data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="histogram.html#transformations">Transformations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="histogram.html#iterating">Iterating</a></li>
-<li class="toctree-l2"><a class="reference internal" href="histogram.html#fitting">Fitting</a></li>
-<li class="toctree-l2"><a class="reference internal" href="histogram.html#arithmetic">Arithmetic</a></li>
-<li class="toctree-l2"><a class="reference internal" href="histogram.html#misc">Misc</a></li>
-</ul>
-</li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">HistogramAxis</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#edges-and-bins">Edges and Bins</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#tranformations">Tranformations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#misc">Misc</a></li>
-</ul>
-</li>
-</ul>
-
-          
-        
-      </div>
-      &nbsp;
-    </nav>
-
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="index.html">histogram</a>
-      </nav>
-
-
-      
-      <div class="wy-nav-content">
-        <div class="rst-content">
-          <div role="navigation" aria-label="breadcrumbs navigation">
-  <ul class="wy-breadcrumbs">
-    <li><a href="index.html">Docs</a> &raquo;</li>
-      
-    <li>HistogramAxis</li>
-      <li class="wy-breadcrumbs-aside">
-        
-          
-            <a href="_sources/histogram_axis.txt" rel="nofollow"> View page source</a>
-          
-        
-      </li>
-  </ul>
-  <hr/>
-</div>
-          <div role="main" class="document">
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
             
   <span class="target" id="module-histogram"></span><div class="section" id="histogramaxis">
 <h1>HistogramAxis<a class="headerlink" href="#histogramaxis" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="histogram.HistogramAxis">
-<em class="property">class </em><tt class="descclassname">histogram.</tt><tt class="descname">HistogramAxis</tt><big>(</big><em>bins</em>, <em>limits=None</em>, <em>label=None</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/7b3ea2be4a65a20b5d0d87068622d9ee8598e140/histogram/histogram_axis.py#L6-L361"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.HistogramAxis" title="Permalink to this definition">¶</a></dt>
-<dd><p>A single axis used internally by <a class="reference internal" href="histogram.html#histogram.Histogram" title="histogram.Histogram"><tt class="xref py py-class docutils literal"><span class="pre">Histogram</span></tt></a> to store
+<em class="property">class </em><code class="descclassname">histogram.</code><code class="descname">HistogramAxis</code><span class="sig-paren">(</span><em>bins</em>, <em>limits=None</em>, <em>label=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/histogram/histogram_axis.html#HistogramAxis"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.HistogramAxis" title="Permalink to this definition">¶</a></dt>
+<dd><p>A single axis used internally by <a class="reference internal" href="histogram.html#histogram.Histogram" title="histogram.Histogram"><code class="xref py py-class docutils literal"><span class="pre">Histogram</span></code></a> to store
 the bin edges in an open-grid format.</p>
 <p>An axis consists of a continuous range on the real-line, divided
 into bins such that there are no breaks. The bins do not have to be
 uniform, but they do have to cover the entire range.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>bins</strong> (<em>int, float array</em>) &#8211; Number of bins in combination with</li>
-<li><strong>or 1D array of edges including the upper limit of the</strong> (<em>limits,</em>) &#8211; </li>
-<li><strong>bin.</strong> (<em>last</em>) &#8211; </li>
-<li><strong>limits</strong> (<em>float 2-tuple</em>) &#8211; <cite>(min,max)</cite> representing the limits of</li>
-<li><strong>axis used in combination with integer bins.</strong> (<em>this</em>) &#8211; </li>
-<li><strong>label</strong> (<a class="reference external" href="http://docs.python.org/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a>) &#8211; The axis label including units if applicable.</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><ul class="first last simple">
-<li><tt class="xref py py-exc docutils literal"><span class="pre">TypeError</span></tt> &#8211; If <cite>bins</cite> is a list and <cite>limits</cite> is not None.</li>
-<li><tt class="xref py py-exc docutils literal"><span class="pre">ValueError</span></tt> &#8211; If arguments could not be understood as an axis
-along the real line.</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-<p class="rubric">Examples</p>
-<p>The following examples both create an axis of 100 uniform bins
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>bins (int, float array): Number of bins in combination with
+<cite>limits</cite>, or 1D array of edges including the upper limit of the
+last bin.
+limits (float 2-tuple): <cite>(min,max)</cite> representing the limits of
+this axis used in combination with integer <cite>bins</cite>.
+label (str): The axis label including units if applicable.</dd>
+<dt>Raises:</dt>
+<dd><p class="first">TypeError:  If <cite>bins</cite> is a list and <cite>limits</cite> is not None.
+ValueError: If arguments could not be understood as an axis</p>
+<blockquote class="last">
+<div>along the real line.</div></blockquote>
+</dd>
+<dt>Examples:</dt>
+<dd><p class="first">The following examples both create an axis of 100 uniform bins
 from 0 to 10. In this case, there are 101 edges to this axis:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">a1</span> <span class="o">=</span> <span class="n">HistogramAxis</span><span class="p">(</span><span class="mi">100</span><span class="p">,[</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">])</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">a1</span> <span class="o">=</span> <span class="n">HistogramAxis</span><span class="p">(</span><span class="mi">100</span><span class="p">,[</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">])</span>
 <span class="n">a2</span> <span class="o">=</span> <span class="n">HistogramAxis</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">101</span><span class="p">))</span>
 <span class="k">assert</span> <span class="n">a1</span> <span class="o">==</span> <span class="n">a2</span>
 </pre></div>
 </div>
 <p>A non-uniform binning example: 10 bins on a log-scale from 1 to
 10000:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">a3</span> <span class="o">=</span> <span class="n">HistogramAxis</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">11</span><span class="p">))</span>
+<div class="last highlight-default"><div class="highlight"><pre><span></span><span class="n">a3</span> <span class="o">=</span> <span class="n">HistogramAxis</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">11</span><span class="p">))</span>
 </pre></div>
 </div>
+</dd>
+</dl>
 <p><strong>Attributes</strong></p>
-<table border="1" class="longtable docutils">
-<colgroup>
-<col width="10%" />
-<col width="90%" />
-</colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="#histogram.HistogramAxis.bincenters" title="histogram.HistogramAxis.bincenters"><tt class="xref py py-obj docutils literal"><span class="pre">bincenters</span></tt></a></td>
-<td>Centers of all bins as an array.</td>
-</tr>
-<tr class="row-even"><td><a class="reference internal" href="#histogram.HistogramAxis.binwidths" title="histogram.HistogramAxis.binwidths"><tt class="xref py py-obj docutils literal"><span class="pre">binwidths</span></tt></a></td>
-<td>All bin widths as an array.</td>
-</tr>
-<tr class="row-odd"><td><a class="reference internal" href="#histogram.HistogramAxis.edges" title="histogram.HistogramAxis.edges"><tt class="xref py py-obj docutils literal"><span class="pre">edges</span></tt></a></td>
-<td>The list of bin edges from low to high.</td>
-</tr>
-<tr class="row-even"><td><a class="reference internal" href="#histogram.HistogramAxis.label" title="histogram.HistogramAxis.label"><tt class="xref py py-obj docutils literal"><span class="pre">label</span></tt></a></td>
-<td>The label of this axis including units if applicable.</td>
-</tr>
-<tr class="row-odd"><td><a class="reference internal" href="#histogram.HistogramAxis.limits" title="histogram.HistogramAxis.limits"><tt class="xref py py-obj docutils literal"><span class="pre">limits</span></tt></a></td>
-<td>2-tuple of the lowest and highest edges.</td>
-</tr>
-<tr class="row-even"><td><a class="reference internal" href="#histogram.HistogramAxis.max" title="histogram.HistogramAxis.max"><tt class="xref py py-obj docutils literal"><span class="pre">max</span></tt></a></td>
-<td>Value of the highest edge.</td>
-</tr>
-<tr class="row-odd"><td><a class="reference internal" href="#histogram.HistogramAxis.min" title="histogram.HistogramAxis.min"><tt class="xref py py-obj docutils literal"><span class="pre">min</span></tt></a></td>
-<td>Value of the lowest edge.</td>
-</tr>
-<tr class="row-even"><td><a class="reference internal" href="#histogram.HistogramAxis.nbins" title="histogram.HistogramAxis.nbins"><tt class="xref py py-obj docutils literal"><span class="pre">nbins</span></tt></a></td>
-<td>Number of bins in this axis.</td>
-</tr>
-<tr class="row-odd"><td><a class="reference internal" href="#histogram.HistogramAxis.overflow" title="histogram.HistogramAxis.overflow"><tt class="xref py py-obj docutils literal"><span class="pre">overflow</span></tt></a></td>
-<td>Value guaranteed to be outside the range of this axis.</td>
-</tr>
-</tbody>
-</table>
 <p><strong>Methods</strong></p>
-<table border="1" class="longtable docutils">
-<colgroup>
-<col width="10%" />
-<col width="90%" />
-</colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="#histogram.HistogramAxis.__eq__" title="histogram.HistogramAxis.__eq__"><tt class="xref py py-obj docutils literal"><span class="pre">__eq__</span></tt></a>(that)</td>
-<td>Compare edges to within numpy&#8217;s default tolerance.</td>
-</tr>
-<tr class="row-even"><td><a class="reference internal" href="#histogram.HistogramAxis.__str__" title="histogram.HistogramAxis.__str__"><tt class="xref py py-obj docutils literal"><span class="pre">__str__</span></tt></a>()</td>
-<td>String representation the edges array.</td>
-</tr>
-<tr class="row-odd"><td><a class="reference internal" href="#histogram.HistogramAxis.bin" title="histogram.HistogramAxis.bin"><tt class="xref py py-obj docutils literal"><span class="pre">bin</span></tt></a>(x)</td>
-<td>Bin index for the value <cite>x</cite>.</td>
-</tr>
-<tr class="row-even"><td><a class="reference internal" href="#histogram.HistogramAxis.binwidth" title="histogram.HistogramAxis.binwidth"><tt class="xref py py-obj docutils literal"><span class="pre">binwidth</span></tt></a>([b])</td>
-<td>Width of a specific bin.</td>
-</tr>
-<tr class="row-odd"><td><a class="reference internal" href="#histogram.HistogramAxis.clone" title="histogram.HistogramAxis.clone"><tt class="xref py py-obj docutils literal"><span class="pre">clone</span></tt></a>()</td>
-<td>Deep copy of this instance.</td>
-</tr>
-<tr class="row-even"><td><a class="reference internal" href="#histogram.HistogramAxis.cut" title="histogram.HistogramAxis.cut"><tt class="xref py py-obj docutils literal"><span class="pre">cut</span></tt></a>(low[,&nbsp;high,&nbsp;snap])</td>
-<td>Return a truncated <a class="reference internal" href="#histogram.HistogramAxis" title="histogram.HistogramAxis"><tt class="xref py py-class docutils literal"><span class="pre">HistogramAxis</span></tt></a></td>
-</tr>
-<tr class="row-odd"><td><a class="reference internal" href="#histogram.HistogramAxis.edge_index" title="histogram.HistogramAxis.edge_index"><tt class="xref py py-obj docutils literal"><span class="pre">edge_index</span></tt></a>(x[,&nbsp;snap])</td>
-<td>Index of the edge based on the given snap.</td>
-</tr>
-<tr class="row-even"><td><a class="reference internal" href="#histogram.HistogramAxis.inaxis" title="histogram.HistogramAxis.inaxis"><tt class="xref py py-obj docutils literal"><span class="pre">inaxis</span></tt></a>(x)</td>
-<td>Check if <cite>x</cite> is within this axis.</td>
-</tr>
-<tr class="row-odd"><td><a class="reference internal" href="#histogram.HistogramAxis.isuniform" title="histogram.HistogramAxis.isuniform"><tt class="xref py py-obj docutils literal"><span class="pre">isuniform</span></tt></a>([rtol,&nbsp;atol])</td>
-<td>Check if all bins are of equal width.</td>
-</tr>
-<tr class="row-even"><td><a class="reference internal" href="#histogram.HistogramAxis.mergebins" title="histogram.HistogramAxis.mergebins"><tt class="xref py py-obj docutils literal"><span class="pre">mergebins</span></tt></a>([nbins,&nbsp;snap,&nbsp;clip])</td>
-<td>Merge neighboring bins.</td>
-</tr>
-</tbody>
-</table>
 </dd></dl>
 
-<div class="section" id="edges-and-bins">
-<h2>Edges and Bins<a class="headerlink" href="#edges-and-bins" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="edges">
+<h2>Edges<a class="headerlink" href="#edges" title="Permalink to this headline">¶</a></h2>
 <dl class="attribute">
 <dt id="histogram.HistogramAxis.edges">
-<tt class="descclassname">HistogramAxis.</tt><tt class="descname">edges</tt><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/7b3ea2be4a65a20b5d0d87068622d9ee8598e140/histogram/histogram_axis.py#L89-L92"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.HistogramAxis.edges" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">HistogramAxis.</code><code class="descname">edges</code><a class="headerlink" href="#histogram.HistogramAxis.edges" title="Permalink to this definition">¶</a></dt>
 <dd><p>The list of bin edges from low to high.</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="histogram.HistogramAxis.min">
-<tt class="descclassname">HistogramAxis.</tt><tt class="descname">min</tt><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/7b3ea2be4a65a20b5d0d87068622d9ee8598e140/histogram/histogram_axis.py#L124-L127"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.HistogramAxis.min" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">HistogramAxis.</code><code class="descname">min</code><a class="headerlink" href="#histogram.HistogramAxis.min" title="Permalink to this definition">¶</a></dt>
 <dd><p>Value of the lowest edge.</p>
 </dd></dl>
 
 <dl class="attribute">
+<dt id="histogram.HistogramAxis.mid">
+<code class="descclassname">HistogramAxis.</code><code class="descname">mid</code><a class="headerlink" href="#histogram.HistogramAxis.mid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Value of middle of this axis.</p>
+</dd></dl>
+
+<dl class="attribute">
 <dt id="histogram.HistogramAxis.max">
-<tt class="descclassname">HistogramAxis.</tt><tt class="descname">max</tt><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/7b3ea2be4a65a20b5d0d87068622d9ee8598e140/histogram/histogram_axis.py#L129-L132"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.HistogramAxis.max" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">HistogramAxis.</code><code class="descname">max</code><a class="headerlink" href="#histogram.HistogramAxis.max" title="Permalink to this definition">¶</a></dt>
 <dd><p>Value of the highest edge.</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="histogram.HistogramAxis.limits">
-<tt class="descclassname">HistogramAxis.</tt><tt class="descname">limits</tt><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/7b3ea2be4a65a20b5d0d87068622d9ee8598e140/histogram/histogram_axis.py#L139-L142"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.HistogramAxis.limits" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">HistogramAxis.</code><code class="descname">limits</code><a class="headerlink" href="#histogram.HistogramAxis.limits" title="Permalink to this definition">¶</a></dt>
 <dd><p>2-tuple of the lowest and highest edges.</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="histogram.HistogramAxis.overflow">
-<tt class="descclassname">HistogramAxis.</tt><tt class="descname">overflow</tt><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/7b3ea2be4a65a20b5d0d87068622d9ee8598e140/histogram/histogram_axis.py#L154-L157"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.HistogramAxis.overflow" title="Permalink to this definition">¶</a></dt>
-<dd><p>Value guaranteed to be outside the range of this axis.</p>
+<dt id="histogram.HistogramAxis.range">
+<code class="descclassname">HistogramAxis.</code><code class="descname">range</code><a class="headerlink" href="#histogram.HistogramAxis.range" title="Permalink to this definition">¶</a></dt>
+<dd><p>Total range of this axis, min to max.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="histogram.HistogramAxis.edge_index">
-<tt class="descclassname">HistogramAxis.</tt><tt class="descname">edge_index</tt><big>(</big><em>x</em>, <em>snap='nearest'</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/7b3ea2be4a65a20b5d0d87068622d9ee8598e140/histogram/histogram_axis.py#L191-L229"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.HistogramAxis.edge_index" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">HistogramAxis.</code><code class="descname">edge_index</code><span class="sig-paren">(</span><em>x</em>, <em>snap='nearest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/histogram/histogram_axis.html#HistogramAxis.edge_index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.HistogramAxis.edge_index" title="Permalink to this definition">¶</a></dt>
 <dd><p>Index of the edge based on the given snap.</p>
-<p>Will always return a valid index from 0 to <tt class="docutils literal"><span class="pre">len(self.edges)-1</span></tt>.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>x</strong> (<a class="reference external" href="http://docs.python.org/library/functions.html#float" title="(in Python v2.7)"><em>float</em></a>) &#8211; Position along this axis.</li>
-<li><strong>snap</strong> (<a class="reference external" href="http://docs.python.org/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a>) &#8211; Method for determining which edge is returned.</li>
-<li><strong>values are</strong> (<em>Possible</em>) &#8211; {&#8216;nearest&#8217;,&#8217;low&#8217;,&#8217;high&#8217;,&#8217;both&#8217;}.</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Output is a single number except for when <tt class="docutils literal"><span class="pre">snap='both'</span></tt>
-where the output will be a tuple: <cite>(low,high)</cite>.</p>
+<p>Will always return a valid index from 0 to <code class="docutils literal"><span class="pre">len(self.edges)-1</span></code>.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd>x (float): Position along this axis.
+snap (str): Method for determining which edge is returned.
+Possible values are: {&#8216;nearest&#8217;,&#8217;low&#8217;,&#8217;high&#8217;,&#8217;both&#8217;}.</dd>
+<dt>Note:</dt>
+<dd>Output is a single number except for when <code class="docutils literal"><span class="pre">snap='both'</span></code>
+where the output will be a tuple: <cite>(low,high)</cite>.</dd>
+</dl>
+</dd></dl>
+
 </div>
+<div class="section" id="bins">
+<h2>Bins<a class="headerlink" href="#bins" title="Permalink to this headline">¶</a></h2>
+<dl class="method">
+<dt id="histogram.HistogramAxis.bin">
+<code class="descclassname">HistogramAxis.</code><code class="descname">bin</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/histogram/histogram_axis.html#HistogramAxis.bin"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.HistogramAxis.bin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bin index for the value <cite>x</cite>.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd>x (float or array of floats): Position(s) along this axis.</dd>
+<dt>Returns:</dt>
+<dd>int or array of ints: Bin(s) corresponding to the value <cite>x</cite>.</dd>
+<dt>Notes:</dt>
+<dd>This follows the convention: low &lt;= x &lt; high.</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="histogram.HistogramAxis.inaxis">
-<tt class="descclassname">HistogramAxis.</tt><tt class="descname">inaxis</tt><big>(</big><em>x</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/7b3ea2be4a65a20b5d0d87068622d9ee8598e140/histogram/histogram_axis.py#L163-L175"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.HistogramAxis.inaxis" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">HistogramAxis.</code><code class="descname">inaxis</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/histogram/histogram_axis.html#HistogramAxis.inaxis"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.HistogramAxis.inaxis" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check if <cite>x</cite> is within this axis.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>x</strong> (<a class="reference external" href="http://docs.python.org/library/functions.html#float" title="(in Python v2.7)"><em>float</em></a>) &#8211; Position along this axis.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Result of <tt class="docutils literal"><span class="pre">min</span> <span class="pre">&lt;=</span> <span class="pre">x</span> <span class="pre">&lt;</span> <span class="pre">max</span></tt>.</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
-</tr>
-</tbody>
-</table>
-<p>This follows the edge rules of <a class="reference external" href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.digitize.html#numpy.digitize" title="(in NumPy v1.9)"><tt class="xref py py-func docutils literal"><span class="pre">numpy.digitize()</span></tt></a>:
-<tt class="docutils literal"><span class="pre">min</span> <span class="pre">&lt;=</span> <span class="pre">x</span> <span class="pre">&lt;</span> <span class="pre">max</span></tt>.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd>x (float): Position along this axis.</dd>
+<dt>Returns:</dt>
+<dd>bool: Result of <code class="docutils literal"><span class="pre">min</span> <span class="pre">&lt;=</span> <span class="pre">x</span> <span class="pre">&lt;</span> <span class="pre">max</span></code>.</dd>
+</dl>
+<p>This follows the edge rules of <code class="xref py py-func docutils literal"><span class="pre">numpy.digitize()</span></code>:
+<code class="docutils literal"><span class="pre">min</span> <span class="pre">&lt;=</span> <span class="pre">x</span> <span class="pre">&lt;</span> <span class="pre">max</span></code>.</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="histogram.HistogramAxis.bin">
-<tt class="descclassname">HistogramAxis.</tt><tt class="descname">bin</tt><big>(</big><em>x</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/7b3ea2be4a65a20b5d0d87068622d9ee8598e140/histogram/histogram_axis.py#L177-L189"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.HistogramAxis.bin" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bin index for the value <cite>x</cite>.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>x</strong> (<a class="reference external" href="http://docs.python.org/library/functions.html#float" title="(in Python v2.7)"><em>float</em></a>) &#8211; Position along this axis.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Bin corresponding to the value <cite>x</cite>.</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">int</td>
-</tr>
-</tbody>
-</table>
-<p class="rubric">Notes</p>
-<p>This follows the convention: low &lt;= x &lt; high.</p>
+<dl class="attribute">
+<dt id="histogram.HistogramAxis.overflow_value">
+<code class="descclassname">HistogramAxis.</code><code class="descname">overflow_value</code><a class="headerlink" href="#histogram.HistogramAxis.overflow_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Value guaranteed to be outside the range of this axis.</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="histogram.HistogramAxis.nbins">
-<tt class="descclassname">HistogramAxis.</tt><tt class="descname">nbins</tt><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/7b3ea2be4a65a20b5d0d87068622d9ee8598e140/histogram/histogram_axis.py#L119-L122"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.HistogramAxis.nbins" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">HistogramAxis.</code><code class="descname">nbins</code><a class="headerlink" href="#histogram.HistogramAxis.nbins" title="Permalink to this definition">¶</a></dt>
 <dd><p>Number of bins in this axis.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="histogram.HistogramAxis.binwidth">
-<tt class="descclassname">HistogramAxis.</tt><tt class="descname">binwidth</tt><big>(</big><em>b=1</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/7b3ea2be4a65a20b5d0d87068622d9ee8598e140/histogram/histogram_axis.py#L231-L243"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.HistogramAxis.binwidth" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">HistogramAxis.</code><code class="descname">binwidth</code><span class="sig-paren">(</span><em>b=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/histogram/histogram_axis.html#HistogramAxis.binwidth"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.HistogramAxis.binwidth" title="Permalink to this definition">¶</a></dt>
 <dd><p>Width of a specific bin.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>b</strong> (<a class="reference external" href="http://docs.python.org/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) &#8211; bin index</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Width of the (b+1)-th bin.</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">float</td>
-</tr>
-</tbody>
-</table>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd>b (int): bin index</dd>
+<dt>Returns:</dt>
+<dd>float: Width of the (b+1)-th bin.</dd>
+</dl>
 <p>Bin indexing starts with zero and by default, the width of the
 second bin (index: 1) is returned.</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="histogram.HistogramAxis.binwidths">
-<tt class="descclassname">HistogramAxis.</tt><tt class="descname">binwidths</tt><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/7b3ea2be4a65a20b5d0d87068622d9ee8598e140/histogram/histogram_axis.py#L144-L147"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.HistogramAxis.binwidths" title="Permalink to this definition">¶</a></dt>
-<dd><p>All bin widths as an array.</p>
-</dd></dl>
+<code class="descclassname">HistogramAxis.</code><code class="descname">binwidths</code><em class="property"> = &lt;function HistogramAxis.binwidths&gt;</em><a class="reference internal" href="_modules/histogram/histogram_axis.html#HistogramAxis.binwidths"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.HistogramAxis.binwidths" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="method">
 <dt id="histogram.HistogramAxis.isuniform">
-<tt class="descclassname">HistogramAxis.</tt><tt class="descname">isuniform</tt><big>(</big><em>rtol=1e-05</em>, <em>atol=1e-08</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/7b3ea2be4a65a20b5d0d87068622d9ee8598e140/histogram/histogram_axis.py#L245-L263"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.HistogramAxis.isuniform" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">HistogramAxis.</code><code class="descname">isuniform</code><span class="sig-paren">(</span><em>rtol=1e-05</em>, <em>atol=1e-08</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/histogram/histogram_axis.html#HistogramAxis.isuniform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.HistogramAxis.isuniform" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check if all bins are of equal width.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>rtol</strong> (<a class="reference external" href="http://docs.python.org/library/functions.html#float" title="(in Python v2.7)"><em>float</em></a>) &#8211; relative tolerance parameter</li>
-<li><strong>atol</strong> (<a class="reference external" href="http://docs.python.org/library/functions.html#float" title="(in Python v2.7)"><em>float</em></a>) &#8211; absolute tolerance parameter</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">True if all bins are the same size</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">bool</p>
-</td>
-</tr>
-</tbody>
-</table>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p>This returns True if all bin-widths satisfy the following:</p>
-<div class="last highlight-python"><div class="highlight"><pre><span class="nb">abs</span><span class="p">(</span><span class="n">widths</span> <span class="o">-</span> <span class="n">mean</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="p">(</span><span class="n">atol</span> <span class="o">+</span> <span class="n">rtol</span> <span class="o">*</span> <span class="nb">abs</span><span class="p">(</span><span class="n">median</span><span class="p">))</span>
+<blockquote>
+<div><dl class="docutils">
+<dt>Arguments:</dt>
+<dd>rtol (float): relative tolerance parameter
+atol (float): absolute tolerance parameter</dd>
+<dt>Returns:</dt>
+<dd>bool: True if all bins are the same size</dd>
+<dt>Note:</dt>
+<dd><p class="first">This returns True if all bin-widths satisfy the following:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="nb">abs</span><span class="p">(</span><span class="n">widths</span> <span class="o">-</span> <span class="n">mean</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="p">(</span><span class="n">atol</span> <span class="o">+</span> <span class="n">rtol</span> <span class="o">*</span> <span class="nb">abs</span><span class="p">(</span><span class="n">median</span><span class="p">))</span>
 </pre></div>
 </div>
-</div>
-<p>The axis is considered uniform if the maximum deviation of the bin-widths is less than the given tolerance:</p>
-<div class="math">
-\[\begin{split}\max\left(\frac{\left|w_{i} - \left&lt;w\right&gt;\right|}{\left&lt;w\right&gt;}\right) &lt; tol\end{split}\]</div>
-<p>where <span class="math">\(\left&lt;w\right&gt;\)</span> is the <a class="reference external" href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.median.html#numpy.median" title="(in NumPy v1.9)"><tt class="xref py py-func docutils literal"><span class="pre">median</span></tt></a> bin width and <span class="math">\(max()\)</span> is evaluated over all bin widths, <span class="math">\(w_{i}\)</span>.</p>
+<p>The axis is considered uniform if the maximum deviation of the
+bin-widths is less than the given tolerance:</p>
+<div class="last math">
+\[\max\left(\]</div>
+</dd>
+</dl>
+</div></blockquote>
+<dl class="docutils">
+<dt>rac{left|w_{i} -</dt>
+<dd>left&lt;w</dd>
+</dl>
+<p>ight&gt;
+ight|}{left&lt;w
+ight&gt;}
+ight) &lt; tol</p>
+<blockquote>
+<div>where :math:<a href="#id1"><span class="problematic" id="id2">`</span></a>left&lt;w</div></blockquote>
+<dl class="docutils">
+<dt>ight&gt;` is the :py:func:<a href="#id3"><span class="problematic" id="id4">`</span></a>median</dt>
+<dd>&lt;numpy.median&gt;` bin width and <span class="math">\(max()\)</span> is evaluated over all
+bin widths, <span class="math">\(w_{i}\)</span>.</dd>
+</dl>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="histogram.HistogramAxis.bincenters">
-<tt class="descclassname">HistogramAxis.</tt><tt class="descname">bincenters</tt><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/7b3ea2be4a65a20b5d0d87068622d9ee8598e140/histogram/histogram_axis.py#L149-L152"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.HistogramAxis.bincenters" title="Permalink to this definition">¶</a></dt>
-<dd><p>Centers of all bins as an array.</p>
-</dd></dl>
+<code class="descclassname">HistogramAxis.</code><code class="descname">bincenters</code><em class="property"> = &lt;function HistogramAxis.bincenters&gt;</em><a class="reference internal" href="_modules/histogram/histogram_axis.html#HistogramAxis.bincenters"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.HistogramAxis.bincenters" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 </div>
 <div class="section" id="tranformations">
 <h2>Tranformations<a class="headerlink" href="#tranformations" title="Permalink to this headline">¶</a></h2>
 <dl class="method">
 <dt id="histogram.HistogramAxis.cut">
-<tt class="descclassname">HistogramAxis.</tt><tt class="descname">cut</tt><big>(</big><em>low</em>, <em>high=None</em>, <em>snap='nearest'</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/7b3ea2be4a65a20b5d0d87068622d9ee8598e140/histogram/histogram_axis.py#L265-L324"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.HistogramAxis.cut" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return a truncated <a class="reference internal" href="#histogram.HistogramAxis" title="histogram.HistogramAxis"><tt class="xref py py-class docutils literal"><span class="pre">HistogramAxis</span></tt></a></p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>low</strong> (<a class="reference external" href="http://docs.python.org/library/functions.html#float" title="(in Python v2.7)"><em>float</em></a>) &#8211; Lowest bin will include this point
-(<cite>None</cite> is equivalent to the lowest edge).</li>
-<li><strong>high</strong> (<a class="reference external" href="http://docs.python.org/library/functions.html#float" title="(in Python v2.7)"><em>float</em></a>) &#8211; Highest bin will include this point (<cite>None</cite></li>
-<li><strong>equivalent to the highest edge).</strong> (<em>is</em>) &#8211; </li>
-<li><strong>snap</strong> (<em>str, str 2-tuple</em>) &#8211; Clip edges when creating new axis.</li>
-<li><strong>values are</strong> (<em>Possible</em>) &#8211; </li>
-<li><strong>{&#8216;nearest&#8217;,&#8217;expand&#8217;,&#8217;low&#8217;,&#8217;high&#8217;,&#8217;clip&#8217;}.</strong> &#8211; </li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A new instance.
+<code class="descclassname">HistogramAxis.</code><code class="descname">cut</code><span class="sig-paren">(</span><em>low</em>, <em>high=None</em>, <em>snap='nearest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/histogram/histogram_axis.html#HistogramAxis.cut"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.HistogramAxis.cut" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a truncated <a class="reference internal" href="#histogram.HistogramAxis" title="histogram.HistogramAxis"><code class="xref py py-class docutils literal"><span class="pre">HistogramAxis</span></code></a></p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><dl class="first docutils">
+<dt>low (float): Lowest bin will include this point</dt>
+<dd>(<cite>None</cite> is equivalent to the lowest edge).</dd>
+</dl>
+<p class="last">high (float): Highest bin will include this point (<cite>None</cite>
+is equivalent to the highest edge).
+snap (str, str 2-tuple): Clip edges when creating new axis.
+Possible values are:
+{&#8216;nearest&#8217;,&#8217;expand&#8217;,&#8217;low&#8217;,&#8217;high&#8217;,&#8217;clip&#8217;}.</p>
+</dd>
+<dt>Returns:</dt>
+<dd><a class="reference internal" href="#histogram.HistogramAxis" title="histogram.HistogramAxis"><code class="xref py py-class docutils literal"><span class="pre">HistogramAxis</span></code></a>: A new instance.
 mask (boolean array): mask array to be used on data to make
-this cut</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#histogram.HistogramAxis" title="histogram.HistogramAxis"><tt class="xref py py-class docutils literal"><span class="pre">HistogramAxis</span></tt></a></p>
-</td>
-</tr>
-</tbody>
-</table>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Full bins of this axis will be used unless
-<tt class="docutils literal"><span class="pre">snap</span> <span class="pre">==</span> <span class="pre">'clip'</span></tt> in which case the low or high bins will
+this cut</dd>
+<dt>Note:</dt>
+<dd>Full bins of this axis will be used unless
+<code class="docutils literal"><span class="pre">snap</span> <span class="pre">==</span> <span class="pre">'clip'</span></code> in which case the low or high bins will
 be clipped. Clipping will likely make a uniform axis no
-longer uniform.</p>
-</div>
+longer uniform.</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="histogram.HistogramAxis.mergebins">
-<tt class="descclassname">HistogramAxis.</tt><tt class="descname">mergebins</tt><big>(</big><em>nbins=2</em>, <em>snap='low'</em>, <em>clip=True</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/7b3ea2be4a65a20b5d0d87068622d9ee8598e140/histogram/histogram_axis.py#L326-L361"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.HistogramAxis.mergebins" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">HistogramAxis.</code><code class="descname">mergebins</code><span class="sig-paren">(</span><em>nbins=2</em>, <em>snap='low'</em>, <em>clip=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/histogram/histogram_axis.html#HistogramAxis.mergebins"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.HistogramAxis.mergebins" title="Permalink to this definition">¶</a></dt>
 <dd><p>Merge neighboring bins.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>nbins</strong> (<a class="reference external" href="http://docs.python.org/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) &#8211; Number of bins to merge.</li>
-<li><strong>snap</strong> (<a class="reference external" href="http://docs.python.org/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a>) &#8211; If <cite>nbins</cite> does not evenly divide the number
-of bins in this axis, this will &#8220;snap&#8221; the window
-to the &#8220;high&#8221; or &#8220;low&#8221; edge.</li>
-<li><strong>clip</strong> (<a class="reference external" href="http://docs.python.org/library/functions.html#bool" title="(in Python v2.7)"><em>bool</em></a>) &#8211; Ignore opposite limit from <cite>snap</cite> if <cite>nbins</cite>
-does not evenly divide the number of bins in this
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><p class="first">nbins (int): Number of bins to merge.
+snap (str): If <cite>nbins</cite> does not evenly divide the number</p>
+<blockquote>
+<div>of bins in this axis, this will &#8220;snap&#8221; the window
+to the &#8220;high&#8221; or &#8220;low&#8221; edge.</div></blockquote>
+<dl class="last docutils">
+<dt>clip (bool): Ignore opposite limit from <cite>snap</cite> if <cite>nbins</cite></dt>
+<dd>does not evenly divide the number of bins in this
 axis. Setting this to True (default) will result
-in an axis that maintains uniform bin widths.</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A new instance.</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#histogram.HistogramAxis" title="histogram.HistogramAxis"><tt class="xref py py-class docutils literal"><span class="pre">HistogramAxis</span></tt></a></p>
-</td>
-</tr>
-</tbody>
-</table>
+in an axis that maintains uniform bin widths.</dd>
+</dl>
+</dd>
+<dt>Returns:</dt>
+<dd><a class="reference internal" href="#histogram.HistogramAxis" title="histogram.HistogramAxis"><code class="xref py py-class docutils literal"><span class="pre">HistogramAxis</span></code></a>: A new instance.</dd>
+</dl>
 </dd></dl>
 
 </div>
@@ -496,38 +311,54 @@ in an axis that maintains uniform bin widths.</li>
 <h2>Misc<a class="headerlink" href="#misc" title="Permalink to this headline">¶</a></h2>
 <dl class="attribute">
 <dt id="histogram.HistogramAxis.label">
-<tt class="descclassname">HistogramAxis.</tt><tt class="descname">label</tt><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/7b3ea2be4a65a20b5d0d87068622d9ee8598e140/histogram/histogram_axis.py#L103-L107"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.HistogramAxis.label" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">HistogramAxis.</code><code class="descname">label</code><a class="headerlink" href="#histogram.HistogramAxis.label" title="Permalink to this definition">¶</a></dt>
 <dd><p>The label of this axis including units if applicable.
 Example: &#8220;distance (meters)&#8221;.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="histogram.HistogramAxis.clone">
-<tt class="descclassname">HistogramAxis.</tt><tt class="descname">clone</tt><big>(</big><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/7b3ea2be4a65a20b5d0d87068622d9ee8598e140/histogram/histogram_axis.py#L159-L161"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.HistogramAxis.clone" title="Permalink to this definition">¶</a></dt>
-<dd><p>Deep copy of this instance.</p>
+<dt id="histogram.HistogramAxis.copy">
+<code class="descclassname">HistogramAxis.</code><code class="descname">copy</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/histogram/histogram_axis.html#HistogramAxis.copy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.HistogramAxis.copy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a copy of this axis.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="histogram.HistogramAxis.asdict">
+<code class="descclassname">HistogramAxis.</code><code class="descname">asdict</code><span class="sig-paren">(</span><em>encoding=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/histogram/histogram_axis.html#HistogramAxis.asdict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.HistogramAxis.asdict" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="staticmethod">
+<dt id="histogram.HistogramAxis.fromdict">
+<em class="property">static </em><code class="descclassname">HistogramAxis.</code><code class="descname">fromdict</code><span class="sig-paren">(</span><em>d</em>, <em>encoding=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/histogram/histogram_axis.html#HistogramAxis.fromdict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.HistogramAxis.fromdict" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="histogram.HistogramAxis.isidentical">
+<code class="descclassname">HistogramAxis.</code><code class="descname">isidentical</code><span class="sig-paren">(</span><em>that</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/histogram/histogram_axis.html#HistogramAxis.isidentical"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.HistogramAxis.isidentical" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deep comparison of this axis with another.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="histogram.HistogramAxis.__eq__">
-<tt class="descclassname">HistogramAxis.</tt><tt class="descname">__eq__</tt><big>(</big><em>that</em><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/7b3ea2be4a65a20b5d0d87068622d9ee8598e140/histogram/histogram_axis.py#L73-L79"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.HistogramAxis.__eq__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Compare edges to within numpy&#8217;s default tolerance.
-Labels are ignored.</p>
-<p>Each point in the edge arrays must satisfy</p>
+<code class="descclassname">HistogramAxis.</code><code class="descname">__eq__</code><span class="sig-paren">(</span><em>that</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/histogram/histogram_axis.html#HistogramAxis.__eq__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.HistogramAxis.__eq__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compare edges to within numpy&#8217;s default tolerance.</p>
+<dl class="docutils">
+<dt>Note:</dt>
+<dd><p class="first">Labels are ignored and each point in the edge arrays must satisfy</p>
 <div class="math">
-\[\begin{split}\left(\frac{\left|e - e^{\prime}\right|}{0.5 (e + e^{\prime})}\right) &lt; tol,\end{split}\]</div>
-<p>where</p>
-<div class="math">
-\[e := \mathtt{self.edges[i]}\]</div>
-<p>and</p>
-<div class="math">
-\[e^{\prime} := \mathtt{that.edges[i]}.\]</div>
+\[\left(\frac{\left|e - e^{\prime}\right|}
+           {0.5 (e + e^{\prime})}\right) &lt; tol,\]</div>
+<p class="last">where <span class="math">\(e := \mathtt{self.edges[i]}\)</span> and <span class="math">\(e^{\prime} :=
+\mathtt{that.edges[i]}\)</span>.</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="histogram.HistogramAxis.__str__">
-<tt class="descclassname">HistogramAxis.</tt><tt class="descname">__str__</tt><big>(</big><big>)</big><a class="reference external" href="http://github.com/theodoregoetz/histogram/blob/7b3ea2be4a65a20b5d0d87068622d9ee8598e140/histogram/histogram_axis.py#L65-L71"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.HistogramAxis.__str__" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">HistogramAxis.</code><code class="descname">__str__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/histogram/histogram_axis.html#HistogramAxis.__str__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#histogram.HistogramAxis.__str__" title="Permalink to this definition">¶</a></dt>
 <dd><p>String representation the edges array.</p>
-<p>The attribute <a class="reference internal" href="#histogram.HistogramAxis.label" title="histogram.HistogramAxis.label"><tt class="xref py py-attr docutils literal"><span class="pre">HistogramAxis.label</span></tt></a> is not included in
+<p>The attribute <a class="reference internal" href="#histogram.HistogramAxis.label" title="histogram.HistogramAxis.label"><code class="xref py py-attr docutils literal"><span class="pre">HistogramAxis.label</span></code></a> is not included in
 the output.</p>
 </dd></dl>
 
@@ -536,67 +367,60 @@ the output.</p>
 
 
           </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-      
-        <a href="histogram.html" class="btn btn-neutral" title="Histogram" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
-    </div>
-  
-
-  <hr/>
-
-  <div role="contentinfo">
-    <p>
-        &copy; Copyright 2015, Johann T. Goetz.
-    </p>
-  </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
-
-</footer>
-
         </div>
       </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+    <a id="sidebar-anchor"></a>
+    
 
-    </section>
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">HistogramAxis</a><ul>
+<li><a class="reference internal" href="#edges">Edges</a></li>
+<li><a class="reference internal" href="#bins">Bins</a></li>
+<li><a class="reference internal" href="#tranformations">Tranformations</a></li>
+<li><a class="reference internal" href="#misc">Misc</a></li>
+</ul>
+</li>
+</ul>
 
-  </div>
-  
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/histogram_axis.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+      </ul>
+    </div>
 
-
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'2.0.0',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-  
-
-  
-  
-  <script type="text/javascript">
-      jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
-      });
-  </script>
-   
-
-</body>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2017, John T. Goetz.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.5.
+    </div>
+  </body>
 </html>

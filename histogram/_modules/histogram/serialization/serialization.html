@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>histogram.serialization.serialization &mdash; histogram 2.1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/pydoctheme.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '2.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../../_static/sidebar.js"></script>
+    <link rel="top" title="histogram 2.1.0 documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <link rel="shortcut icon" type="image/png" href="../../../_static/favicon.png" />
+    <meta name="viewport" content="width=device-width,initial-scale=0.8">
+    
+    
+
+  </head>
+  <body role="document">
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="responsive-menu"><a href="#sidebar-anchor" title="Navigation">&#9776;</a></li>
+        <li><a href="../../../index.html">histogram 2.1.0 documentation</a> &raquo;</li>
+          <li><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for histogram.serialization.serialization</h1><div class="highlight"><pre>
+<span></span><span class="c1"># coding: utf-8</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+
+<span class="kn">from</span> <span class="nn">..</span> <span class="k">import</span> <span class="n">Histogram</span><span class="p">,</span> <span class="n">rc</span>
+<span class="kn">from</span> <span class="nn">.histogram_numpy</span> <span class="k">import</span> <span class="n">save_histogram_npz</span><span class="p">,</span> <span class="n">load_histogram_npz</span>
+
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">.histogram_hdf5</span> <span class="k">import</span> <span class="p">(</span>
+        <span class="n">save_histogram_hdf5</span><span class="p">,</span> <span class="n">load_histogram_hdf5</span><span class="p">,</span>
+        <span class="n">save_histograms_hdf5</span><span class="p">,</span> <span class="n">load_histograms_hdf5</span><span class="p">)</span>
+    <span class="n">Histogram</span><span class="o">.</span><span class="n">save_hdf5</span> <span class="o">=</span> <span class="n">save_histogram_hdf5</span>
+    <span class="n">Histogram</span><span class="o">.</span><span class="n">load_hdf5</span> <span class="o">=</span> <span class="n">load_histogram_hdf5</span>
+    <span class="n">HAVE_H5PY</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="n">HAVE_H5PY</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s1">&#39;Could not import h5py. You will not be able to load/save&#39;</span>
+                  <span class="s1">&#39; histograms stored in hdf5 format.&#39;</span><span class="p">,</span> <span class="ne">ImportWarning</span><span class="p">)</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">.histogram_root</span> <span class="k">import</span> <span class="n">save_histogram_root</span><span class="p">,</span> <span class="n">load_histogram_root</span>
+    <span class="n">Histogram</span><span class="o">.</span><span class="n">save_root</span> <span class="o">=</span> <span class="n">save_histogram_root</span>
+    <span class="n">Histogram</span><span class="o">.</span><span class="n">load_root</span> <span class="o">=</span> <span class="n">load_histogram_root</span>
+    <span class="n">HAVE_PYROOT</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="n">HAVE_PYROOT</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s1">&#39;Could not import ROOT (python bindings to CERN</span><span class="se">\&#39;</span><span class="s1">s ROOT).&#39;</span>
+                  <span class="s1">&#39; You will not be able to convert to/from ROOT format.&#39;</span><span class="p">,</span>
+                  <span class="ne">ImportWarning</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">save_histogram</span><span class="p">(</span><span class="n">hist</span><span class="p">,</span> <span class="n">filepath</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">filepath</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;.hdf5&#39;</span><span class="p">,</span> <span class="s1">&#39;.h5&#39;</span><span class="p">]):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">HAVE_H5PY</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="s1">&#39;Missing module: h5py&#39;</span><span class="p">)</span>
+        <span class="n">save_histogram_hdf5</span><span class="p">(</span><span class="n">hist</span><span class="p">,</span> <span class="n">filepath</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">filepath</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.root&#39;</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">HAVE_PYROOT</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="s1">&#39;Missing module: ROOT&#39;</span><span class="p">)</span>
+        <span class="n">save_histogram_root</span><span class="p">(</span><span class="n">hist</span><span class="p">,</span> <span class="n">filepath</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">save_histogram_npz</span><span class="p">(</span><span class="n">hist</span><span class="p">,</span> <span class="n">filepath</span><span class="p">)</span>
+
+
+<span class="n">Histogram</span><span class="o">.</span><span class="n">save</span> <span class="o">=</span> <span class="n">save_histogram</span>
+<span class="n">Histogram</span><span class="o">.</span><span class="n">save_npz</span> <span class="o">=</span> <span class="n">save_histogram_npz</span>
+
+
+<span class="nd">@staticmethod</span>
+<span class="k">def</span> <span class="nf">load_histogram</span><span class="p">(</span><span class="n">filepath</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">filepath</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;.hdf5&#39;</span><span class="p">,</span> <span class="s1">&#39;.h5&#39;</span><span class="p">]):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">HAVE_H5PY</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="s1">&#39;Missing module: h5py&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">load_histogram_hdf5</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">filepath</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.root&#39;</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">HAVE_PYROOT</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="s1">&#39;Missing module: ROOT&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">load_histogram_root</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">load_histogram_npz</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span>
+
+<span class="n">Histogram</span><span class="o">.</span><span class="n">load</span> <span class="o">=</span> <span class="n">load_histogram</span>
+<span class="n">Histogram</span><span class="o">.</span><span class="n">load_npz</span> <span class="o">=</span> <span class="n">load_histogram_npz</span>
+
+
+<span class="k">def</span> <span class="nf">save_histograms</span><span class="p">(</span><span class="n">hdict</span><span class="p">,</span> <span class="n">filepath</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">HAVE_H5PY</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="s1">&#39;Missing module: h5py&#39;</span><span class="p">)</span>
+    <span class="n">save_histograms_hdf5</span><span class="p">(</span><span class="n">hdict</span><span class="p">,</span> <span class="n">filepath</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">load_histograms</span><span class="p">(</span><span class="n">filepath</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">HAVE_H5PY</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="s1">&#39;Missing module: h5py&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">load_histograms_hdf5</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+    <a id="sidebar-anchor"></a>
+    
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+      </ul>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2017, John T. Goetz.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.5.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>histogram.histogram_axis &mdash; histogram 2.1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/pydoctheme.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '2.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../_static/sidebar.js"></script>
+    <link rel="top" title="histogram 2.1.0 documentation" href="../../index.html" />
+    <link rel="up" title="Module code" href="../index.html" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <link rel="shortcut icon" type="image/png" href="../../_static/favicon.png" />
+    <meta name="viewport" content="width=device-width,initial-scale=0.8">
+    
+    
+
+  </head>
+  <body role="document">
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="responsive-menu"><a href="#sidebar-anchor" title="Navigation">&#9776;</a></li>
+        <li><a href="../../index.html">histogram 2.1.0 documentation</a> &raquo;</li>
+          <li><a href="../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for histogram.histogram_axis</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">unicode_literals</span>
+<span class="kn">from</span> <span class="nn">builtins</span> <span class="k">import</span> <span class="nb">str</span>
+<span class="kn">from</span> <span class="nn">six</span> <span class="k">import</span> <span class="n">string_types</span><span class="p">,</span> <span class="n">text_type</span>
+
+<span class="kn">from</span> <span class="nn">copy</span> <span class="k">import</span> <span class="n">copy</span><span class="p">,</span> <span class="n">deepcopy</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="k">import</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">namedtuple</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<div class="viewcode-block" id="HistogramAxis"><a class="viewcode-back" href="../../histogram_axis.html#histogram.HistogramAxis">[docs]</a><span class="k">class</span> <span class="nc">HistogramAxis</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">r&quot;&quot;&quot;A single axis used internally by :class:`Histogram` to store</span>
+<span class="sd">    the bin edges in an open-grid format.</span>
+
+<span class="sd">    An axis consists of a continuous range on the real-line, divided</span>
+<span class="sd">    into bins such that there are no breaks. The bins do not have to be</span>
+<span class="sd">    uniform, but they do have to cover the entire range.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        bins (int, float array): Number of bins in combination with</span>
+<span class="sd">        `limits`, or 1D array of edges including the upper limit of the</span>
+<span class="sd">        last bin.</span>
+<span class="sd">        limits (float 2-tuple): `(min,max)` representing the limits of</span>
+<span class="sd">        this axis used in combination with integer `bins`.</span>
+<span class="sd">        label (str): The axis label including units if applicable.</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        TypeError:  If `bins` is a list and `limits` is not None.</span>
+<span class="sd">        ValueError: If arguments could not be understood as an axis</span>
+<span class="sd">                    along the real line.</span>
+
+<span class="sd">    Examples:</span>
+<span class="sd">        The following examples both create an axis of 100 uniform bins</span>
+<span class="sd">        from 0 to 10. In this case, there are 101 edges to this axis::</span>
+
+<span class="sd">            a1 = HistogramAxis(100,[0,10])</span>
+<span class="sd">            a2 = HistogramAxis(np.linspace(0,10,101))</span>
+<span class="sd">            assert a1 == a2</span>
+
+<span class="sd">        A non-uniform binning example: 10 bins on a log-scale from 1 to</span>
+<span class="sd">        10000::</span>
+
+<span class="sd">            a3 = HistogramAxis(np.logspace(0,4,11))</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bins</span><span class="p">,</span> <span class="n">limits</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="c1"># allow second argument to be the label if it is a string,</span>
+        <span class="c1"># bins is iterable and no other argument is used</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">bins</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">)</span> <span class="ow">and</span>
+                <span class="n">label</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span>
+                <span class="nb">isinstance</span><span class="p">(</span><span class="n">limits</span><span class="p">,</span> <span class="n">string_types</span><span class="p">)):</span>
+            <span class="n">label</span> <span class="o">=</span> <span class="n">limits</span>
+            <span class="n">limits</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="k">if</span> <span class="n">__debug__</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">limits</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">bins</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">):</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;bins must be iterable length &gt;= 2&#39;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">limits</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;limits must be iterable length 2&#39;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">bins</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;must have at least one bin&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">string_types</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">label</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">)):</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;label must be string or None&#39;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">limits</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">edges</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">bins</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">edges</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">limits</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">limits</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">bins</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">label</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">label</span> <span class="o">=</span> <span class="n">label</span>
+
+<div class="viewcode-block" id="HistogramAxis.__str__"><a class="viewcode-back" href="../../histogram_axis.html#histogram.HistogramAxis.__str__">[docs]</a>    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;String representation the edges array.</span>
+
+<span class="sd">        The attribute :py:attr:`HistogramAxis.label` is not included in</span>
+<span class="sd">        the output.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Complete string representation of the histogram axis.&quot;&quot;&quot;</span>
+        <span class="n">fmt</span> <span class="o">=</span> <span class="s1">&#39;HistogramAxis(bins=</span><span class="si">{}{}</span><span class="s1">)&#39;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">label</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">lbl</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">label</span><span class="p">)</span>
+            <span class="n">lbl</span> <span class="o">=</span> <span class="s1">&#39;, label=&quot;</span><span class="si">{}</span><span class="s1">&quot;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">label</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">fmt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="o">.</span><span class="n">tolist</span><span class="p">()),</span> <span class="n">lbl</span><span class="p">)</span>
+
+<div class="viewcode-block" id="HistogramAxis.__eq__"><a class="viewcode-back" href="../../histogram_axis.html#histogram.HistogramAxis.__eq__">[docs]</a>    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">that</span><span class="p">):</span>
+        <span class="sd">r&quot;&quot;&quot;Compare edges to within numpy&#39;s default tolerance.</span>
+
+<span class="sd">        Note:</span>
+<span class="sd">            Labels are ignored and each point in the edge arrays must satisfy</span>
+
+<span class="sd">            .. math::</span>
+
+<span class="sd">                \left(\frac{\left|e - e^{\prime}\right|}</span>
+<span class="sd">                           {0.5 (e + e^{\prime})}\right) &lt; tol,</span>
+
+<span class="sd">            where :math:`e := \mathtt{self.edges[i]}` and :math:`e^{\prime} :=</span>
+<span class="sd">            \mathtt{that.edges[i]}`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="p">,</span><span class="n">that</span><span class="o">.</span><span class="n">edges</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span></div>
+
+<div class="viewcode-block" id="HistogramAxis.isidentical"><a class="viewcode-back" href="../../histogram_axis.html#histogram.HistogramAxis.isidentical">[docs]</a>    <span class="k">def</span> <span class="nf">isidentical</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">that</span><span class="p">):</span>
+        <span class="sd">r&quot;&quot;&quot;Deep comparison of this axis with another.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="bp">self</span> <span class="o">==</span> <span class="n">that</span><span class="p">):</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">label</span> <span class="o">!=</span> <span class="n">that</span><span class="o">.</span><span class="n">label</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="kc">True</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">edges</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;The list of bin edges from low to high.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_edges</span>
+
+    <span class="nd">@edges</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">edges</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">e</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">e</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+            <span class="n">e</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">__debug__</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;edges must have two or more values&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">e</span><span class="o">.</span><span class="n">ndim</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;edges must be a one-dimensional array&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">all</span><span class="p">(</span><span class="n">x</span> <span class="o">&lt;</span> <span class="n">y</span> <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">e</span><span class="p">[</span><span class="mi">1</span><span class="p">:])):</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;edges must be strictly increasing&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_edges</span> <span class="o">=</span> <span class="n">e</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">label</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;The label of this axis including units if applicable.</span>
+<span class="sd">        Example: &quot;distance (meters)&quot;.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;_label&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+    <span class="nd">@label</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">label</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">l</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_label</span> <span class="o">=</span> <span class="n">text_type</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
+
+    <span class="nd">@label</span><span class="o">.</span><span class="n">deleter</span>
+    <span class="k">def</span> <span class="nf">label</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_label</span>
+
+<div class="viewcode-block" id="HistogramAxis.asdict"><a class="viewcode-back" href="../../histogram_axis.html#histogram.HistogramAxis.asdict">[docs]</a>    <span class="k">def</span> <span class="nf">asdict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">ret</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;edges&#39;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="p">}</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">label</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">encoding</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">ret</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">encoding</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">ret</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">label</span>
+        <span class="k">return</span> <span class="n">ret</span></div>
+
+    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="HistogramAxis.fromdict"><a class="viewcode-back" href="../../histogram_axis.html#histogram.HistogramAxis.fromdict">[docs]</a>    <span class="k">def</span> <span class="nf">fromdict</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">label</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;label&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">encoding</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">label</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">label</span> <span class="o">=</span> <span class="n">label</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">encoding</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">HistogramAxis</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="n">d</span><span class="p">[</span><span class="s1">&#39;edges&#39;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">)</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">nbins</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Number of bins in this axis.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">min</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Value of the lowest edge.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">max</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Value of the highest edge.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">mid</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Value of middle of this axis.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">min</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">max</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">limits</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;2-tuple of the lowest and highest edges.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">min</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">max</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">range</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Total range of this axis, min to max.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">max</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">min</span>
+
+<div class="viewcode-block" id="HistogramAxis.binwidths"><a class="viewcode-back" href="../../histogram_axis.html#histogram.HistogramAxis.binwidths">[docs]</a>    <span class="k">def</span> <span class="nf">binwidths</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;All bin widths as an array.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="HistogramAxis.bincenters"><a class="viewcode-back" href="../../histogram_axis.html#histogram.HistogramAxis.bincenters">[docs]</a>    <span class="k">def</span> <span class="nf">bincenters</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Centers of all bins as an array.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">overflow_value</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Value guaranteed to be outside the range of this axis.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">max</span> <span class="o">+</span> <span class="mf">1.</span>
+
+    <span class="k">def</span> <span class="nf">__deepcopy__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">memo</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Deep copy of this instance.&quot;&quot;&quot;</span>
+        <span class="n">cls</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span>
+        <span class="n">newaxis</span> <span class="o">=</span> <span class="n">cls</span><span class="o">.</span><span class="n">__new__</span><span class="p">(</span><span class="n">cls</span><span class="p">)</span>
+        <span class="n">memo</span><span class="p">[</span><span class="nb">id</span><span class="p">(</span><span class="bp">self</span><span class="p">)]</span> <span class="o">=</span> <span class="n">newaxis</span>
+        <span class="n">newaxis</span><span class="o">.</span><span class="n">_edges</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="p">,</span> <span class="n">memo</span><span class="p">)</span>
+        <span class="n">newaxis</span><span class="o">.</span><span class="n">_label</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">label</span><span class="p">,</span> <span class="n">memo</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">newaxis</span>
+
+    <span class="k">def</span> <span class="nf">__copy__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Deep copy of this instance.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+<div class="viewcode-block" id="HistogramAxis.copy"><a class="viewcode-back" href="../../histogram_axis.html#histogram.HistogramAxis.copy">[docs]</a>    <span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return a copy of this axis.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="HistogramAxis.inaxis"><a class="viewcode-back" href="../../histogram_axis.html#histogram.HistogramAxis.inaxis">[docs]</a>    <span class="k">def</span> <span class="nf">inaxis</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Check if `x` is within this axis.</span>
+
+<span class="sd">        Arguments:</span>
+<span class="sd">            x (float): Position along this axis.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            bool: Result of ``min &lt;= x &lt; max``.</span>
+
+<span class="sd">        This follows the edge rules of :py:func:`numpy.digitize`:</span>
+<span class="sd">        ``min &lt;= x &lt; max``.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="HistogramAxis.bin"><a class="viewcode-back" href="../../histogram_axis.html#histogram.HistogramAxis.bin">[docs]</a>    <span class="k">def</span> <span class="nf">bin</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Bin index for the value `x`.</span>
+
+<span class="sd">        Arguments:</span>
+<span class="sd">            x (float or array of floats): Position(s) along this axis.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            int or array of ints: Bin(s) corresponding to the value `x`.</span>
+
+<span class="sd">        Notes:</span>
+<span class="sd">            This follows the convention: low &lt;= x &lt; high.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">searchsorted</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">side</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span></div>
+
+<div class="viewcode-block" id="HistogramAxis.edge_index"><a class="viewcode-back" href="../../histogram_axis.html#histogram.HistogramAxis.edge_index">[docs]</a>    <span class="k">def</span> <span class="nf">edge_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">snap</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Index of the edge based on the given snap.</span>
+
+<span class="sd">        Will always return a valid index from 0 to ``len(self.edges)-1``.</span>
+
+<span class="sd">        Arguments:</span>
+<span class="sd">            x (float): Position along this axis.</span>
+<span class="sd">            snap (str): Method for determining which edge is returned.</span>
+<span class="sd">            Possible values are: {&#39;nearest&#39;,&#39;low&#39;,&#39;high&#39;,&#39;both&#39;}.</span>
+
+<span class="sd">        Note:</span>
+<span class="sd">            Output is a single number except for when ``snap=&#39;both&#39;``</span>
+<span class="sd">            where the output will be a tuple: `(low,high)`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">snap_options</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;nearest&#39;</span><span class="p">,</span><span class="s1">&#39;low&#39;</span><span class="p">,</span><span class="s1">&#39;high&#39;</span><span class="p">,</span><span class="s1">&#39;both&#39;</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="n">__debug__</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">snap</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">snap_options</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Unknown snap keyword: &#39;</span> <span class="o">+</span> <span class="n">snap</span><span class="p">)</span>
+
+        <span class="n">minbin</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">maxbin</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span>
+
+        <span class="nb">bin</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">lowbin</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">bin</span><span class="p">,</span><span class="n">minbin</span><span class="p">)</span>
+        <span class="n">highbin</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="nb">bin</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">maxbin</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">snap</span> <span class="o">==</span> <span class="s1">&#39;both&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">(</span><span class="n">lowbin</span><span class="p">,</span><span class="n">highbin</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">snap</span> <span class="o">==</span> <span class="s1">&#39;high&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">highbin</span>
+        <span class="k">elif</span> <span class="n">snap</span> <span class="o">==</span> <span class="s1">&#39;low&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">lowbin</span>
+        <span class="k">else</span><span class="p">:</span>  <span class="c1"># snap == &#39;nearest&#39;</span>
+            <span class="n">low</span><span class="p">,</span><span class="n">high</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="p">[[</span><span class="n">lowbin</span><span class="p">,</span><span class="n">highbin</span><span class="p">]]</span>
+            <span class="n">dlow</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">low</span><span class="p">)</span>
+            <span class="n">dhigh</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">high</span><span class="o">-</span><span class="n">x</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">dlow</span> <span class="o">&lt;</span> <span class="n">dhigh</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">lowbin</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">highbin</span></div>
+
+<div class="viewcode-block" id="HistogramAxis.binwidth"><a class="viewcode-back" href="../../histogram_axis.html#histogram.HistogramAxis.binwidth">[docs]</a>    <span class="k">def</span> <span class="nf">binwidth</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Width of a specific bin.</span>
+
+<span class="sd">        Arguments:</span>
+<span class="sd">            b (int): bin index</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            float: Width of the (b+1)-th bin.</span>
+
+<span class="sd">        Bin indexing starts with zero and by default, the width of the</span>
+<span class="sd">        second bin (index: 1) is returned.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="p">[</span><span class="n">b</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="p">[</span><span class="n">b</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="HistogramAxis.isuniform"><a class="viewcode-back" href="../../histogram_axis.html#histogram.HistogramAxis.isuniform">[docs]</a>    <span class="k">def</span> <span class="nf">isuniform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rtol</span><span class="o">=</span><span class="mi">1</span><span class="n">e</span><span class="o">-</span><span class="mi">05</span><span class="p">,</span> <span class="n">atol</span><span class="o">=</span><span class="mi">1</span><span class="n">e</span><span class="o">-</span><span class="mi">08</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Check if all bins are of equal width.</span>
+
+<span class="sd">        Arguments:</span>
+<span class="sd">            rtol (float): relative tolerance parameter</span>
+<span class="sd">            atol (float): absolute tolerance parameter</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            bool: True if all bins are the same size</span>
+
+<span class="sd">        Note:</span>
+<span class="sd">            This returns True if all bin-widths satisfy the following::</span>
+
+<span class="sd">                abs(widths - mean) &lt;= (atol + rtol * abs(median))</span>
+
+<span class="sd">            The axis is considered uniform if the maximum deviation of the</span>
+<span class="sd">            bin-widths is less than the given tolerance:</span>
+
+<span class="sd">            .. math::</span>
+
+<span class="sd">                \max\left(\frac{\left|w_{i} -</span>
+<span class="sd">                    \left&lt;w\right&gt;\right|}{\left&lt;w\right&gt;}\right) &lt; tol</span>
+
+<span class="sd">            where :math:`\left&lt;w\right&gt;` is the :py:func:`median</span>
+<span class="sd">            &lt;numpy.median&gt;` bin width and :math:`max()` is evaluated over all</span>
+<span class="sd">            bin widths, :math:`w_{i}`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">widths</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">binwidths</span><span class="p">()</span>
+        <span class="n">median</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">widths</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">widths</span><span class="p">,</span> <span class="n">median</span><span class="p">,</span> <span class="n">rtol</span><span class="o">=</span><span class="n">rtol</span><span class="p">,</span> <span class="n">atol</span><span class="o">=</span><span class="n">atol</span><span class="p">)</span></div>
+
+    <span class="n">_CutResult</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;CutResult&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;axis&#39;</span><span class="p">,</span> <span class="s1">&#39;mask&#39;</span><span class="p">])</span>
+
+<div class="viewcode-block" id="HistogramAxis.cut"><a class="viewcode-back" href="../../histogram_axis.html#histogram.HistogramAxis.cut">[docs]</a>    <span class="k">def</span> <span class="nf">cut</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">low</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">snap</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return a truncated :py:class:`HistogramAxis`</span>
+
+<span class="sd">        Arguments:</span>
+<span class="sd">            low (float): Lowest bin will include this point</span>
+<span class="sd">                    (`None` is equivalent to the lowest edge).</span>
+<span class="sd">            high (float): Highest bin will include this point (`None`</span>
+<span class="sd">            is equivalent to the highest edge).</span>
+<span class="sd">            snap (str, str 2-tuple): Clip edges when creating new axis.</span>
+<span class="sd">            Possible values are:</span>
+<span class="sd">            {&#39;nearest&#39;,&#39;expand&#39;,&#39;low&#39;,&#39;high&#39;,&#39;clip&#39;}.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            :py:class:`HistogramAxis`: A new instance.</span>
+<span class="sd">            mask (boolean array): mask array to be used on data to make</span>
+<span class="sd">            this cut</span>
+
+<span class="sd">        Note:</span>
+<span class="sd">            Full bins of this axis will be used unless</span>
+<span class="sd">            ``snap == &#39;clip&#39;`` in which case the low or high bins will</span>
+<span class="sd">            be clipped. Clipping will likely make a uniform axis no</span>
+<span class="sd">            longer uniform.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">snap_options</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;nearest&#39;</span><span class="p">,</span> <span class="s1">&#39;expand&#39;</span><span class="p">,</span> <span class="s1">&#39;low&#39;</span><span class="p">,</span> <span class="s1">&#39;high&#39;</span><span class="p">,</span> <span class="s1">&#39;clip&#39;</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">snap</span><span class="p">,</span> <span class="n">string_types</span><span class="p">):</span>
+            <span class="n">snap</span> <span class="o">=</span> <span class="p">(</span><span class="n">snap</span><span class="p">,</span> <span class="n">snap</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">__debug__</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">snap</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">s</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">snap_options</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Unknown snap keyword: &#39;</span> <span class="o">+</span> <span class="n">s</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">low</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">lowi</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">snap</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;clip&#39;</span><span class="p">,</span> <span class="s1">&#39;expand&#39;</span><span class="p">]:</span>
+                <span class="n">eisnap</span> <span class="o">=</span> <span class="s1">&#39;low&#39;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">eisnap</span> <span class="o">=</span> <span class="n">snap</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">lowi</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">edge_index</span><span class="p">(</span><span class="n">low</span><span class="p">,</span> <span class="n">eisnap</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">eisnap</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;high&#39;</span><span class="p">]:</span>
+                <span class="k">if</span> <span class="n">lowi</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="p">[</span><span class="n">lowi</span> <span class="o">-</span> <span class="mi">1</span><span class="p">],</span> <span class="n">low</span><span class="p">):</span>
+                    <span class="n">lowi</span> <span class="o">-=</span> <span class="mi">1</span>
+
+        <span class="k">if</span> <span class="n">high</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">highi</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">snap</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;clip&#39;</span><span class="p">,</span> <span class="s1">&#39;expand&#39;</span><span class="p">]:</span>
+                <span class="n">eisnap</span> <span class="o">=</span> <span class="s1">&#39;high&#39;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">eisnap</span> <span class="o">=</span> <span class="n">snap</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">highi</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">edge_index</span><span class="p">(</span><span class="n">high</span><span class="p">,</span> <span class="n">eisnap</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">eisnap</span> <span class="o">==</span> <span class="s1">&#39;high&#39;</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">highi</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="p">[</span><span class="n">highi</span> <span class="o">-</span> <span class="mi">1</span><span class="p">],</span> <span class="n">high</span><span class="p">):</span>
+                    <span class="n">highi</span> <span class="o">-=</span> <span class="mi">1</span>
+
+        <span class="n">newedges</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="p">[</span><span class="n">lowi</span><span class="p">:</span><span class="n">highi</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span>
+        <span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">nbins</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">bool</span><span class="p">)</span>
+        <span class="n">mask</span><span class="p">[</span><span class="n">lowi</span><span class="p">:</span><span class="n">highi</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+
+        <span class="k">if</span> <span class="n">low</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">snap</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;clip&#39;</span><span class="p">:</span>
+                <span class="n">newedges</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">low</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="p">[</span><span class="n">lowi</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">high</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">snap</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;clip&#39;</span><span class="p">:</span>
+                <span class="n">newedges</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">high</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="p">[</span><span class="n">highi</span><span class="p">])</span>
+
+        <span class="n">newaxis</span> <span class="o">=</span> <span class="n">HistogramAxis</span><span class="p">(</span><span class="n">newedges</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">copy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">label</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">HistogramAxis</span><span class="o">.</span><span class="n">_CutResult</span><span class="p">(</span><span class="n">newaxis</span><span class="p">,</span> <span class="n">mask</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="HistogramAxis.mergebins"><a class="viewcode-back" href="../../histogram_axis.html#histogram.HistogramAxis.mergebins">[docs]</a>    <span class="k">def</span> <span class="nf">mergebins</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nbins</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">snap</span><span class="o">=</span><span class="s1">&#39;low&#39;</span><span class="p">,</span> <span class="n">clip</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Merge neighboring bins.</span>
+
+<span class="sd">        Arguments:</span>
+<span class="sd">            nbins (int): Number of bins to merge.</span>
+<span class="sd">            snap (str): If `nbins` does not evenly divide the number</span>
+<span class="sd">                    of bins in this axis, this will &quot;snap&quot; the window</span>
+<span class="sd">                    to the &quot;high&quot; or &quot;low&quot; edge.</span>
+<span class="sd">            clip (bool): Ignore opposite limit from `snap` if `nbins`</span>
+<span class="sd">                    does not evenly divide the number of bins in this</span>
+<span class="sd">                    axis. Setting this to True (default) will result</span>
+<span class="sd">                    in an axis that maintains uniform bin widths.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            :py:class:`HistogramAxis`: A new instance.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">snap_options</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;low&#39;</span><span class="p">,</span><span class="s1">&#39;high&#39;</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="n">__debug__</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">snap</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">snap_options</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Unknown snap keyword: &#39;</span> <span class="o">+</span> <span class="n">snap</span><span class="p">)</span>
+
+        <span class="n">d</span><span class="p">,</span> <span class="n">m</span> <span class="o">=</span> <span class="nb">divmod</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nbins</span><span class="p">,</span> <span class="n">nbins</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">m</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">newedges</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="p">[::</span><span class="n">nbins</span><span class="p">]</span>
+        <span class="k">elif</span> <span class="n">clip</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">snap</span> <span class="o">==</span> <span class="s1">&#39;low&#39;</span><span class="p">:</span>
+                <span class="n">newedges</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="p">[::</span><span class="n">nbins</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">newedges</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="p">[</span><span class="n">m</span><span class="p">::</span><span class="n">nbins</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">snap</span> <span class="o">==</span> <span class="s1">&#39;low&#39;</span><span class="p">:</span>
+                <span class="n">newedges</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="p">[::</span><span class="n">nbins</span><span class="p">],</span>
+                                           <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">newedges</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(([</span><span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span>
+                                           <span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="p">[</span><span class="n">m</span><span class="p">::</span><span class="n">nbins</span><span class="p">]))</span>
+
+        <span class="k">return</span> <span class="n">HistogramAxis</span><span class="p">(</span><span class="n">newedges</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">copy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">label</span><span class="p">))</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+    <a id="sidebar-anchor"></a>
+    
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+      </ul>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2017, John T. Goetz.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.5.
+    </div>
+  </body>
+</html>
